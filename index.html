@@ -86,7 +86,7 @@
 
         body { padding-bottom: 150px; }
         ::selection { background-color: var(--crimson); color: #fff; }
-        a, button, input, .stream-tag, .tab-btn, .wish-item, .fantia-link-btn { cursor: none !important; }
+        a, button, input, .stream-tag, .tab-btn, .wish-item, .fantia-link-btn, .campfire-banner-inner { cursor: none !important; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 4px; }
@@ -419,7 +419,7 @@
         .section-wrapper { text-align: center; padding-top: 80px; padding-bottom: 20px; }
         .section-divider { width: 60%; max-width: 600px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim), var(--crimson-dim), var(--gold-dim), transparent); margin: -40px auto 80px; }
 
-        .hero { position: relative; width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        .hero { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; padding-bottom: 80px; }
         .hero-ritual-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 5; }
         .ritual-ring { position: absolute; top: 50%; left: 50%; border-radius: 50%; border: 1px solid; transform: translate(-50%, -50%); }
         .ritual-ring-1 { width: 420px; height: 420px; border-color: rgba(209,173,63,0.07); animation: bgRingRotate 60s linear infinite; }
@@ -496,6 +496,115 @@
         .wish-item:hover { border-color: var(--crimson); transform: translateY(-5px); background: rgba(219,15,77,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
         .wish-item .service-name { display: flex; align-items: center; gap: 12px; font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 10px; }
         .wish-item .service-name svg { width: 26px; height: 26px; flex-shrink: 0; fill: var(--crimson); }
+        /* ── クラウドファンディングバナー ── */
+        .campfire-banner {
+            position: relative;
+            margin: 40px auto 0;
+            max-width: 820px;
+            width: 90%;
+            z-index: 10;
+        }
+        .campfire-banner-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            padding: 28px 40px;
+            border-radius: 18px;
+            background: linear-gradient(135deg,
+                rgba(5, 0, 12, 0.92) 0%,
+                rgba(15, 2, 20, 0.95) 50%,
+                rgba(5, 0, 12, 0.92) 100%);
+            border: 1px solid rgba(209,173,63,0.5);
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.8),
+                0 0 30px rgba(209,173,63,0.15),
+                0 0 60px rgba(219,15,77,0.08),
+                inset 0 0 40px rgba(0,0,0,0.5);
+            transition: all 0.45s cubic-bezier(0.25,1,0.5,1);
+            overflow: hidden;
+            position: relative;
+        }
+        .campfire-banner-inner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(209,173,63,0.06) 0%,
+                rgba(219,15,77,0.04) 50%,
+                rgba(209,173,63,0.06) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .campfire-banner-inner:hover::before { opacity: 1; }
+        .campfire-banner-inner:hover {
+            border-color: rgba(209,173,63,0.85);
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.8),
+                0 0 50px rgba(209,173,63,0.3),
+                0 0 100px rgba(219,15,77,0.15),
+                0 20px 60px rgba(0,0,0,0.8),
+                inset 0 0 40px rgba(0,0,0,0.4);
+            transform: translateY(-4px);
+        }
+        .campfire-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, rgba(219,15,77,0.9), rgba(180,5,50,0.9));
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(219,15,77,0.5);
+            animation: tagPulse 2.5s infinite ease-in-out;
+        }
+        .campfire-badge::before { content: '✦'; }
+        .campfire-text {
+            text-align: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            line-height: 1.85;
+            letter-spacing: 2px;
+            color: rgba(240,220,160,0.95);
+            text-shadow: 0 0 20px rgba(209,173,63,0.4);
+            position: relative;
+            z-index: 1;
+        }
+        .campfire-enter {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: rgba(209,173,63,0.7);
+            text-transform: uppercase;
+            transition: color 0.3s, letter-spacing 0.3s;
+        }
+        .campfire-banner-inner:hover .campfire-enter {
+            color: rgba(209,173,63,1);
+            letter-spacing: 6px;
+        }
+        .campfire-enter::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+        .campfire-banner-inner:hover .campfire-enter::after { transform: translateX(5px); }
+        /* 左右の装飾ライン */
+        .campfire-deco-line {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, rgba(209,173,63,0.5), rgba(219,15,77,0.4), transparent);
+        }
+        .campfire-deco-line.left  { left: 18px; }
+        .campfire-deco-line.right { right: 18px; }
+
         .fantia-area { max-width: 600px; margin: 0 auto; text-align: center; }
         .fantia-link-btn { display: inline-flex; flex-direction: column; align-items: center; gap: 12px; background: linear-gradient(135deg, #f39c12, #e67e22); border: 2px solid var(--gold); color: #fff; text-decoration: none; padding: 25px 50px; border-radius: 20px; font-family: 'Cinzel', serif; transition: 0.4s; box-shadow: 0 15px 40px rgba(243,156,18,0.2); width: 80%; }
         .fantia-link-btn span { font-size: 2.2rem; letter-spacing: 5px; font-weight: bold; }
@@ -645,6 +754,62 @@
             .ch-link { width: 100%; justify-content: center; }
         }
 
+        /* ── Special Thanks ── */
+        .special-thanks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .thanks-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: rgba(10,0,10,0.6);
+            border: 1px solid rgba(209,173,63,0.25);
+            border-radius: 12px;
+            padding: 20px 16px;
+            transition: all 0.35s cubic-bezier(0.25,1,0.5,1);
+            text-align: center;
+        }
+        .thanks-card:hover {
+            border-color: rgba(219,15,77,0.6);
+            background: rgba(219,15,77,0.06);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7), 0 0 15px rgba(219,15,77,0.2);
+        }
+        .thanks-role {
+            font-size: 0.72rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            color: var(--crimson);
+            text-transform: uppercase;
+        }
+        .thanks-name {
+            font-size: 1.1rem;
+            color: rgba(240,220,160,0.95);
+            letter-spacing: 2px;
+            font-family: 'Kaisei Decol', serif;
+        }
+        .thanks-note {
+            font-size: 0.82rem;
+            color: rgba(200,180,130,0.6);
+            line-height: 1.6;
+        }
+        .thanks-section-title {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(209,173,63,0.2);
+        }
+        .thanks-section-title:first-child { margin-top: 0; }
+
         @keyframes auraPulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6;}50%{transform:translate(-50%,-50%) scale(1.2);opacity:1;} }
         @keyframes auraPulseFast { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.8;}50%{transform:translate(-50%,-50%) scale(1.1);opacity:1;} }
         @keyframes heartBeat { 0%{transform:translate(-50%,-50%) scale(1);}100%{transform:translate(-50%,-50%) scale(1.15);} }
@@ -766,6 +931,16 @@
             <span>Scroll</span>
             <div class="scroll-diamond"></div>
         </div>
+        <!-- ── クラウドファンディングバナー ── -->
+        <div class="campfire-banner fade-up delay-2">
+            <a href="https://camp-fire.jp/projects/940089" target="_blank" rel="noopener noreferrer" class="campfire-banner-inner">
+                <div class="campfire-deco-line left"></div>
+                <div class="campfire-deco-line right"></div>
+                <span class="campfire-badge">Crowdfunding</span>
+                <p class="campfire-text">落ち着く声で究極の癒やしを。<br>シャルノスASMRプロジェクト✧</p>
+                <span class="campfire-enter">CAMPFIREで支援する</span>
+            </a>
+        </div>
     </section>
 
     <section>
@@ -805,7 +980,8 @@
                     <button class="tab-btn active" data-target="tab-intro"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Profile</button>
                     <button class="tab-btn" data-target="tab-likes"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Like & Skill</button>
                     <button class="tab-btn" data-target="tab-wishlist"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.65-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4V8h16v11z"/></svg>Wishlist</button>
-                    <button class="tab-btn" data-target="tab-fantia"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>Fantia</button>
+                    <button class="tab-btn" data-target="tab-fantia"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>Ci-en</button>
+                    <button class="tab-btn" data-target="tab-special-thanks"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>Special Thanks</button>
                 </div>
                 <div id="tab-intro" class="tab-content active">
                     <div class="profile-basic-info">
@@ -845,8 +1021,51 @@
                 <div id="tab-fantia" class="tab-content">
                     <div class="fantia-area">
                         <p style="margin-bottom:25px;color:rgba(255,255,255,0.8);line-height:2.2;">応援してくれる深徒、深徒候補を認知する場所です。<br>音声動画や料理日記、シチュエーションボイス、1on1通話など⋯⋯<br>様々なお返しを用意して待っていますね。</p>
-                        <a href="https://fantia.jp/fanclubs/548513" target="_blank" rel="noopener noreferrer" class="fantia-link-btn"><span>Enter Fantia</span></a>
+                        <a href="https://ci-en.net/creator/35826" target="_blank" rel="noopener noreferrer" class="fantia-link-btn"><span>Enter Ci-en</span></a>
                     </div>
+                </div>
+                <div id="tab-special-thanks" class="tab-content">
+                    <p style="margin-bottom:20px;color:rgba(255,255,255,0.7);border-left:4px solid var(--gold);padding-left:15px;line-height:2.0;">活動を支えてくださっている皆さまへの感謝を込めて。</p>
+                    <div class="thanks-section-title">✦ Illustration & Design</div>
+                    <div class="special-thanks-grid">
+                        <div class="thanks-card">
+                            <span class="thanks-role">Character Design</span>
+                            <span class="thanks-name">——</span>
+                            <span class="thanks-note">キャラクターデザイン</span>
+                        </div>
+                        <div class="thanks-card">
+                            <span class="thanks-role">Live2D</span>
+                            <span class="thanks-name">——</span>
+                            <span class="thanks-note">Live2Dモデリング</span>
+                        </div>
+                        <div class="thanks-card">
+                            <span class="thanks-role">Logo & Web</span>
+                            <span class="thanks-name">——</span>
+                            <span class="thanks-note">ロゴ・サイトデザイン</span>
+                        </div>
+                    </div>
+                    <div class="thanks-section-title">✦ Music & BGM</div>
+                    <div class="special-thanks-grid">
+                        <div class="thanks-card">
+                            <span class="thanks-role">BGM</span>
+                            <span class="thanks-name">——</span>
+                            <span class="thanks-note">配信BGM制作</span>
+                        </div>
+                        <div class="thanks-card">
+                            <span class="thanks-role">Arrange</span>
+                            <span class="thanks-name">——</span>
+                            <span class="thanks-note">楽曲アレンジ</span>
+                        </div>
+                    </div>
+                    <div class="thanks-section-title">✦ Special Support</div>
+                    <div class="special-thanks-grid">
+                        <div class="thanks-card">
+                            <span class="thanks-role">深徒の皆さん</span>
+                            <span class="thanks-name">All Followers</span>
+                            <span class="thanks-note">いつもありがとう♡</span>
+                        </div>
+                    </div>
+                    <p style="text-align:center;margin-top:30px;color:rgba(200,175,110,0.5);font-size:0.85rem;letter-spacing:2px;">※ 随時更新予定</p>
                 </div>
                 <div class="stream-tags-section">
                     <strong style="color:var(--gold);">Stream Tags:</strong>
@@ -961,7 +1180,7 @@
             setTimeout(() => ripple.remove(), 700);
         });
         document.addEventListener('mouseup', () => { setTimeout(() => cursorWrap.classList.remove('clicking'), 350); });
-        document.querySelectorAll('a, button, .stream-tag, .tab-btn, .wish-item, .indicator-wrap, .modal-close, .fantia-link-btn, .ch-link').forEach(el => {
+        document.querySelectorAll('a, button, .stream-tag, .tab-btn, .wish-item, .indicator-wrap, .modal-close, .fantia-link-btn, .ch-link, .campfire-banner-inner').forEach(el => {
             el.addEventListener('mouseenter', () => cursorWrap.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursorWrap.classList.remove('hover'));
         });
