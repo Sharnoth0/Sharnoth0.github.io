@@ -938,6 +938,19 @@
             box-shadow: 0 0 40px rgba(219,15,77,0.3); transform: translateY(-3px);
         }
 
+        .mf-sent-view, .mf-error-view {
+            display: none; text-align: center; padding: 20px 10px 10px;
+        }
+        .mf-sent-view.active, .mf-error-view.active { display: block; }
+        .mf-sent-icon { font-size: 2.5rem; color: rgba(209,173,63,0.5); margin-bottom: 14px; animation: pharaohEyePulse 4s ease-in-out infinite; }
+        .mf-sent-title { font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 14px; }
+        .mf-sent-msg { font-size: 0.88rem; color: rgba(200,185,155,0.75); line-height: 2.2; }
+        .mf-error-msg { font-size: 0.88rem; color: rgba(219,100,100,0.85); background: rgba(219,15,77,0.08); border: 1px solid rgba(219,15,77,0.25); border-radius: 8px; padding: 14px 16px; line-height: 1.9; margin-bottom: 12px; }
+        .mf-form-body { transition: opacity 0.3s; }
+        .mf-form-body.hidden { opacity: 0; pointer-events: none; height: 0; overflow: hidden; }
+
+        /* ══ メールフォームモーダル end ══ */
+
         /* スピナー行 */
         .inq-spinner-row { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(209,173,63,0.12); background: rgba(5,0,10,0.5); transition: all 0.3s; }
         .inq-spinner-row.active { border-color: rgba(219,15,77,0.5); background: rgba(219,15,77,0.06); }
@@ -1989,6 +2002,7 @@
             </div>
 
             <!-- フォーム -->
+            <div class="mf-form-body" id="mf-form-body">
             <div class="mf-field">
                 <label class="mf-label">お名前 <span class="mf-required">*</span></label>
                 <input type="text" class="mf-input" id="mf-name" placeholder="例：シャルノス ／ Sharnoth">
@@ -2010,10 +2024,24 @@
                 <button class="mf-cancel" id="mf-cancel">キャンセル</button>
                 <button class="mf-submit" id="mf-submit">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                    メールで送信する
+                    <span id="mf-submit-label">送信する</span>
                 </button>
             </div>
             <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：grenadine0syrup@gmail.com</p>
+            </div><!-- /.mf-form-body -->
+
+            <!-- 送信完了ビュー -->
+            <div class="mf-sent-view" id="mf-sent-view">
+                <div class="mf-sent-icon">𓂀</div>
+                <div class="mf-sent-title">ご相談を受け付けました</div>
+                <p class="mf-sent-msg">お問い合わせありがとうございます。<br>内容を確認のうえ、折り返しご連絡いたします。<br>今しばらくお待ちください。</p>
+                <button class="mf-cancel" id="mf-sent-close" style="margin-top:8px;width:100%;">閉じる</button>
+            </div>
+            <!-- 送信失敗ビュー -->
+            <div class="mf-error-view" id="mf-error-view">
+                <div class="mf-error-msg" id="mf-error-msg"></div>
+                <button class="mf-cancel" id="mf-error-back" style="margin-top:8px;width:100%;">戻って再送信</button>
+            </div>
         </div>
     </div>
 
@@ -2405,27 +2433,102 @@
         }
 
         if (openMailform) openMailform.addEventListener('click', openMailformModal);
-        if (mailformClose) mailformClose.addEventListener('click', () => { mailformModal.classList.remove('active'); });
-        if (mfCancel)      mfCancel.addEventListener('click',      () => { mailformModal.classList.remove('active'); });
-        if (mailformModal) mailformModal.addEventListener('click',  e  => { if (e.target === mailformModal) mailformModal.classList.remove('active'); });
+        if (mailformClose) mailformClose.addEventListener('click', () => resetAndCloseMailform());
+        if (mfCancel)      mfCancel.addEventListener('click',      () => resetAndCloseMailform());
+        if (mailformModal) mailformModal.addEventListener('click',  e  => { if (e.target === mailformModal) resetAndCloseMailform(); });
 
-        if (mfSubmit) mfSubmit.addEventListener('click', () => {
+        // ── フォームリセット＆クローズ ──
+        function resetAndCloseMailform() {
+            mailformModal.classList.remove('active');
+            // 少し待ってからリセット（アニメーション終了後）
+            setTimeout(() => {
+                document.getElementById('mf-form-body').classList.remove('hidden');
+                document.getElementById('mf-sent-view').classList.remove('active');
+                document.getElementById('mf-error-view').classList.remove('active');
+                document.getElementById('mf-name').value    = '';
+                document.getElementById('mf-sns').value     = '';
+                document.getElementById('mf-place').value   = '';
+                document.getElementById('mf-message').value = '';
+                const lbl = document.getElementById('mf-submit-label');
+                if (lbl) lbl.textContent = '送信する';
+                if (mfSubmit) mfSubmit.disabled = false;
+            }, 400);
+        }
+
+        // 送信完了・エラービューの閉じるボタン
+        document.getElementById('mf-sent-close')?.addEventListener('click', resetAndCloseMailform);
+        document.getElementById('mf-error-back')?.addEventListener('click', () => {
+            document.getElementById('mf-error-view').classList.remove('active');
+            document.getElementById('mf-form-body').classList.remove('hidden');
+            const lbl = document.getElementById('mf-submit-label');
+            if (lbl) lbl.textContent = '送信する';
+            if (mfSubmit) mfSubmit.disabled = false;
+        });
+
+        // ── 送信処理（Web3Forms） ──
+        // ★ Web3Forms の無料アクセスキーをここに設置してください
+        // https://web3forms.com にアクセスし、grenadine0syrup@gmail.com を入力するとキーが届きます
+        const WEB3FORMS_KEY = '024186dc-30db-47bf-ace4-12bde7a53c6f';
+
+        if (mfSubmit) mfSubmit.addEventListener('click', async () => {
             const name    = (document.getElementById('mf-name')?.value    || '').trim();
             const sns     = (document.getElementById('mf-sns')?.value     || '').trim();
             const place   = (document.getElementById('mf-place')?.value   || '').trim();
             const message = (document.getElementById('mf-message')?.value || '').trim();
 
-            if (!name) { alert('お名前をご入力ください。'); return; }
+            if (!name)    { alert('お名前をご入力ください。'); return; }
             if (!message) { alert('ご相談内容をご入力ください。'); return; }
 
-            const subject = encodeURIComponent('【お仕事のご相談】' + name + ' 様より');
-            const body = encodeURIComponent(
-                'お名前：' + name + '\n' +
-                'SNS：' + (sns || 'なし') + '\n' +
-                '活動場所：' + (place || 'なし') + '\n\n' +
-                message
-            );
-            window.location.href = `mailto:grenadine0syrup@gmail.com?subject=${subject}&body=${body}`;
+            // ボタンをローディング状態に
+            const lbl = document.getElementById('mf-submit-label');
+            if (lbl) lbl.textContent = '送信中…';
+            mfSubmit.disabled = true;
+
+            // 送信データ組み立て
+            const { items, total } = getSelections();
+            const selectedText = items.length > 0
+                ? items.map(i => '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')).join('\n')
+                : '（未選択）';
+            const totalText = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
+
+            const formData = {
+                access_key: WEB3FORMS_KEY,
+                subject:    `【お仕事のご相談】${name} 様より`,
+                from_name:  'Sharnoth Grenadine 公式サイト',
+                name:       name,
+                message:
+                    `▼ 選択項目\n${selectedText}\n\n` +
+                    `▼ 予想合計\n${totalText}\n\n` +
+                    `▼ SNSアカウント\n${sns || 'なし'}\n\n` +
+                    `▼ 活動場所・所属\n${place || 'なし'}\n\n` +
+                    `▼ ご相談内容\n${message}`,
+                botcheck: '' // ハニーポットスパム対策
+            };
+
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    // 送信完了ビューへ
+                    document.getElementById('mf-form-body').classList.add('hidden');
+                    document.getElementById('mf-sent-view').classList.add('active');
+                } else {
+                    throw new Error(data.message || '送信に失敗しました。');
+                }
+            } catch (err) {
+                // エラービューへ
+                document.getElementById('mf-form-body').classList.add('hidden');
+                const errView = document.getElementById('mf-error-view');
+                const errMsg  = document.getElementById('mf-error-msg');
+                if (errMsg) errMsg.innerHTML =
+                    '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、<br>直接 <strong style="color:rgba(209,173,63,0.9);">grenadine0syrup@gmail.com</strong> へご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
+                if (errView) errView.classList.add('active');
+            }
         });
 
         // カーソルホバー対象に追加
