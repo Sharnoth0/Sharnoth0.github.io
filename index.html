@@ -764,6 +764,216 @@
             .ch-link { width: 100%; justify-content: center; }
         }
 
+        /* ══ 依頼モーダル ══ */
+        .inquiry-overlay { align-items: flex-end; padding: 0; }
+        @media(min-width:768px){ .inquiry-overlay { align-items: center; padding: 20px; } }
+
+        .inquiry-modal-wrap {
+            position: relative;
+            width: 100%; max-width: 800px;
+            max-height: 92vh;
+            background: linear-gradient(160deg, rgba(6,1,12,0.99) 0%, rgba(4,0,8,0.99) 100%);
+            border: 1px solid rgba(209,173,63,0.3);
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: 0 -10px 60px rgba(0,0,0,0.9), 0 0 80px rgba(219,15,77,0.06);
+        }
+        @media(min-width:768px){
+            .inquiry-modal-wrap { border-radius: 20px; max-height: 88vh; }
+        }
+        .inquiry-close {
+            position: absolute; top: 16px; right: 16px; z-index: 10;
+            color: rgba(209,173,63,0.6); background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(209,173,63,0.2); border-radius: 50%;
+            width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+        }
+        .inquiry-close:hover { color: var(--gold); border-color: var(--gold); }
+
+        .inq-header {
+            text-align: center; padding: 28px 60px 18px;
+            background: linear-gradient(to bottom, rgba(15,2,25,0.8), transparent);
+            flex-shrink: 0;
+        }
+        .inq-header-deco { font-size: 1.2rem; color: rgba(209,173,63,0.35); margin-bottom: 6px; }
+        .inq-title {
+            font-family: 'Cinzel', serif; font-size: clamp(1.3rem,3vw,1.9rem);
+            letter-spacing: 6px; color: var(--gold); margin: 0;
+        }
+        .inq-subtitle { font-size: 0.78rem; color: rgba(200,175,110,0.5); letter-spacing: 2px; margin-top: 6px; }
+
+        .inq-tabs {
+            display: flex; gap: 0; flex-shrink: 0;
+            border-bottom: 1px solid rgba(209,173,63,0.15);
+            padding: 0 24px; overflow-x: auto;
+        }
+        .inq-tab {
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 2px;
+            color: rgba(190,175,155,0.4); padding: 12px 20px;
+            border-bottom: 2px solid transparent; white-space: nowrap;
+            transition: all 0.3s; background: none; border-top: none; border-left: none; border-right: none;
+            cursor: none !important;
+        }
+        .inq-tab:hover { color: rgba(209,173,63,0.8); }
+        .inq-tab.active { color: var(--gold); border-bottom-color: var(--crimson); }
+
+        .inq-body {
+            flex: 1; overflow-y: auto; padding: 24px 28px 8px;
+        }
+        .inq-body::-webkit-scrollbar { width: 5px; }
+        .inq-body::-webkit-scrollbar-thumb { background: rgba(209,173,63,0.3); border-radius: 3px; }
+
+        .inq-panel { display: none; }
+        .inq-panel.active { display: block; }
+
+        .inq-panel-desc { color: rgba(200,185,155,0.75); font-size: 0.9rem; line-height: 2.0; margin-bottom: 16px; }
+
+        .inq-notice {
+            display: flex; gap: 8px; align-items: flex-start;
+            background: rgba(209,173,63,0.06); border: 1px solid rgba(209,173,63,0.2);
+            border-left: 3px solid var(--gold); border-radius: 8px;
+            padding: 12px 16px; font-size: 0.82rem; color: rgba(209,173,63,0.8);
+            line-height: 1.7; margin-bottom: 18px;
+        }
+
+        .inq-service-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+
+        .inq-service-row {
+            display: grid; grid-template-columns: 24px 1fr auto;
+            align-items: center; gap: 14px;
+            padding: 14px 16px; border-radius: 10px;
+            border: 1px solid rgba(209,173,63,0.12);
+            background: rgba(5,0,10,0.5);
+            transition: all 0.3s; cursor: none !important;
+        }
+        .inq-service-row:hover { border-color: rgba(209,173,63,0.35); background: rgba(209,173,63,0.04); }
+        .inq-service-row:has(input:checked) {
+            border-color: rgba(219,15,77,0.5);
+            background: rgba(219,15,77,0.06);
+            box-shadow: 0 0 16px rgba(219,15,77,0.08);
+        }
+
+        /* カスタムチェックボックス */
+        .inq-cb { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; flex-shrink: 0;
+            border: 1px solid rgba(209,173,63,0.4); border-radius: 4px; background: rgba(5,0,10,0.8);
+            position: relative; transition: all 0.2s; cursor: none !important;
+        }
+        .inq-cb:checked { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 8px rgba(219,15,77,0.5); }
+        .inq-cb:checked::after {
+            content: ''; position: absolute; left: 5px; top: 2px;
+            width: 5px; height: 9px; border: 2px solid #fff;
+            border-top: none; border-left: none; transform: rotate(45deg);
+        }
+
+        .inq-service-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+        .inq-service-name { font-size: 0.95rem; color: rgba(230,215,180,0.9); letter-spacing: 0.5px; line-height: 1.4; }
+        .inq-service-detail { font-size: 0.75rem; color: rgba(180,160,120,0.5); letter-spacing: 0.5px; line-height: 1.5; }
+
+        .inq-price-badge {
+            font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 1px;
+            color: rgba(209,173,63,0.85); white-space: nowrap;
+            background: rgba(209,173,63,0.08); border: 1px solid rgba(209,173,63,0.25);
+            padding: 4px 10px; border-radius: 6px;
+        }
+        .inq-price-badge.consult { color: rgba(180,160,120,0.6); background: rgba(180,160,120,0.06); border-color: rgba(180,160,120,0.2); }
+        .inq-price-badge.add { color: rgba(219,15,77,0.8); background: rgba(219,15,77,0.06); border-color: rgba(219,15,77,0.25); }
+
+        .inq-terms { background: rgba(0,0,0,0.35); border-radius: 10px; padding: 16px 20px; margin-top: 4px; }
+        .inq-terms-title { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 10px; }
+        .inq-steps { padding-left: 20px; margin: 0; }
+        .inq-steps li { font-size: 0.85rem; color: rgba(200,185,155,0.65); line-height: 2.2; letter-spacing: 0.5px; }
+        .inq-caution { padding-left: 18px; margin: 0; }
+        .inq-caution li { font-size: 0.8rem; color: rgba(200,175,130,0.55); line-height: 2.0; letter-spacing: 0.5px; }
+
+        /* スティッキー合計バー */
+        .inq-total-bar {
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: 14px 28px;
+            background: rgba(3,0,8,0.97);
+            border-top: 1px solid rgba(209,173,63,0.2);
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+        }
+        .inq-selected-list {
+            flex: 1; display: flex; flex-wrap: wrap; gap: 6px; min-width: 0;
+        }
+        .inq-no-select { font-size: 0.72rem; color: rgba(180,160,120,0.35); letter-spacing: 1px; }
+        .inq-selected-chip {
+            font-size: 0.68rem; color: rgba(219,15,77,0.85);
+            background: rgba(219,15,77,0.08); border: 1px solid rgba(219,15,77,0.3);
+            padding: 2px 10px; border-radius: 12px; letter-spacing: 0.5px;
+            white-space: nowrap; max-width: 180px; overflow: hidden; text-overflow: ellipsis;
+        }
+        .inq-total-right { text-align: right; flex-shrink: 0; }
+        .inq-total-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 3px; color: rgba(200,175,110,0.45); }
+        .inq-total-amount {
+            font-family: 'Cinzel', serif; font-size: 1.6rem;
+            color: var(--gold); letter-spacing: 2px; line-height: 1.1;
+            transition: all 0.3s;
+            text-shadow: 0 0 20px rgba(209,173,63,0.4);
+        }
+        .inq-total-amount.has-value { color: #fff; text-shadow: 0 0 20px rgba(219,15,77,0.5); }
+        .inq-total-note { font-size: 0.62rem; color: rgba(180,155,100,0.4); letter-spacing: 1px; }
+
+        .inq-footer {
+            flex-shrink: 0; padding: 16px 28px 24px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(3,0,8,0.95) 80%, transparent);
+        }
+        .inq-footer-note { font-size: 0.75rem; color: rgba(180,160,120,0.45); line-height: 1.9; letter-spacing: 0.5px; margin-bottom: 14px; }
+        .inq-contact-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 40px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(219,15,77,0.18), rgba(180,5,50,0.12));
+            border: 1px solid rgba(219,15,77,0.5);
+            color: rgba(255,200,200,0.95); font-family: 'Cinzel', serif;
+            font-size: 0.85rem; letter-spacing: 3px; text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.25,1,0.5,1);
+            box-shadow: 0 0 25px rgba(219,15,77,0.1);
+        }
+        .inq-contact-btn:hover {
+            background: linear-gradient(135deg, rgba(219,15,77,0.32), rgba(180,5,50,0.22));
+            border-color: rgba(219,15,77,0.9); color: #fff;
+            box-shadow: 0 0 40px rgba(219,15,77,0.3); transform: translateY(-3px);
+        }
+
+        /* スピナー行 */
+        .inq-spinner-row { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(209,173,63,0.12); background: rgba(5,0,10,0.5); transition: all 0.3s; }
+        .inq-spinner-row.active { border-color: rgba(219,15,77,0.5); background: rgba(219,15,77,0.06); }
+        .inq-spinner-check { display: flex; align-items: center; }
+        .inq-cb-spinner { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border: 1px solid rgba(209,173,63,0.4); border-radius: 4px; background: rgba(5,0,10,0.8); position: relative; transition: all 0.2s; cursor: none !important; flex-shrink: 0; }
+        .inq-cb-spinner:checked { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 8px rgba(219,15,77,0.5); }
+        .inq-cb-spinner:checked::after { content: ''; position: absolute; left: 5px; top: 2px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+        .inq-spinner-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .inq-spin-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(209,173,63,0.3); background: rgba(209,173,63,0.07); color: var(--gold); font-size: 1rem; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.2s; cursor: none !important; }
+        .inq-spin-btn:hover { background: rgba(209,173,63,0.18); border-color: var(--gold); }
+        .inq-spin-num { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; min-width: 24px; text-align: center; }
+        .inq-spin-price { font-family: 'Cinzel', serif; font-size: 0.78rem; color: rgba(219,15,77,0.8); white-space: nowrap; min-width: 72px; text-align: right; }
+        .inq-select { background: rgba(5,0,12,0.9); border: 1px solid rgba(209,173,63,0.3); color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.82rem; padding: 6px 10px; border-radius: 6px; cursor: none !important; outline: none; }
+        .inq-select:focus { border-color: var(--gold); }
+
+        /* ══ メールフォームモーダル ══ */
+        .mailform-content { max-width: 520px !important; }
+        .mf-summary { background: rgba(0,0,0,0.4); border: 1px solid rgba(209,173,63,0.2); border-left: 3px solid var(--gold); border-radius: 8px; padding: 14px 18px; margin-bottom: 22px; }
+        .mf-summary-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 4px; color: rgba(209,173,63,0.6); margin-bottom: 8px; }
+        .mf-summary-items { font-size: 0.82rem; color: rgba(220,205,170,0.8); line-height: 2.0; }
+        .mf-summary-total { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(209,173,63,0.15); }
+        .mf-field { margin-bottom: 16px; }
+        .mf-label { display: block; font-size: 0.78rem; color: rgba(209,173,63,0.75); letter-spacing: 2px; margin-bottom: 6px; font-family: 'Cinzel', serif; }
+        .mf-required { color: var(--crimson); }
+        .mf-opt { font-size: 0.65rem; color: rgba(180,160,120,0.45); letter-spacing: 1px; }
+        .mf-input, .mf-textarea { width: 100%; background: rgba(3,0,8,0.8); border: 1px solid rgba(209,173,63,0.2); border-radius: 8px; color: rgba(230,215,180,0.9); font-family: 'Kaisei Decol', serif; font-size: 0.9rem; padding: 10px 14px; outline: none; transition: border-color 0.3s; resize: vertical; box-sizing: border-box; }
+        .mf-input:focus, .mf-textarea:focus { border-color: rgba(209,173,63,0.6); box-shadow: 0 0 12px rgba(209,173,63,0.08); }
+        .mf-input::placeholder, .mf-textarea::placeholder { color: rgba(180,155,100,0.3); font-size: 0.85rem; }
+        .mf-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .mf-cancel { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid rgba(180,155,100,0.25); background: transparent; color: rgba(180,155,100,0.5); font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 2px; cursor: none !important; transition: all 0.3s; }
+        .mf-cancel:hover { border-color: rgba(180,155,100,0.5); color: rgba(200,180,140,0.8); }
+        .mf-submit { flex: 2; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; background: linear-gradient(135deg, rgba(219,15,77,0.22), rgba(180,5,50,0.15)); border: 1px solid rgba(219,15,77,0.55); color: rgba(255,200,200,0.95); font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 2px; cursor: none !important; transition: all 0.35s; }
+        .mf-submit:hover { background: linear-gradient(135deg, rgba(219,15,77,0.35), rgba(180,5,50,0.25)); border-color: rgba(219,15,77,0.9); color: #fff; box-shadow: 0 0 25px rgba(219,15,77,0.25); }
+
+        /* ══ 依頼モーダル end ══ */
+
         /* ── Creator Cards ── */
         .creator-cards {
             display: grid;
@@ -1435,13 +1645,377 @@
 
             <div class="works-note">
                 ※ 掲載可能な実績のみを記載しています。非公開案件については掲載しておりません。<br><br>
-                <a href="https://twitter.com/grenadinesyrup_" target="_blank" rel="noopener noreferrer" class="works-inquiry">
+                <button class="works-inquiry" id="open-inquiry">
                     <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     お仕事のご依頼はこちら
-                </a>
+                </button>
             </div>
         </div>
     </section>
+
+    <!-- ══ お仕事依頼モーダル ══ -->
+    <div class="modal-overlay inquiry-overlay" id="inquiry-modal">
+        <div class="inquiry-modal-wrap">
+            <button class="modal-close inquiry-close" id="inquiry-close">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+
+            <!-- ヘッダー -->
+            <div class="inq-header">
+                <div class="inq-header-deco">𓂀</div>
+                <h3 class="inq-title">Commission &amp; Works</h3>
+                <p class="inq-subtitle">ご依頼内容を選択すると予想金額が表示されます</p>
+            </div>
+
+            <!-- タブ -->
+            <div class="inq-tabs">
+                <button class="inq-tab active" data-inq="vtuber">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                    VTuber案件
+                </button>
+                <button class="inq-tab" data-inq="illust">🎨 Illustration</button>
+                <button class="inq-tab" data-inq="live2d">✦ Live2D</button>
+                <button class="inq-tab" data-inq="mv">🎬 MV</button>
+            </div>
+
+            <!-- コンテンツ -->
+            <div class="inq-body">
+
+                <!-- VTuber案件 -->
+                <div class="inq-panel active" id="inq-vtuber">
+                    <p class="inq-panel-desc">企業様・個人様問わずご依頼を承っております。<br>配信・PRなどお気軽にご相談ください。</p>
+                    <div class="inq-notice">
+                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0;margin-top:2px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        VTuber案件の金額はすべてご相談ベースです。詳細はDMにてお問い合わせください。
+                    </div>
+                    <div class="inq-service-list">
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="ゲームタイアップ配信">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">ゲームタイアップ配信</span>
+                                <span class="inq-service-detail">指定ゲームのプレイ・紹介配信。配信時間・条件等はご相談。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="PR配信（商品・サービス紹介配信）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">PR配信（商品・サービス紹介配信）</span>
+                                <span class="inq-service-detail">配信枠内での商品・サービス紹介。尺・内容はご相談。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="PR投稿（SNS・動画）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">PR投稿（SNS・動画）</span>
+                                <span class="inq-service-detail">X（Twitter）・YouTube等でのプロモーション投稿。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="ASMRコンテンツ案件">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">ASMRコンテンツ案件</span>
+                                <span class="inq-service-detail">企業依頼によるASMR収録・配信。台本ありなし両対応。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="ナレーション・ボイス収録">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">ナレーション・ボイス収録</span>
+                                <span class="inq-service-detail">CM・動画・ゲーム用ナレーション、キャラクターボイス等。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="その他（コラボ・イベント等）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">その他（コラボ・イベント等）</span>
+                                <span class="inq-service-detail">上記以外の企画・コラボレーション等もお気軽にどうぞ。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                    </div>
+                    <div class="inq-terms">
+                        <div class="inq-terms-title">✦ ご依頼の流れ</div>
+                        <ol class="inq-steps">
+                            <li>XのDMまたはメールにてご連絡</li>
+                            <li>内容・条件のすり合わせ</li>
+                            <li>お見積もり提示・ご確認</li>
+                            <li>契約・制作・納品</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Illustration -->
+                <div class="inq-panel" id="inq-illust">
+                    <p class="inq-panel-desc">キャラクターイラスト・アイコン・サムネイルなど承ります。<br>下記からご希望の内容にチェックを入れてください。</p>
+                    <div class="inq-service-list">
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="5000" data-label="アイコン・バナー（バストアップ）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">アイコン・バナー（バストアップ）</span>
+                                <span class="inq-service-detail">SNSアイコン・配信バナー等。シンプル背景込み。</span>
+                            </div>
+                            <span class="inq-price-badge">¥5,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="8000" data-label="腰までのイラスト（フル彩色）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">腰までのイラスト（フル彩色）</span>
+                                <span class="inq-service-detail">ラフ〜線画〜着色。シンプル背景込み。</span>
+                            </div>
+                            <span class="inq-price-badge">¥8,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="10000" data-label="全身イラスト（フル彩色）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">全身イラスト（フル彩色）</span>
+                                <span class="inq-service-detail">ラフ〜線画〜着色。シンプル背景込み。</span>
+                            </div>
+                            <span class="inq-price-badge">¥10,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="0" data-label="詳細な背景イラストを希望する（提携絵師紹介）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">詳細な背景イラストを希望する（提携絵師紹介）</span>
+                                <span class="inq-service-detail">複雑な背景が必要な場合、提携絵師をご紹介します。</span>
+                            </div>
+                            <span class="inq-price-badge consult">要相談</span>
+                        </label>
+                        <!-- 表情差分：個数スピナー -->
+                        <div class="inq-service-row inq-spinner-row" id="illust-diff-row">
+                            <div class="inq-spinner-check">
+                                <input type="checkbox" class="inq-cb-spinner" id="illust-diff-cb">
+                            </div>
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">表情差分追加</span>
+                                <span class="inq-service-detail">1点につき ¥1,000。個数を選択してください。</span>
+                            </div>
+                            <div class="inq-spinner-wrap">
+                                <button class="inq-spin-btn" data-target="illust-diff-num" data-dir="-1">−</button>
+                                <span class="inq-spin-num" id="illust-diff-num">1</span>
+                                <button class="inq-spin-btn" data-target="illust-diff-num" data-dir="1">＋</button>
+                                <span class="inq-spin-price" id="illust-diff-price">+¥1,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inq-terms">
+                        <div class="inq-terms-title">✦ 注意事項</div>
+                        <ul class="inq-caution">
+                            <li>料金はすべて目安です。内容により変動します。</li>
+                            <li>修正は軽微なもの2回まで無料。大幅変更は別途費用。</li>
+                            <li>納期はご依頼内容により異なります（目安：2〜4週間）。</li>
+                            <li>NG設定・詳細はフォームまたはDMにてご確認ください。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Live2D -->
+                <div class="inq-panel" id="inq-live2d">
+                    <p class="inq-panel-desc">Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>素材（PSD）はご依頼者様からご提供いただきます。</p>
+                    <div class="inq-service-list">
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="30000" data-label="簡易モデリング（瞳揺れ・瞬き・頭XY斜め・髪ゆれ）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">簡易モデリング</span>
+                                <span class="inq-service-detail">瞳揺れ・瞬き・頭XY斜め・髪ゆれ。PSD支給前提。</span>
+                            </div>
+                            <span class="inq-price-badge">¥30,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="60000" data-label="フルモデリング（全身）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">フルモデリング（全身）</span>
+                                <span class="inq-service-detail">全身フルリギング・物理設定込み。PSD支給前提。</span>
+                            </div>
+                            <span class="inq-price-badge">¥60,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="20000" data-label="衣装差分追加（1点）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">衣装差分追加（1点）</span>
+                                <span class="inq-service-detail">既存モデルへの衣装差分追加・リギング。</span>
+                            </div>
+                            <span class="inq-price-badge add">+¥20,000〜</span>
+                        </label>
+                        <!-- キーバインド表情追加：プルダウン -->
+                        <div class="inq-service-row inq-spinner-row" id="live2d-key-row">
+                            <div class="inq-spinner-check">
+                                <input type="checkbox" class="inq-cb-spinner" id="live2d-key-cb">
+                            </div>
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">キーバインド表情追加</span>
+                                <span class="inq-service-detail">個数 × ¥3,000。最大6個まで選択可能。</span>
+                            </div>
+                            <div class="inq-spinner-wrap">
+                                <select class="inq-select" id="live2d-key-select">
+                                    <option value="1">1個</option>
+                                    <option value="2">2個</option>
+                                    <option value="3">3個</option>
+                                    <option value="4">4個</option>
+                                    <option value="5">5個</option>
+                                    <option value="6">6個</option>
+                                </select>
+                                <span class="inq-spin-price" id="live2d-key-price">+¥3,000</span>
+                            </div>
+                        </div>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="15000" data-label="パーツ追加（アクセサリ等）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">パーツ追加（アクセサリ等）</span>
+                                <span class="inq-service-detail">帽子・小物・エフェクト等のパーツ追加。</span>
+                            </div>
+                            <span class="inq-price-badge add">+¥15,000〜</span>
+                        </label>
+                    </div>
+                    <div class="inq-terms">
+                        <div class="inq-terms-title">✦ 注意事項</div>
+                        <ul class="inq-caution">
+                            <li>料金はすべて目安です。パーツ数・複雑さにより変動します。</li>
+                            <li>素材（PSD）はパーツを分けてご支給いただく必要があります。</li>
+                            <li>納期目安：新規モデル 8〜12週間、追加改修 2〜4週間。</li>
+                            <li>Cubism Pro使用。納品はcmo3ファイル形式。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MV -->
+                <div class="inq-panel" id="inq-mv">
+                    <p class="inq-panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
+                    <div class="inq-service-list">
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="10000" data-label="歌ってみた動画編集（シンプル）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">歌ってみた動画編集（シンプル）</span>
+                                <span class="inq-service-detail">支給素材の組み合わせ・エフェクト・字幕込み。</span>
+                            </div>
+                            <span class="inq-price-badge">¥10,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="25000" data-label="リリックビデオ制作">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">リリックビデオ制作</span>
+                                <span class="inq-service-detail">歌詞アニメーション付きビデオ。テロップデザイン込み。</span>
+                            </div>
+                            <span class="inq-price-badge">¥25,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="60000" data-label="フルアニメーションMV">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">フルアニメーションMV</span>
+                                <span class="inq-service-detail">キャラクター動きあり・背景込みのフルMV（4分以内目安）。</span>
+                            </div>
+                            <span class="inq-price-badge">¥60,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="8000" data-label="サムネイル制作">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">サムネイル制作</span>
+                                <span class="inq-service-detail">YouTube・各種動画サイト用サムネイルデザイン。</span>
+                            </div>
+                            <span class="inq-price-badge add">+¥8,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="5000" data-label="4K書き出し対応">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">4K書き出し対応</span>
+                                <span class="inq-service-detail">4K（3840×2160）での書き出しが必要な場合に追加。</span>
+                            </div>
+                            <span class="inq-price-badge add">+¥5,000〜</span>
+                        </label>
+                        <label class="inq-service-row">
+                            <input type="checkbox" class="inq-cb" data-price="10000" data-label="急ぎ対応（通常納期の半分以下）">
+                            <div class="inq-service-info">
+                                <span class="inq-service-name">急ぎ対応（通常納期の半分以下）</span>
+                                <span class="inq-service-detail">特急料金。内容により対応不可の場合があります。</span>
+                            </div>
+                            <span class="inq-price-badge add">+¥10,000〜</span>
+                        </label>
+                    </div>
+                    <div class="inq-terms">
+                        <div class="inq-terms-title">✦ 注意事項</div>
+                        <ul class="inq-caution">
+                            <li>料金はすべて目安です。尺・内容により変動します。</li>
+                            <li>使用ソフト：Adobe After Effects / Premiere Pro。</li>
+                            <li>納品形式：MP4（H.264）。RAWデータは別途ご相談。</li>
+                            <li>納期目安：シンプル編集 1週間〜、フルMV 4〜8週間。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /.inq-body -->
+
+            <!-- スティッキー合計バー -->
+            <div class="inq-total-bar">
+                <div class="inq-selected-list" id="inq-selected-list">
+                    <span class="inq-no-select">← 上からご希望の項目を選択してください</span>
+                </div>
+                <div class="inq-total-right">
+                    <div class="inq-total-label">予想合計金額</div>
+                    <div class="inq-total-amount" id="inq-total">¥0</div>
+                    <div class="inq-total-note">（目安 / 税込・要相談）</div>
+                </div>
+            </div>
+
+            <!-- 問い合わせボタン -->
+            <div class="inq-footer">
+                <p class="inq-footer-note">上記はあくまで目安金額です。内容・納期・オプション等により変動します。<br>フォームから選択内容と金額を添えてご相談いただけます。</p>
+                <button class="inq-contact-btn" id="open-mailform">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    ご相談フォームを開く
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ メールフォームモーダル ══ -->
+    <div class="modal-overlay" id="mailform-modal">
+        <div class="modal-content mailform-content">
+            <button class="modal-close" id="mailform-close">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div style="text-align:center;margin-bottom:24px;">
+                <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.68rem;letter-spacing:5px;margin-bottom:6px;">COMMISSION REQUEST</div>
+                <h3 style="font-family:'Cinzel',serif;color:#fff;font-size:1.4rem;letter-spacing:4px;margin:0;">お仕事のご相談</h3>
+            </div>
+
+            <!-- 選択内容サマリー -->
+            <div class="mf-summary" id="mf-summary">
+                <div class="mf-summary-title">選択中の項目</div>
+                <div class="mf-summary-items" id="mf-summary-items">（未選択）</div>
+                <div class="mf-summary-total">予想合計：<span id="mf-total-disp">¥0</span></div>
+            </div>
+
+            <!-- フォーム -->
+            <div class="mf-field">
+                <label class="mf-label">お名前 <span class="mf-required">*</span></label>
+                <input type="text" class="mf-input" id="mf-name" placeholder="例：シャルノス ／ Sharnoth">
+            </div>
+            <div class="mf-field">
+                <label class="mf-label">SNSアカウント <span class="mf-opt">任意</span></label>
+                <input type="text" class="mf-input" id="mf-sns" placeholder="例：@grenadinesyrup_（X）">
+            </div>
+            <div class="mf-field">
+                <label class="mf-label">活動場所・所属 <span class="mf-opt">任意</span></label>
+                <input type="text" class="mf-input" id="mf-place" placeholder="例：個人Vtuber ／ ○○プロ所属">
+            </div>
+            <div class="mf-field">
+                <label class="mf-label">ご相談内容 <span class="mf-required">*</span></label>
+                <textarea class="mf-textarea" id="mf-message" rows="5" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。"></textarea>
+            </div>
+
+            <div class="mf-actions">
+                <button class="mf-cancel" id="mf-cancel">キャンセル</button>
+                <button class="mf-submit" id="mf-submit">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    メールで送信する
+                </button>
+            </div>
+            <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：grenadine0syrup@gmail.com</p>
+        </div>
+    </div>
 
     <!-- Creator モーダル (Illust / Live2D / MV 共通) -->
     <div class="modal-overlay" id="creator-modal">
@@ -1688,6 +2262,176 @@
                 imgBox.style.opacity = '0';
                 setTimeout(() => { imgBox.style.opacity = '1'; }, 200);
             });
+        });
+
+        /* ── 依頼モーダル ── */
+        const inquiryModal  = document.getElementById('inquiry-modal');
+        const inquiryClose  = document.getElementById('inquiry-close');
+        const openInquiry   = document.getElementById('open-inquiry');
+        const inqTotalEl    = document.getElementById('inq-total');
+        const inqSelectedEl = document.getElementById('inq-selected-list');
+
+        if (openInquiry) openInquiry.addEventListener('click', () => inquiryModal.classList.add('active'));
+        if (inquiryClose) inquiryClose.addEventListener('click', () => inquiryModal.classList.remove('active'));
+        if (inquiryModal) inquiryModal.addEventListener('click', e => { if (e.target === inquiryModal) inquiryModal.classList.remove('active'); });
+
+        // タブ切替
+        document.querySelectorAll('.inq-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.inq-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.inq-panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                const target = document.getElementById('inq-' + tab.dataset.inq);
+                if (target) target.classList.add('active');
+            });
+        });
+
+        // ── スピナー（イラスト表情差分） ──
+        let illustDiffCount = 1;
+        const illustDiffCb    = document.getElementById('illust-diff-cb');
+        const illustDiffNum   = document.getElementById('illust-diff-num');
+        const illustDiffPrice = document.getElementById('illust-diff-price');
+        const illustDiffRow   = document.getElementById('illust-diff-row');
+
+        function updateIllustDiff() {
+            illustDiffNum.textContent   = illustDiffCount;
+            illustDiffPrice.textContent = '+¥' + (illustDiffCount * 1000).toLocaleString('ja-JP');
+            illustDiffRow.classList.toggle('active', illustDiffCb.checked);
+            updateTotal();
+        }
+        if (illustDiffCb) illustDiffCb.addEventListener('change', updateIllustDiff);
+        document.querySelectorAll('.inq-spin-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                illustDiffCount = Math.max(1, illustDiffCount + parseInt(btn.dataset.dir));
+                updateIllustDiff();
+            });
+        });
+
+        // ── Live2Dキーバインドプルダウン ──
+        const live2dKeyCb     = document.getElementById('live2d-key-cb');
+        const live2dKeySelect = document.getElementById('live2d-key-select');
+        const live2dKeyPrice  = document.getElementById('live2d-key-price');
+        const live2dKeyRow    = document.getElementById('live2d-key-row');
+
+        function updateLive2dKey() {
+            const n = parseInt(live2dKeySelect ? live2dKeySelect.value : 1);
+            if (live2dKeyPrice) live2dKeyPrice.textContent = '+¥' + (n * 3000).toLocaleString('ja-JP');
+            if (live2dKeyRow)   live2dKeyRow.classList.toggle('active', live2dKeyCb && live2dKeyCb.checked);
+            updateTotal();
+        }
+        if (live2dKeyCb)     live2dKeyCb.addEventListener('change', updateLive2dKey);
+        if (live2dKeySelect) live2dKeySelect.addEventListener('change', updateLive2dKey);
+
+        // ── 合計計算 ──
+        function getSelections() {
+            const items = []; let total = 0;
+
+            // 通常チェックボックス
+            document.querySelectorAll('.inq-cb:checked').forEach(cb => {
+                const price = parseInt(cb.dataset.price) || 0;
+                total += price;
+                items.push({ label: cb.dataset.label, price });
+            });
+
+            // イラスト表情差分スピナー
+            if (illustDiffCb && illustDiffCb.checked) {
+                const p = illustDiffCount * 1000;
+                total += p;
+                items.push({ label: `表情差分追加（${illustDiffCount}点）`, price: p });
+            }
+
+            // Live2Dキーバインドプルダウン
+            if (live2dKeyCb && live2dKeyCb.checked && live2dKeySelect) {
+                const n = parseInt(live2dKeySelect.value);
+                const p = n * 3000;
+                total += p;
+                items.push({ label: `キーバインド表情追加（${n}個）`, price: p });
+            }
+
+            return { items, total };
+        }
+
+        function updateTotal() {
+            const { items, total } = getSelections();
+
+            if (total > 0) {
+                inqTotalEl.textContent = '¥' + total.toLocaleString('ja-JP') + '〜';
+                inqTotalEl.classList.add('has-value');
+            } else {
+                inqTotalEl.textContent = '¥0';
+                inqTotalEl.classList.remove('has-value');
+            }
+
+            if (items.length === 0) {
+                inqSelectedEl.innerHTML = '<span class="inq-no-select">← 上からご希望の項目を選択してください</span>';
+            } else {
+                inqSelectedEl.innerHTML = items.map(i => `<span class="inq-selected-chip">${i.label}</span>`).join('');
+            }
+        }
+        document.querySelectorAll('.inq-cb').forEach(cb => cb.addEventListener('change', updateTotal));
+
+        // ── メールフォームモーダル ──
+        const mailformModal = document.getElementById('mailform-modal');
+        const mailformClose = document.getElementById('mailform-close');
+        const openMailform  = document.getElementById('open-mailform');
+        const mfCancel      = document.getElementById('mf-cancel');
+        const mfSubmit      = document.getElementById('mf-submit');
+
+        function openMailformModal() {
+            const { items, total } = getSelections();
+            const summaryItems = document.getElementById('mf-summary-items');
+            const totalDisp    = document.getElementById('mf-total-disp');
+
+            if (items.length === 0) {
+                summaryItems.textContent = '（項目未選択。フォームから詳細をお知らせください）';
+            } else {
+                summaryItems.innerHTML = items.map(i =>
+                    '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')
+                ).join('<br>');
+            }
+            totalDisp.textContent = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
+
+            // メッセージ欄に選択内容を自動挿入
+            const mfMsg = document.getElementById('mf-message');
+            if (mfMsg && mfMsg.value === '') {
+                if (items.length > 0) {
+                    mfMsg.value = '【選択項目】\n' +
+                        items.map(i => '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')).join('\n') +
+                        (total > 0 ? '\n\n【予想合計】¥' + total.toLocaleString('ja-JP') + '〜\n\n' : '\n\n') +
+                        '【ご相談内容】\n';
+                }
+            }
+            mailformModal.classList.add('active');
+        }
+
+        if (openMailform) openMailform.addEventListener('click', openMailformModal);
+        if (mailformClose) mailformClose.addEventListener('click', () => { mailformModal.classList.remove('active'); });
+        if (mfCancel)      mfCancel.addEventListener('click',      () => { mailformModal.classList.remove('active'); });
+        if (mailformModal) mailformModal.addEventListener('click',  e  => { if (e.target === mailformModal) mailformModal.classList.remove('active'); });
+
+        if (mfSubmit) mfSubmit.addEventListener('click', () => {
+            const name    = (document.getElementById('mf-name')?.value    || '').trim();
+            const sns     = (document.getElementById('mf-sns')?.value     || '').trim();
+            const place   = (document.getElementById('mf-place')?.value   || '').trim();
+            const message = (document.getElementById('mf-message')?.value || '').trim();
+
+            if (!name) { alert('お名前をご入力ください。'); return; }
+            if (!message) { alert('ご相談内容をご入力ください。'); return; }
+
+            const subject = encodeURIComponent('【お仕事のご相談】' + name + ' 様より');
+            const body = encodeURIComponent(
+                'お名前：' + name + '\n' +
+                'SNS：' + (sns || 'なし') + '\n' +
+                '活動場所：' + (place || 'なし') + '\n\n' +
+                message
+            );
+            window.location.href = `mailto:grenadine0syrup@gmail.com?subject=${subject}&body=${body}`;
+        });
+
+        // カーソルホバー対象に追加
+        document.querySelectorAll('.inq-tab, .inq-service-row, .inq-spinner-row, .inq-contact-btn, .inquiry-close, #open-inquiry, #open-mailform, .mf-submit, .mf-cancel, .inq-spin-btn, .inq-select, .mailform-content input, .mailform-content textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorWrap.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorWrap.classList.remove('hover'));
         });
 
         /* ── Creator モーダル ── */
