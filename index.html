@@ -709,15 +709,19 @@
             position: relative; overflow: hidden;
             transition: color 0.4s ease, letter-spacing 0.4s ease, text-shadow 0.4s ease;
         }
-        .floating-nav a .nav-rune { font-size: 0.68rem; opacity: 0.3; color: rgba(180, 120, 20, 0.7); display: inline-block; transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease; }
+        .floating-nav a .nav-rune { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; opacity: 0.35; transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease; animation: navStarIdle 4s ease-in-out infinite; }
+        .floating-nav a .nav-rune svg { width: 100%; height: 100%; fill: rgba(200, 160, 40, 0.8); filter: drop-shadow(0 0 2px rgba(180, 120, 20, 0.3)); transition: fill 0.4s ease, filter 0.4s ease; }
+        @keyframes navStarIdle { 0%,100%{transform:scale(1) rotate(0deg);} 50%{transform:scale(1.15) rotate(45deg);} }
         .floating-nav a::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(100, 0, 15, 0.22) 0%, rgba(60, 0, 8, 0.12) 40%, transparent 100%); transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); border-radius: 6px; pointer-events: none; z-index: -1; }
         .floating-nav a::after { content: ''; position: absolute; bottom: 4px; left: 15%; right: 15%; height: 1px; background: linear-gradient(90deg, transparent, rgba(200, 150, 30, 0.65) 30%, rgba(160, 0, 25, 0.55) 70%, transparent); transform: scaleX(0); transform-origin: center; transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: none; }
         .floating-nav a:hover { color: var(--nyr-text-hover); letter-spacing: 3px; text-shadow: 0 0 8px rgba(210, 165, 40, 0.7), 0 0 20px rgba(190, 130, 20, 0.35), 0 0 35px rgba(130, 0, 20, 0.25); }
         .floating-nav a:hover::before  { transform: translateY(0); }
         .floating-nav a:hover::after   { transform: scaleX(1); }
-        .floating-nav a:hover .nav-rune { opacity: 0.95; color: rgba(210, 165, 35, 1); transform: rotate(360deg) scale(1.3); }
+        .floating-nav a:hover .nav-rune { opacity: 1; transform: rotate(180deg) scale(1.3); filter: drop-shadow(0 0 6px rgba(210, 165, 35, 0.8)); animation: none; }
+        .floating-nav a:hover .nav-rune svg { fill: rgba(240, 200, 60, 1); filter: drop-shadow(0 0 4px rgba(219, 15, 77, 0.5)); }
         .floating-nav a.active { color: rgba(220, 185, 80, 0.92); text-shadow: 0 0 6px rgba(200, 155, 30, 0.55), 0 0 18px rgba(180, 110, 15, 0.3); }
-        .floating-nav a.active .nav-rune { opacity: 0.7; color: rgba(200, 150, 30, 0.9); }
+        .floating-nav a.active .nav-rune { opacity: 0.7; }
+        .floating-nav a.active .nav-rune svg { fill: rgba(210, 170, 40, 0.95); filter: drop-shadow(0 0 4px rgba(200, 150, 30, 0.5)); }
         .floating-nav a.active::after { transform: scaleX(0.7); }
         .nav-slider { position: absolute; background: radial-gradient(ellipse at 50% 70%, rgba(100, 0, 18, 0.18) 0%, rgba(55, 0, 8, 0.10) 50%, transparent 100%); border: 1px solid rgba(180, 130, 20, 0.2); border-radius: 6px; transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1); z-index: 1; pointer-events: none; box-shadow: 0 2px 12px rgba(100, 0, 15, 0.15), inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.6); }
         .floating-nav.corner-nav { left: 100%; bottom: 40px; transform: translateX(calc(-100% - 28px)); border-radius: 10px; animation: none; }
@@ -1465,7 +1469,7 @@
                 <div class="profile-tabs">
                     <button class="tab-btn active" data-target="tab-intro"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Profile</button>
                     <button class="tab-btn" data-target="tab-likes"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Like & Skill</button>
-                    <button class="tab-btn" data-target="tab-wishlist"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.65-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4V8h16v11z"/></svg>Wishlist</button>
+                    <button class="tab-btn" data-target="tab-wishlist"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.65-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4V8h16v11z"/></svg>Present</button>
                     <button class="tab-btn" data-target="tab-fantia"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>Ci-en</button>
                     <button class="tab-btn" data-target="tab-special-thanks"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>Special Thanks</button>
                 </div>
@@ -1474,9 +1478,9 @@
                         <div class="info-item"><span class="info-label">ファンネーム：</span><span class="info-value">深徒</span></div>
                         <div class="info-item"><span class="info-label">推しマーク：</span><span class="info-value">🖤🕳</span></div>
                     </div>
-                    <p>長きに渡り封印されていた邪神。<br>封印を解かれたのはいいものの、<br>記憶も曖昧で力が出せない状態に陥っている。</p>
+                    <p>長きに渡り封印されていた邪神。<br>封印を解かれたのはいいものの、<br>記憶も曖昧でうまく力が出せない状態に陥っている。</p>
                     <p>なんか大邪神っぽいという理由で、夫と妻を10人くらい迎え入れる予定。<br>（ファーストダーリンは決まったので、セカンドダーリンとファーストハニーを募集中）</p>
-                    <p>信仰（深徒）を集め、愉しいことを企んでいるらしい⋯⋯？</p>
+                    <p>信仰（深徒）を集め、理想の"ドリームランド"を作ろうとしている。</p>
                     <p>いわゆるセルフ受肉で、特技は姿を変化させること。<br>（力を使うので乱用は出来ない）</p>
                 </div>
                 <div id="tab-likes" class="tab-content">
@@ -1492,8 +1496,12 @@
                     </div>
                 </div>
                 <div id="tab-wishlist" class="tab-content">
-                    <p style="margin-bottom:25px;color:rgba(255,255,255,0.7);border-left:4px solid var(--crimson);padding-left:15px;">頂いた捧げ物は全て貴方だと思って大切にいたします。</p>
+                    <p style="margin-bottom:25px;color:rgba(255,255,255,0.7);border-left:4px solid var(--crimson);padding-left:15px;">お手紙や地元のお菓子ほしいです♪</p>
                     <div class="wish-grid">
+                        <a href="https://ouen55.com/grenadinesyrup_/" target="_blank" rel="noopener noreferrer" class="wish-item">
+                            <span class="service-name"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.65-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4V8h16v11z"/></svg>オーエン配送</span>
+                            <span class="service-desc">届けてくれると嬉しいです⋯⋯</span>
+                        </a>
                         <a href="https://gi-pt.com/main/wishlist/fan-view/3a111828-ba2d-1c72-1314-9f182227a6e2" target="_blank" rel="noopener noreferrer" class="wish-item">
                             <span class="service-name"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Gipt</span>
                             <span class="service-desc">生贄がほしいです⋯⋯</span>
@@ -1506,42 +1514,24 @@
                 </div>
                 <div id="tab-fantia" class="tab-content">
                     <div class="fantia-area">
-                        <p style="margin-bottom:25px;color:rgba(255,255,255,0.8);line-height:2.2;">応援してくれる深徒、深徒候補を認知する場所です。<br>音声動画や料理日記、シチュエーションボイス、1on1通話など⋯⋯<br>様々なお返しを用意して待っていますね。</p>
+                        <p style="margin-bottom:25px;color:rgba(255,255,255,0.8);line-height:2.2;">応援してくれる深徒、深徒候補を認知するファンクラブです。<br>音声動画や料理日記、シチュエーションボイス、1on1通話など⋯⋯<br>様々なお返しを用意して待っていますね。</p>
                         <a href="https://ci-en.net/creator/35826" target="_blank" rel="noopener noreferrer" class="fantia-link-btn"><span>Enter Ci-en</span></a>
                     </div>
                 </div>
                 <div id="tab-special-thanks" class="tab-content">
                     <p style="margin-bottom:20px;color:rgba(255,255,255,0.7);border-left:4px solid var(--gold);padding-left:15px;line-height:2.0;">活動を支えてくださっている皆さまへの感謝を込めて。</p>
-                    <div class="thanks-section-title">✦ Illustration & Design</div>
+                    <div class="thanks-section-title">✦ Special Thanks</div>
                     <div class="special-thanks-grid">
-                        <div class="thanks-card">
-                            <span class="thanks-role">Character Design</span>
-                            <span class="thanks-name">——</span>
-                            <span class="thanks-note">キャラクターデザイン</span>
-                        </div>
-                        <div class="thanks-card">
-                            <span class="thanks-role">Live2D</span>
-                            <span class="thanks-name">——</span>
-                            <span class="thanks-note">Live2Dモデリング</span>
-                        </div>
-                        <div class="thanks-card">
-                            <span class="thanks-role">Logo & Web</span>
-                            <span class="thanks-name">——</span>
-                            <span class="thanks-note">ロゴ・サイトデザイン</span>
-                        </div>
-                    </div>
-                    <div class="thanks-section-title">✦ Music & BGM</div>
-                    <div class="special-thanks-grid">
-                        <div class="thanks-card">
-                            <span class="thanks-role">BGM</span>
-                            <span class="thanks-name">——</span>
-                            <span class="thanks-note">配信BGM制作</span>
-                        </div>
-                        <div class="thanks-card">
-                            <span class="thanks-role">Arrange</span>
-                            <span class="thanks-name">——</span>
-                            <span class="thanks-note">楽曲アレンジ</span>
-                        </div>
+                        <a href="https://x.com/monimoni_itame" target="_blank" rel="noopener noreferrer" class="thanks-card" style="text-decoration:none;">
+                            <span class="thanks-role">Logo Design</span>
+                            <span class="thanks-name">もにいため 様</span>
+                            <span class="thanks-note">ロゴデザイン</span>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCIjh3v-zE37uqsKYd4htd6g" target="_blank" rel="noopener noreferrer" class="thanks-card" style="text-decoration:none;">
+                            <span class="thanks-role">OP/ED Music</span>
+                            <span class="thanks-name">しあん 様</span>
+                            <span class="thanks-note">OP/ED Music制作</span>
+                        </a>
                     </div>
                     <div class="thanks-section-title">✦ Special Support</div>
                     <div class="special-thanks-grid">
@@ -1551,7 +1541,6 @@
                             <span class="thanks-note">いつもありがとう♡</span>
                         </div>
                     </div>
-                    <p style="text-align:center;margin-top:30px;color:rgba(200,175,110,0.5);font-size:0.85rem;letter-spacing:2px;">※ 随時更新予定</p>
                     <div class="thanks-section-title" style="margin-top:36px;">✦ Crowdfunding Supporters</div>
                     <div style="text-align:center;margin-top:16px;">
                         <p style="color:rgba(200,180,140,0.7);font-size:0.9rem;line-height:2.0;margin-bottom:18px;">シャルノスASMRプロジェクトを支援してくださった皆さま。<br>深徒の皆さんの力があってこそです。本当にありがとう。</p>
@@ -1564,10 +1553,8 @@
                 <div class="stream-tags-section">
                     <strong style="color:var(--gold);">Stream Tags:</strong>
                     <div class="stream-tags">
-                        <span class="stream-tag" data-desc="雑談やゲーム配信の総合タグ">#邪神の顕現</span>
-                        <span class="stream-tag" data-desc="ファン参加型やマシュマロ読み">#仔山羊の餌やり</span>
-                        <span class="stream-tag" id="art-trigger" data-desc="ファンアートタグ。ルールなど詳細はクリック！">#生贄アート<span class="click-hint">Click</span></span>
-                        <span class="stream-tag" data-desc="切り抜き動画タグ">#狂気録画</span>
+                        <span class="stream-tag" data-desc="邪神の顕現">#シャルノスグレナデン</span>
+                        <span class="stream-tag" id="art-trigger" data-desc="ファンアートタグ。ルールなど詳細はクリック！">#グレフィックス<span class="click-hint">Click</span></span>
                         <span class="stream-tag" id="kuenaden-trigger" data-desc="飯テロ用。毎週月曜日に配信で紹介中♡詳細はクリック！">#食えナデン<span class="click-hint">Click</span></span>
                     </div>
                 </div>
@@ -1591,7 +1578,7 @@
                         <div class="works-cat-sub">企業案件のみ記載</div>
                     </div>
                 </div>
-                <div class="works-list">
+                <div class="works-list" id="vtuber-works-preview">
                     <div class="work-item">
                         <span class="work-date">2025</span>
                         <div class="work-body">
@@ -1617,7 +1604,13 @@
                         <span class="work-tag other">PR</span>
                     </div>
                 </div>
-                <p style="margin-top:18px;font-size:0.78rem;color:rgba(200,175,110,0.4);letter-spacing:1.5px;">※ 掲載可能な企業案件のみ記載。非公開案件は含みません。</p>
+                <div style="text-align:center;margin-top:18px;">
+                    <button class="cf-supporters-btn" id="open-vtuber-works" style="font-size:0.8rem;padding:10px 28px;letter-spacing:2px;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M7 10l5 5 5-5z"/></svg>
+                        すべての実績を見る
+                    </button>
+                </div>
+                <p style="margin-top:14px;font-size:0.78rem;color:rgba(200,175,110,0.4);letter-spacing:1.5px;">※ 掲載可能な企業案件のみ記載。非公開案件は含みません。</p>
             </div>
 
             <!-- Creator実績 -->
@@ -2026,7 +2019,7 @@
                     <span id="mf-submit-label">送信する</span>
                 </button>
             </div>
-            <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：grenadine0syrup@gmail.com</p>
+            <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b6c796e656a6f62656e3b7872797e7b4b6c666a626725686466">[email&#160;protected]</a></p>
             </div><!-- /.mf-form-body -->
 
             <!-- 送信完了ビュー -->
@@ -2071,7 +2064,7 @@
             </div>
             <div class="media-item fade-up delay-3">
                 <h3 style="color:var(--gold);font-family:'Cinzel',serif;font-size:1.8rem;">X (Twitter)</h3>
-                <div class="social-wrap"><a class="twitter-timeline" data-theme="dark" href="https://twitter.com/grenadinesyrup_">Tweets by @grenadinesyrup_</a><script async src="https://platform.twitter.com/widgets.js"></script></div>
+                <div class="social-wrap"><a class="twitter-timeline" data-theme="dark" href="https://twitter.com/grenadinesyrup_">Tweets by @grenadinesyrup_</a><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script async src="https://platform.twitter.com/widgets.js"></script></div>
             </div>
         </div>
     </section>
@@ -2082,7 +2075,7 @@
         <div class="media-grid" style="grid-template-columns:1fr;max-width:800px;">
             <div class="media-item fade-up delay-2" style="padding:50px;">
                 <h3 style="color:var(--gold);font-family:'Cinzel',serif;font-size:2rem;margin-bottom:20px;">Official Store</h3>
-                <p style="line-height:2.2;color:rgba(255,255,255,0.8);margin-bottom:30px;">グッズ等を販売する場所です。<br>ぜひ手に入れてくださいね。</p>
+                <p style="line-height:2.2;color:rgba(255,255,255,0.8);margin-bottom:30px;">グッズやボイス、ガジェット等を販売する場所です。<br>ぜひ手に入れてくださいね。</p>
                 <a href="https://gren.booth.pm/" target="_blank" rel="noopener noreferrer" class="fantia-link-btn" style="width:auto;padding:20px 60px;">
                     <span style="font-size:1.8rem;letter-spacing:3px;">Enter Booth</span>
                 </a>
@@ -2093,11 +2086,11 @@
     <nav class="floating-nav">
         <ul id="nav-list">
             <div class="nav-slider" id="nav-slider"></div>
-            <li><a href="#home"><span class="nav-rune">𓂀</span>Top</a></li>
-            <li><a href="#profile"><span class="nav-rune">𓆩</span>Profile</a></li>
-            <li><a href="#works"><span class="nav-rune">𓇬</span>Works</a></li>
-            <li><a href="#media"><span class="nav-rune">𓋴</span>Media</a></li>
-            <li><a href="#goods"><span class="nav-rune">𓈖</span>Goods</a></li>
+            <li><a href="#home"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Top</a></li>
+            <li><a href="#profile"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Profile</a></li>
+            <li><a href="#works"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Works</a></li>
+            <li><a href="#media"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Media</a></li>
+            <li><a href="#goods"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Goods</a></li>
         </ul>
     </nav>
 
@@ -2116,7 +2109,7 @@
     <div class="modal-overlay" id="art-modal">
         <div class="modal-content">
             <button class="modal-close" id="art-close"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-            <h3 style="color:var(--crimson);text-align:center;font-size:2rem;margin-top:10px;">#生贄アート</h3>
+            <h3 style="color:var(--crimson);text-align:center;font-size:2rem;margin-top:10px;">#グレフィックス</h3>
             <p style="text-align:center;line-height:2.2;margin-top:15px;">素敵な生贄（ファンアート）をお待ちしております。<br>描いていただいたイラストは配信等で<br>使用させていただく場合がございます。</p>
             <div style="background:rgba(0,0,0,0.3);padding:25px;border-radius:15px;border-top:2px solid var(--gold);margin-top:30px;border-left:3px solid var(--crimson);">
                 <div style="color:var(--gold);text-align:center;margin-bottom:15px;letter-spacing:5px;font-weight:bold;">✧ ガイドライン ✧</div>
@@ -2159,7 +2152,47 @@
                     <span class="supporter-name">——</span>
                 </div>
             </div>
-            <p style="text-align:center;margin-top:28px;color:rgba(200,175,110,0.35);font-size:0.75rem;letter-spacing:2px;">※ 掲載許可を頂いた方のみ記載しております</p>
+        </div>
+    </div>
+
+    <!-- VTuber実績モーダル -->
+    <div class="modal-overlay" id="vtuber-works-modal">
+        <div class="modal-content" style="max-width:650px;">
+            <button class="modal-close" id="vtuber-works-close">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div style="text-align:center;margin-bottom:28px;">
+                <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.7rem;letter-spacing:5px;margin-bottom:8px;">WORKS</div>
+                <h3 style="color:#fff;font-family:'Cinzel',serif;font-size:1.6rem;margin:0;letter-spacing:4px;">VTuber</h3>
+                <p style="color:rgba(200,175,110,0.6);font-size:0.82rem;letter-spacing:2px;margin-top:8px;">企業案件実績一覧</p>
+            </div>
+            <div class="works-list" id="vtuber-works-full">
+                <div class="work-item">
+                    <span class="work-date">2025</span>
+                    <div class="work-body">
+                        <span class="work-title">企業タイアップ配信</span>
+                        <span class="work-client">— 実績例（随時更新）</span>
+                    </div>
+                    <span class="work-tag collab">Sponsor</span>
+                </div>
+                <div class="work-item">
+                    <span class="work-date">2025</span>
+                    <div class="work-body">
+                        <span class="work-title">ゲームタイトルプロモーション</span>
+                        <span class="work-client">— 実績例（随時更新）</span>
+                    </div>
+                    <span class="work-tag other">PR</span>
+                </div>
+                <div class="work-item">
+                    <span class="work-date">2025</span>
+                    <div class="work-body">
+                        <span class="work-title">SNS・動画プロモーション案件</span>
+                        <span class="work-client">— 実績例（随時更新）</span>
+                    </div>
+                    <span class="work-tag other">PR</span>
+                </div>
+            </div>
+            <p style="text-align:center;margin-top:20px;font-size:0.78rem;color:rgba(200,175,110,0.4);letter-spacing:1.5px;">※ 掲載可能な企業案件のみ記載</p>
         </div>
     </div>
 
@@ -2635,8 +2668,16 @@
         if (supportersClose) supportersClose.addEventListener('click', () => supportersModal.classList.remove('active'));
         if (supportersModal) supportersModal.addEventListener('click', e => { if (e.target === supportersModal) supportersModal.classList.remove('active'); });
 
+        /* ── VTuber実績モーダル ── */
+        const vtuberWorksModal = document.getElementById('vtuber-works-modal');
+        const vtuberWorksClose = document.getElementById('vtuber-works-close');
+        const openVtuberWorks  = document.getElementById('open-vtuber-works');
+        if (openVtuberWorks) openVtuberWorks.addEventListener('click', () => vtuberWorksModal.classList.add('active'));
+        if (vtuberWorksClose) vtuberWorksClose.addEventListener('click', () => vtuberWorksModal.classList.remove('active'));
+        if (vtuberWorksModal) vtuberWorksModal.addEventListener('click', e => { if (e.target === vtuberWorksModal) vtuberWorksModal.classList.remove('active'); });
+
         // カーソルホバー対象に追加
-        document.querySelectorAll('.creator-card, .cf-supporters-btn').forEach(el => {
+        document.querySelectorAll('.creator-card, .cf-supporters-btn, #open-vtuber-works').forEach(el => {
             el.addEventListener('mouseenter', () => cursorWrap.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursorWrap.classList.remove('hover'));
         });
@@ -2651,11 +2692,4 @@
                         if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
                     });
                 }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-                document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-            }, 1500);
-            const v = document.getElementById('bgVideo');
-            if (v) { v.muted = true; v.play().catch(() => {}); }
-        });
-    </script>
-</body>
-</html>
+                document.querySelecto
