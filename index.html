@@ -733,7 +733,7 @@
         .floating-nav.corner-nav:hover { transform: translateX(calc(-100% - 28px)) translateY(-3px); }
         .floating-nav:hover:not(.corner-nav) { transform: translateX(-50%) translateY(-5px); animation-play-state: paused; }
 
-        #media, #goods { padding-top: 60px; padding-bottom: 40px; }
+        #media, #goods, #game { padding-top: 60px; padding-bottom: 40px; }
         .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 92%; max-width: 1200px; margin: 0 auto; align-items: flex-start; }
         .media-item { display: flex; flex-direction: column; background: rgba(15,5,5,0.7); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; text-align: center; border: 1px solid rgba(209,173,63,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.8); flex: 1; min-width: 0; overflow: hidden; }
         .youtube-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.6); margin-top: 15px; }
@@ -1320,14 +1320,9 @@
     </style>
 </head>
 <body>
-    <!-- ══════════════════════════════════════════════════
-         #loader — 這い寄る混沌 / Nyarlathotep
-         ══════════════════════════════════════════════════ -->
     <div id="loader">
-        <!-- ウジャトの目 -->
         <div class="loader-eye">𓂀&nbsp;&nbsp;𓂀</div>
 
-        <!-- 中央ステージ -->
         <div class="loader-stage">
             <div class="loader-outer-ring"></div>
             <div class="loader-glyph-ring" id="glyphRing"></div>
@@ -1335,7 +1330,6 @@
             <div class="loader-inner-ring"></div>
 
             <div class="loader-star-wrap">
-                <!-- 四芒星 メイン（クリムゾン） -->
                 <svg class="loader-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,2 C50,2 52,28 54,36 C58,44 74,44 98,50 C74,56 58,56 54,64 C52,72 50,98 50,98 C50,98 48,72 46,64 C42,56 26,56 2,50 C26,44 42,44 46,36 C48,28 50,2 50,2 Z"
                         fill="url(#loaderStarGrad)" opacity="0.95"/>
@@ -1351,7 +1345,6 @@
                     </defs>
                 </svg>
 
-                <!-- 四芒星 サブ（ゴールド） -->
                 <svg class="loader-star-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,5 C50,5 51.8,29 53.5,37 C57,44.5 72,45 95,50 C72,55 57,55.5 53.5,63 C51.8,71 50,95 50,95 C50,95 48.2,71 46.5,63 C43,55.5 28,55 5,50 C28,45 43,44.5 46.5,37 C48.2,29 50,5 50,5 Z"
                         fill="url(#loaderStarGradGold)" opacity="0.85"/>
@@ -1366,22 +1359,16 @@
 
                 <div class="loader-core"></div>
             </div>
-        </div><!-- /.loader-stage -->
-
-        <!-- タイトル -->
-        <div class="loader-text-area">
+        </div><div class="loader-text-area">
             <div class="loader-title">Sharnoth Grenadine</div>
         </div>
 
-        <!-- プログレスバー -->
         <div class="loader-progress-wrap">
             <div class="loader-progress-track">
                 <div class="loader-progress-fill"></div>
             </div>
         </div>
     </div>
-    <!-- /#loader -->
-
     <div class="base-bg"></div>
 
     <div id="cursor-wrap">
@@ -1420,7 +1407,6 @@
             <span>Scroll</span>
             <div class="scroll-diamond"></div>
         </div>
-        <!-- ── クラウドファンディングバナー ── -->
         <div class="campfire-banner fade-up delay-2">
             <a href="https://camp-fire.jp/projects/940089" target="_blank" rel="noopener noreferrer" class="campfire-banner-inner">
                 <div class="campfire-deco-line left"></div>
@@ -1567,7 +1553,6 @@
         <div class="section-divider fade-up delay-1"></div>
         <div class="works-section-wrap fade-up delay-2">
 
-            <!-- VTuber企業案件 -->
             <div class="works-category">
                 <div class="works-category-header">
                     <span class="works-cat-icon">
@@ -1583,7 +1568,6 @@
                 </div>
             </div>
 
-            <!-- Creator実績 -->
             <div class="works-category">
                 <div class="works-category-header">
                     <span class="works-cat-icon" style="color:var(--gold);background:rgba(209,173,63,0.1);border-color:rgba(209,173,63,0.3);box-shadow:0 0 18px rgba(209,173,63,0.1);">
@@ -1629,21 +1613,18 @@
         </div>
     </section>
 
-    <!-- ══ お仕事依頼モーダル ══ -->
     <div class="modal-overlay inquiry-overlay" id="inquiry-modal">
         <div class="inquiry-modal-wrap">
             <button class="modal-close inquiry-close" id="inquiry-close">
                 <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
 
-            <!-- ヘッダー -->
             <div class="inq-header">
                 <div class="inq-header-deco">𓂀</div>
                 <h3 class="inq-title">Commission &amp; Works</h3>
                 <p class="inq-subtitle">ご依頼内容を選択すると予想金額が表示されます</p>
             </div>
 
-            <!-- タブ -->
             <div class="inq-tabs">
                 <button class="inq-tab active" data-inq="vtuber">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1654,10 +1635,8 @@
                 <button class="inq-tab" data-inq="mv">🎬 MV</button>
             </div>
 
-            <!-- コンテンツ -->
             <div class="inq-body">
 
-                <!-- VTuber案件 -->
                 <div class="inq-panel active" id="inq-vtuber">
                     <p class="inq-panel-desc">企業様・個人様問わずご依頼を承っております。<br>配信・PRなどお気軽にご相談ください。</p>
                     <div class="inq-notice">
@@ -1725,7 +1704,6 @@
                     </div>
                 </div>
 
-                <!-- Illustration -->
                 <div class="inq-panel" id="inq-illust">
                     <p class="inq-panel-desc">キャラクターイラスト・アイコン・サムネイルなど承ります。<br>下記からご希望の内容にチェックを入れてください。</p>
                     <div class="inq-service-list">
@@ -1761,7 +1739,6 @@
                             </div>
                             <span class="inq-price-badge consult">要相談</span>
                         </label>
-                        <!-- 表情差分：個数スピナー -->
                         <div class="inq-service-row inq-spinner-row" id="illust-diff-row">
                             <div class="inq-spinner-check">
                                 <input type="checkbox" class="inq-cb-spinner" id="illust-diff-cb">
@@ -1789,7 +1766,6 @@
                     </div>
                 </div>
 
-                <!-- Live2D -->
                 <div class="inq-panel" id="inq-live2d">
                     <p class="inq-panel-desc">Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>素材（PSD）はご依頼者様からご提供いただきます。</p>
                     <div class="inq-service-list">
@@ -1817,7 +1793,6 @@
                             </div>
                             <span class="inq-price-badge add">+¥20,000〜</span>
                         </label>
-                        <!-- キーバインド表情追加：スピナー -->
                         <div class="inq-service-row inq-spinner-row" id="live2d-key-row">
                             <div class="inq-spinner-check">
                                 <input type="checkbox" class="inq-cb-spinner" id="live2d-key-cb">
@@ -1853,7 +1828,6 @@
                     </div>
                 </div>
 
-                <!-- MV -->
                 <div class="inq-panel" id="inq-mv">
                     <p class="inq-panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
                     <div class="inq-service-list">
@@ -1916,10 +1890,7 @@
                         </ul>
                     </div>
                 </div>
-            </div><!-- /.inq-body -->
-
-            <!-- スティッキー合計バー -->
-            <div class="inq-total-bar">
+            </div><div class="inq-total-bar">
                 <div class="inq-selected-list" id="inq-selected-list">
                     <span class="inq-no-select">← 上からご希望の項目を選択してください</span>
                 </div>
@@ -1930,7 +1901,6 @@
                 </div>
             </div>
 
-            <!-- 問い合わせボタン -->
             <div class="inq-footer">
                 <p class="inq-footer-note">上記はあくまで目安金額です。内容・納期・オプション等により変動します。<br>フォームから選択内容と金額を添えてご相談いただけます。</p>
                 <button class="inq-contact-btn" id="open-mailform">
@@ -1941,7 +1911,6 @@
         </div>
     </div>
 
-    <!-- ══ メールフォームモーダル ══ -->
     <div class="modal-overlay" id="mailform-modal">
         <div class="modal-content mailform-content">
             <button class="modal-close" id="mailform-close">
@@ -1952,14 +1921,12 @@
                 <h3 style="font-family:'Cinzel',serif;color:#fff;font-size:1.4rem;letter-spacing:4px;margin:0;">お仕事のご相談</h3>
             </div>
 
-            <!-- 選択内容サマリー -->
             <div class="mf-summary" id="mf-summary">
                 <div class="mf-summary-title">選択中の項目</div>
                 <div class="mf-summary-items" id="mf-summary-items">（未選択）</div>
                 <div class="mf-summary-total">予想合計：<span id="mf-total-disp">¥0</span></div>
             </div>
 
-            <!-- フォーム -->
             <div class="mf-form-body" id="mf-form-body">
             <div class="mf-field">
                 <label class="mf-label">お名前 <span class="mf-required">*</span></label>
@@ -1990,16 +1957,12 @@
                 </button>
             </div>
             <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b6c796e656a6f62656e3b7872797e7b4b6c666a626725686466">[email&#160;protected]</a></p>
-            </div><!-- /.mf-form-body -->
-
-            <!-- 送信完了ビュー -->
-            <div class="mf-sent-view" id="mf-sent-view">
+            </div><div class="mf-sent-view" id="mf-sent-view">
                 <div class="mf-sent-icon">𓂀</div>
                 <div class="mf-sent-title">ご相談を受け付けました</div>
                 <p class="mf-sent-msg">お問い合わせありがとうございます。<br>内容を確認のうえ、折り返しご連絡いたします。<br>今しばらくお待ちください。</p>
                 <button class="mf-cancel" id="mf-sent-close" style="margin-top:8px;width:100%;">閉じる</button>
             </div>
-            <!-- 送信失敗ビュー -->
             <div class="mf-error-view" id="mf-error-view">
                 <div class="mf-error-msg" id="mf-error-msg"></div>
                 <button class="mf-cancel" id="mf-error-back" style="margin-top:8px;width:100%;">戻って再送信</button>
@@ -2007,7 +1970,6 @@
         </div>
     </div>
 
-    <!-- Creator モーダル (Illust / Live2D / MV 共通) -->
     <div class="modal-overlay" id="creator-modal">
         <div class="modal-content creator-modal-content">
             <button class="modal-close" id="creator-modal-close">
@@ -2053,6 +2015,17 @@
         </div>
     </section>
 
+    <section id="game">
+        <div class="section-wrapper fade-up"><h2 class="section-title">Game</h2></div>
+        <div class="section-divider fade-up delay-1"></div>
+        <div class="media-grid" style="grid-template-columns:1fr;max-width:800px;">
+            <div class="media-item fade-up delay-2" style="padding:50px;">
+                <h3 style="color:var(--crimson);font-family:'Cinzel',serif;font-size:2rem;margin-bottom:20px;">GrimLily</h3>
+                <p style="line-height:2.2;color:rgba(255,255,255,0.8);margin-bottom:0;font-size:1.2rem;letter-spacing:2px;">第一作目 Coming soon...</p>
+            </div>
+        </div>
+    </section>
+
     <nav class="floating-nav">
         <ul id="nav-list">
             <div class="nav-slider" id="nav-slider"></div>
@@ -2061,6 +2034,7 @@
             <li><a href="#works"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Works</a></li>
             <li><a href="#media"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Media</a></li>
             <li><a href="#goods"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Goods</a></li>
+            <li><a href="#game"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Game</a></li>
         </ul>
     </nav>
 
@@ -2093,7 +2067,6 @@
         </div>
     </div>
 
-    <!-- 支援者一覧モーダル -->
     <div class="modal-overlay" id="supporters-modal">
         <div class="modal-content supporters-modal-content">
             <button class="modal-close" id="supporters-close">
@@ -2203,7 +2176,7 @@
                 if (floatingNav.classList.contains('corner-nav')) { floatingNav.classList.remove('corner-nav'); animateSliderUpdate(); }
             }
         });
-        document.querySelectorAll('#home, #profile, #works, #media, #goods').forEach(s =>
+        document.querySelectorAll('#home, #profile, #works, #media, #goods, #game').forEach(s =>
             new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
