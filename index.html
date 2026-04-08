@@ -1354,9 +1354,14 @@
     </style>
 </head>
 <body>
+    <!-- ══════════════════════════════════════════════════
+         #loader — 這い寄る混沌 / Nyarlathotep
+         ══════════════════════════════════════════════════ -->
     <div id="loader">
+        <!-- ウジャトの目 -->
         <div class="loader-eye">𓂀&nbsp;&nbsp;𓂀</div>
 
+        <!-- 中央ステージ -->
         <div class="loader-stage">
             <div class="loader-outer-ring"></div>
             <div class="loader-glyph-ring" id="glyphRing"></div>
@@ -1364,6 +1369,7 @@
             <div class="loader-inner-ring"></div>
 
             <div class="loader-star-wrap">
+                <!-- 四芒星 メイン（クリムゾン） -->
                 <svg class="loader-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,2 C50,2 52,28 54,36 C58,44 74,44 98,50 C74,56 58,56 54,64 C52,72 50,98 50,98 C50,98 48,72 46,64 C42,56 26,56 2,50 C26,44 42,44 46,36 C48,28 50,2 50,2 Z"
                         fill="url(#loaderStarGrad)" opacity="0.95"/>
@@ -1379,6 +1385,7 @@
                     </defs>
                 </svg>
 
+                <!-- 四芒星 サブ（ゴールド） -->
                 <svg class="loader-star-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,5 C50,5 51.8,29 53.5,37 C57,44.5 72,45 95,50 C72,55 57,55.5 53.5,63 C51.8,71 50,95 50,95 C50,95 48.2,71 46.5,63 C43,55.5 28,55 5,50 C28,45 43,44.5 46.5,37 C48.2,29 50,5 50,5 Z"
                         fill="url(#loaderStarGradGold)" opacity="0.85"/>
@@ -1393,16 +1400,22 @@
 
                 <div class="loader-core"></div>
             </div>
-        </div><div class="loader-text-area">
+        </div><!-- /.loader-stage -->
+
+        <!-- タイトル -->
+        <div class="loader-text-area">
             <div class="loader-title">Sharnoth Grenadine</div>
         </div>
 
+        <!-- プログレスバー -->
         <div class="loader-progress-wrap">
             <div class="loader-progress-track">
                 <div class="loader-progress-fill"></div>
             </div>
         </div>
     </div>
+    <!-- /#loader -->
+
     <div class="base-bg"></div>
 
     <div id="cursor-wrap">
@@ -1441,6 +1454,7 @@
             <span>Scroll</span>
             <div class="scroll-diamond"></div>
         </div>
+        <!-- ── クラウドファンディングバナー ── -->
         <div class="campfire-banner fade-up delay-2">
             <a href="https://camp-fire.jp/projects/940089" target="_blank" rel="noopener noreferrer" class="campfire-banner-inner">
                 <div class="campfire-deco-line left"></div>
@@ -1583,6 +1597,7 @@
         <div class="section-divider fade-up delay-1"></div>
         <div class="works-section-wrap fade-up delay-2">
 
+            <!-- VTuber企業案件 -->
             <div class="works-category">
                 <div class="works-category-header">
                     <span class="works-cat-icon">
@@ -1598,6 +1613,7 @@
                 </div>
             </div>
 
+            <!-- Creator実績 -->
             <div class="works-category">
                 <div class="works-category-header">
                     <span class="works-cat-icon" style="color:var(--gold);background:rgba(209,173,63,0.1);border-color:rgba(209,173,63,0.3);box-shadow:0 0 18px rgba(209,173,63,0.1);">
@@ -1689,18 +1705,29 @@
         </div>
     </section>
 
+    <nav class="floating-nav">
+        <ul id="nav-list">
+            <div class="nav-slider" id="nav-slider"></div>
+            <li><a href="#home"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Top</a></li>
+            <li><a href="#profile"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Profile</a></li>
+            <li><a href="#works"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Works</a></li>
+            <li><a href="#game"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Game</a></li>
+            <li><a href="#ci-en"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Ci-en</a></li>
+            <li><a href="#goods"><span class="nav-rune"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1 C12,1 13,8.5 14,10 C15.5,11.5 20,12 23,12 C20,12 15.5,12.5 14,14 C13,15.5 12,23 12,23 C12,23 11,15.5 10,14 C8.5,12.5 4,12 1,12 C4,12 8.5,11.5 10,10 C11,8.5 12,1 12,1Z"/></svg></span>Goods</a></li>
+        </ul>
+    </nav>
+
+    <!-- ══ お仕事依頼モーダル ══ -->
     <div class="modal-overlay inquiry-overlay" id="inquiry-modal">
         <div class="inquiry-modal-wrap">
             <button class="modal-close inquiry-close" id="inquiry-close">
                 <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
-
             <div class="inq-header">
                 <div class="inq-header-deco">𓂀</div>
                 <h3 class="inq-title">Commission &amp; Works</h3>
                 <p class="inq-subtitle">ご依頼内容を選択すると予想金額が表示されます</p>
             </div>
-
             <div class="inq-tabs">
                 <button class="inq-tab active" data-inq="vtuber">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1710,9 +1737,7 @@
                 <button class="inq-tab" data-inq="live2d">✦ Live2D</button>
                 <button class="inq-tab" data-inq="mv">🎬 MV</button>
             </div>
-
             <div class="inq-body">
-
                 <div class="inq-panel active" id="inq-vtuber">
                     <p class="inq-panel-desc">企業様・個人様問わずご依頼を承っております。<br>配信・PRなどお気軽にご相談ください。</p>
                     <div class="inq-notice">
@@ -1779,7 +1804,6 @@
                         </ol>
                     </div>
                 </div>
-
                 <div class="inq-panel" id="inq-illust">
                     <p class="inq-panel-desc">キャラクターイラスト・アイコン・サムネイルなど承ります。<br>下記からご希望の内容にチェックを入れてください。</p>
                     <div class="inq-service-list">
@@ -1841,7 +1865,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="inq-panel" id="inq-live2d">
                     <p class="inq-panel-desc">Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>素材（PSD）はご依頼者様からご提供いただきます。</p>
                     <div class="inq-service-list">
@@ -1903,7 +1926,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="inq-panel" id="inq-mv">
                     <p class="inq-panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
                     <div class="inq-service-list">
@@ -1966,7 +1988,8 @@
                         </ul>
                     </div>
                 </div>
-            </div><div class="inq-total-bar">
+            </div>
+            <div class="inq-total-bar">
                 <div class="inq-selected-list" id="inq-selected-list">
                     <span class="inq-no-select">← 上からご希望の項目を選択してください</span>
                 </div>
@@ -1976,7 +1999,6 @@
                     <div class="inq-total-note">（目安 / 税込・要相談）</div>
                 </div>
             </div>
-
             <div class="inq-footer">
                 <p class="inq-footer-note">上記はあくまで目安金額です。内容・納期・オプション等により変動します。<br>フォームから選択内容と金額を添えてご相談いただけます。</p>
                 <button class="inq-contact-btn" id="open-mailform">
@@ -1987,6 +2009,7 @@
         </div>
     </div>
 
+    <!-- ══ メールフォームモーダル ══ -->
     <div class="modal-overlay" id="mailform-modal">
         <div class="modal-content mailform-content">
             <button class="modal-close" id="mailform-close">
@@ -1996,44 +2019,42 @@
                 <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.68rem;letter-spacing:5px;margin-bottom:6px;">COMMISSION REQUEST</div>
                 <h3 style="font-family:'Cinzel',serif;color:#fff;font-size:1.4rem;letter-spacing:4px;margin:0;">お仕事のご相談</h3>
             </div>
-
             <div class="mf-summary" id="mf-summary">
                 <div class="mf-summary-title">選択中の項目</div>
                 <div class="mf-summary-items" id="mf-summary-items">（未選択）</div>
                 <div class="mf-summary-total">予想合計：<span id="mf-total-disp">¥0</span></div>
             </div>
-
             <div class="mf-form-body" id="mf-form-body">
-            <div class="mf-field">
-                <label class="mf-label">お名前 <span class="mf-required">*</span></label>
-                <input type="text" class="mf-input" id="mf-name" placeholder="例：シャルノス ／ Sharnoth">
+                <div class="mf-field">
+                    <label class="mf-label">お名前 <span class="mf-required">*</span></label>
+                    <input type="text" class="mf-input" id="mf-name" placeholder="例：シャルノス ／ Sharnoth">
+                </div>
+                <div class="mf-field">
+                    <label class="mf-label">返信希望メールアドレス <span class="mf-required">*</span></label>
+                    <input type="email" class="mf-input" id="mf-email" placeholder="例：your@email.com">
+                </div>
+                <div class="mf-field">
+                    <label class="mf-label">SNSアカウント <span class="mf-opt">任意</span></label>
+                    <input type="text" class="mf-input" id="mf-sns" placeholder="例：@grenadinesyrup_（X）">
+                </div>
+                <div class="mf-field">
+                    <label class="mf-label">活動場所・所属 <span class="mf-opt">任意</span></label>
+                    <input type="text" class="mf-input" id="mf-place" placeholder="例：個人Vtuber ／ ○○プロ所属">
+                </div>
+                <div class="mf-field">
+                    <label class="mf-label">ご相談内容 <span class="mf-required">*</span></label>
+                    <textarea class="mf-textarea" id="mf-message" rows="5" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。"></textarea>
+                </div>
+                <div class="mf-actions">
+                    <button class="mf-cancel" id="mf-cancel">キャンセル</button>
+                    <button class="mf-submit" id="mf-submit">
+                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        <span id="mf-submit-label">送信する</span>
+                    </button>
+                </div>
+                <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：grenadine0syrup@gmail.com</p>
             </div>
-            <div class="mf-field">
-                <label class="mf-label">返信希望メールアドレス <span class="mf-required">*</span></label>
-                <input type="email" class="mf-input" id="mf-email" placeholder="例：your@email.com">
-            </div>
-            <div class="mf-field">
-                <label class="mf-label">SNSアカウント <span class="mf-opt">任意</span></label>
-                <input type="text" class="mf-input" id="mf-sns" placeholder="例：@grenadinesyrup_（X）">
-            </div>
-            <div class="mf-field">
-                <label class="mf-label">活動場所・所属 <span class="mf-opt">任意</span></label>
-                <input type="text" class="mf-input" id="mf-place" placeholder="例：個人Vtuber ／ ○○プロ所属">
-            </div>
-            <div class="mf-field">
-                <label class="mf-label">ご相談内容 <span class="mf-required">*</span></label>
-                <textarea class="mf-textarea" id="mf-message" rows="5" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。"></textarea>
-            </div>
-
-            <div class="mf-actions">
-                <button class="mf-cancel" id="mf-cancel">キャンセル</button>
-                <button class="mf-submit" id="mf-submit">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                    <span id="mf-submit-label">送信する</span>
-                </button>
-            </div>
-            <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b6c796e656a6f62656e3b7872797e7b4b6c666a626725686466">[email&#160;protected]</a></p>
-            </div><div class="mf-sent-view" id="mf-sent-view">
+            <div class="mf-sent-view" id="mf-sent-view">
                 <div class="mf-sent-icon">𓂀</div>
                 <div class="mf-sent-title">ご相談を受け付けました</div>
                 <p class="mf-sent-msg">お問い合わせありがとうございます。<br>内容を確認のうえ、折り返しご連絡いたします。<br>今しばらくお待ちください。</p>
@@ -2046,6 +2067,7 @@
         </div>
     </div>
 
+    <!-- Creator モーダル (Illust / Live2D / MV 共通) -->
     <div class="modal-overlay" id="creator-modal">
         <div class="modal-content creator-modal-content">
             <button class="modal-close" id="creator-modal-close">
@@ -2063,28 +2085,60 @@
     </div>
 
     <script>
+        /* ── ロード制御（最優先で実行） ── */
+        let isLoaded = false;
+        function completeLoading() {
+            if (isLoaded) return;
+            isLoaded = true;
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.classList.add('loaded');
+                setTimeout(() => { loader.style.display = 'none'; }, 1500);
+            }
+            
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(completeLoading, 1500);
+        });
+        
+        window.addEventListener('load', () => {
+            setTimeout(completeLoading, 1500);
+        });
+
+        setTimeout(completeLoading, 4000);
+
         /* ── ヒエログリフリング生成 ── */
         const glyphRing = document.getElementById('glyphRing');
-        const glyphs = ['𓂀','𓆩','𓇬','𓋴','𓈖','𓄿','𓅱','𓇯','𓂋','𓏤','𓆑','𓁶','𓅓','𓎡','𓈗'];
-        glyphs.forEach((g, i) => {
-            const span = document.createElement('span');
-            span.textContent = g;
-            const angle = (360 / glyphs.length) * i;
-            span.style.transform = `rotate(${angle}deg)`;
-            span.style.animationDelay = `${(i / glyphs.length) * 3}s`;
-            glyphRing.appendChild(span);
-        });
+        if (glyphRing) {
+            const glyphs = ['𓂀','𓆩','𓇬','𓋴','𓈖','𓄿','𓅱','𓇯','𓂋','𓏤','𓆑','𓁶','𓅓','𓎡','𓈗'];
+            glyphs.forEach((g, i) => {
+                const span = document.createElement('span');
+                span.textContent = g;
+                const angle = (360 / glyphs.length) * i;
+                span.style.transform = `rotate(${angle}deg)`;
+                span.style.animationDelay = `${(i / glyphs.length) * 3}s`;
+                glyphRing.appendChild(span);
+            });
+        }
 
         /* ── カスタムカーソル ── */
         const cursorWrap = document.getElementById('cursor-wrap');
         let hasMoved = false;
         document.addEventListener('mousemove', (e) => {
+            if (!cursorWrap) return;
             cursorWrap.style.left = e.clientX + 'px';
             cursorWrap.style.top  = e.clientY + 'px';
             if (!hasMoved) { cursorWrap.classList.add('visible'); hasMoved = true; }
         });
         document.addEventListener('mousedown', (e) => {
-            cursorWrap.classList.add('clicking');
+            if (cursorWrap) cursorWrap.classList.add('clicking');
             const ripple = document.createElement('div');
             ripple.className = 'cursor-ripple';
             ripple.style.left = e.clientX + 'px';
@@ -2092,10 +2146,11 @@
             document.body.appendChild(ripple);
             setTimeout(() => ripple.remove(), 700);
         });
-        document.addEventListener('mouseup', () => { setTimeout(() => cursorWrap.classList.remove('clicking'), 350); });
+        document.addEventListener('mouseup', () => { if(cursorWrap) setTimeout(() => cursorWrap.classList.remove('clicking'), 350); });
+        
         document.querySelectorAll('a, button, .stream-tag, .tab-btn, .wish-item, .indicator-wrap, .modal-close, .fantia-link-btn, .ci-en-banner-inner, .ch-link, .campfire-banner-inner').forEach(el => {
-            el.addEventListener('mouseenter', () => cursorWrap.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorWrap.classList.remove('hover'));
+            el.addEventListener('mouseenter', () => { if(cursorWrap) cursorWrap.classList.add('hover'); });
+            el.addEventListener('mouseleave', () => { if(cursorWrap) cursorWrap.classList.remove('hover'); });
         });
 
         /* ── ナビゲーション ── */
@@ -2113,23 +2168,32 @@
             slider.style.left   = `${tr.left - nr.left}px`;
             slider.style.top    = `${tr.top  - nr.top}px`;
         }
-        setTimeout(() => {
-            const a = document.querySelector('.floating-nav a.active') || navLinks[0];
-            updateSlider(a);
-        }, 150);
-        navLinks.forEach(link => link.addEventListener('mouseenter', (e) => updateSlider(e.currentTarget)));
-        navList.addEventListener('mouseleave', () => {
-            const a = document.querySelector('.floating-nav a.active') || navLinks[0];
-            updateSlider(a);
-        });
+        
+        if (navLinks.length > 0) {
+            setTimeout(() => {
+                const a = document.querySelector('.floating-nav a.active') || navLinks[0];
+                updateSlider(a);
+            }, 150);
+            navLinks.forEach(link => link.addEventListener('mouseenter', (e) => updateSlider(e.currentTarget)));
+        }
+        
+        if (navList) {
+            navList.addEventListener('mouseleave', () => {
+                const a = document.querySelector('.floating-nav a.active') || navLinks[0];
+                updateSlider(a);
+            });
+        }
+
         function animateSliderUpdate() {
             const start = Date.now();
             const t = setInterval(() => {
+                if (navLinks.length === 0) return clearInterval(t);
                 const a = document.querySelector('.floating-nav a.active') || navLinks[0];
                 updateSlider(a);
                 if (Date.now() - start > 700) clearInterval(t);
             }, 16);
         }
+
         window.addEventListener('scroll', () => {
             const profileSec   = document.getElementById('profile');
             const triggerPoint = profileSec ? profileSec.offsetTop - window.innerHeight / 1.5 : window.innerHeight * 0.5;
@@ -2140,6 +2204,7 @@
                 if (floatingNav.classList.contains('corner-nav')) { floatingNav.classList.remove('corner-nav'); animateSliderUpdate(); }
             }
         });
+
         document.querySelectorAll('#home, #profile, #works, #game, #ci-en, #goods').forEach(s =>
             new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2201,7 +2266,6 @@
         if (inquiryClose) inquiryClose.addEventListener('click', () => inquiryModal.classList.remove('active'));
         if (inquiryModal) inquiryModal.addEventListener('click', e => { if (e.target === inquiryModal) inquiryModal.classList.remove('active'); });
 
-        // タブ切替
         document.querySelectorAll('.inq-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.inq-tab').forEach(t => t.classList.remove('active'));
@@ -2212,7 +2276,6 @@
             });
         });
 
-        // ── スピナー（イラスト表情差分） ──
         let illustDiffCount = 1;
         const illustDiffCb    = document.getElementById('illust-diff-cb');
         const illustDiffNum   = document.getElementById('illust-diff-num');
@@ -2220,14 +2283,13 @@
         const illustDiffRow   = document.getElementById('illust-diff-row');
 
         function updateIllustDiff() {
-            illustDiffNum.textContent   = illustDiffCount;
-            illustDiffPrice.textContent = '+¥' + (illustDiffCount * 1000).toLocaleString('ja-JP');
-            illustDiffRow.classList.toggle('active', illustDiffCb.checked);
+            if (illustDiffNum) illustDiffNum.textContent = illustDiffCount;
+            if (illustDiffPrice) illustDiffPrice.textContent = '+¥' + (illustDiffCount * 1000).toLocaleString('ja-JP');
+            if (illustDiffRow && illustDiffCb) illustDiffRow.classList.toggle('active', illustDiffCb.checked);
             updateTotal();
         }
         if (illustDiffCb) illustDiffCb.addEventListener('change', updateIllustDiff);
 
-        // ── Live2Dキーバインドスピナー ──
         let live2dKeyCount = 1;
         const live2dKeyCb    = document.getElementById('live2d-key-cb');
         const live2dKeyNum   = document.getElementById('live2d-key-num');
@@ -2237,12 +2299,11 @@
         function updateLive2dKey() {
             if (live2dKeyNum)   live2dKeyNum.textContent   = live2dKeyCount;
             if (live2dKeyPrice) live2dKeyPrice.textContent = '+¥' + (live2dKeyCount * 3000).toLocaleString('ja-JP');
-            if (live2dKeyRow)   live2dKeyRow.classList.toggle('active', live2dKeyCb && live2dKeyCb.checked);
+            if (live2dKeyRow && live2dKeyCb)   live2dKeyRow.classList.toggle('active', live2dKeyCb.checked);
             updateTotal();
         }
         if (live2dKeyCb) live2dKeyCb.addEventListener('change', updateLive2dKey);
 
-        // スピナーボタン（イラスト差分 ＋ Live2Dキーバインド 両対応）
         document.querySelectorAll('.inq-spin-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const target = btn.dataset.target;
@@ -2256,54 +2317,47 @@
             });
         });
 
-        // ── 合計計算 ──
         function getSelections() {
             const items = []; let total = 0;
-
-            // 通常チェックボックス
             document.querySelectorAll('.inq-cb:checked').forEach(cb => {
                 const price = parseInt(cb.dataset.price) || 0;
                 total += price;
                 items.push({ label: cb.dataset.label, price });
             });
-
-            // イラスト表情差分スピナー
             if (illustDiffCb && illustDiffCb.checked) {
                 const p = illustDiffCount * 1000;
                 total += p;
                 items.push({ label: `表情差分追加（${illustDiffCount}点）`, price: p });
             }
-
-            // Live2Dキーバインドスピナー
             if (live2dKeyCb && live2dKeyCb.checked) {
                 const p = live2dKeyCount * 3000;
                 total += p;
                 items.push({ label: `キーバインド表情追加（${live2dKeyCount}個）`, price: p });
             }
-
             return { items, total };
         }
 
         function updateTotal() {
             const { items, total } = getSelections();
-
-            if (total > 0) {
-                inqTotalEl.textContent = '¥' + total.toLocaleString('ja-JP') + '〜';
-                inqTotalEl.classList.add('has-value');
-            } else {
-                inqTotalEl.textContent = '¥0';
-                inqTotalEl.classList.remove('has-value');
+            if (inqTotalEl) {
+                if (total > 0) {
+                    inqTotalEl.textContent = '¥' + total.toLocaleString('ja-JP') + '〜';
+                    inqTotalEl.classList.add('has-value');
+                } else {
+                    inqTotalEl.textContent = '¥0';
+                    inqTotalEl.classList.remove('has-value');
+                }
             }
-
-            if (items.length === 0) {
-                inqSelectedEl.innerHTML = '<span class="inq-no-select">← 上からご希望の項目を選択してください</span>';
-            } else {
-                inqSelectedEl.innerHTML = items.map(i => `<span class="inq-selected-chip">${i.label}</span>`).join('');
+            if (inqSelectedEl) {
+                if (items.length === 0) {
+                    inqSelectedEl.innerHTML = '<span class="inq-no-select">← 上からご希望の項目を選択してください</span>';
+                } else {
+                    inqSelectedEl.innerHTML = items.map(i => `<span class="inq-selected-chip">${i.label}</span>`).join('');
+                }
             }
         }
         document.querySelectorAll('.inq-cb').forEach(cb => cb.addEventListener('change', updateTotal));
 
-        // ── メールフォームモーダル ──
         const mailformModal = document.getElementById('mailform-modal');
         const mailformClose = document.getElementById('mailform-close');
         const openMailform  = document.getElementById('open-mailform');
@@ -2314,27 +2368,24 @@
             const { items, total } = getSelections();
             const summaryItems = document.getElementById('mf-summary-items');
             const totalDisp    = document.getElementById('mf-total-disp');
-
-            if (items.length === 0) {
-                summaryItems.textContent = '（項目未選択。フォームから詳細をお知らせください）';
-            } else {
-                summaryItems.innerHTML = items.map(i =>
-                    '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')
-                ).join('<br>');
+            if (summaryItems) {
+                if (items.length === 0) {
+                    summaryItems.textContent = '（項目未選択。フォームから詳細をお知らせください）';
+                } else {
+                    summaryItems.innerHTML = items.map(i =>
+                        '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')
+                    ).join('<br>');
+                }
             }
-            totalDisp.textContent = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
-
-            mailformModal.classList.add('active');
+            if (totalDisp) totalDisp.textContent = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
+            if (mailformModal) mailformModal.classList.add('active');
         }
 
-        // ── 依頼モーダルを閉じるときに全チェックをリセット ──
         function resetInquiryModal() {
             document.querySelectorAll('.inq-cb').forEach(cb => cb.checked = false);
             document.querySelectorAll('.inq-cb-spinner').forEach(cb => cb.checked = false);
-            // スピナーをリセット
             illustDiffCount = 1; updateIllustDiff();
             live2dKeyCount  = 1; updateLive2dKey();
-            // スピナー行のアクティブ解除
             document.querySelectorAll('.inq-spinner-row').forEach(r => r.classList.remove('active'));
         }
 
@@ -2343,11 +2394,9 @@
         if (mfCancel)      mfCancel.addEventListener('click',      () => resetAndCloseMailform());
         if (mailformModal) mailformModal.addEventListener('click',  e  => { if (e.target === mailformModal) resetAndCloseMailform(); });
 
-        // 依頼モーダルを×で閉じる
         if (inquiryClose) {
-            inquiryClose.removeEventListener('click', null);
             inquiryClose.addEventListener('click', () => {
-                inquiryModal.classList.remove('active');
+                if (inquiryModal) inquiryModal.classList.remove('active');
                 setTimeout(resetInquiryModal, 400);
             });
         }
@@ -2360,106 +2409,114 @@
             });
         }
 
-        // ── フォームリセット＆クローズ ──
         function resetAndCloseMailform() {
-            mailformModal.classList.remove('active');
+            if (mailformModal) mailformModal.classList.remove('active');
             setTimeout(() => {
-                document.getElementById('mf-form-body').classList.remove('hidden');
-                document.getElementById('mf-sent-view').classList.remove('active');
-                document.getElementById('mf-error-view').classList.remove('active');
-                document.getElementById('mf-name').value    = '';
-                document.getElementById('mf-email').value   = '';
-                document.getElementById('mf-sns').value     = '';
-                document.getElementById('mf-place').value   = '';
-                document.getElementById('mf-message').value = '';
+                const fBody = document.getElementById('mf-form-body');
+                const sView = document.getElementById('mf-sent-view');
+                const eView = document.getElementById('mf-error-view');
+                if (fBody) fBody.classList.remove('hidden');
+                if (sView) sView.classList.remove('active');
+                if (eView) eView.classList.remove('active');
+                ['mf-name', 'mf-email', 'mf-sns', 'mf-place', 'mf-message'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.value = '';
+                });
                 const lbl = document.getElementById('mf-submit-label');
                 if (lbl) lbl.textContent = '送信する';
                 if (mfSubmit) mfSubmit.disabled = false;
             }, 400);
         }
 
-        // 送信完了・エラービューの閉じるボタン
-        document.getElementById('mf-sent-close')?.addEventListener('click', resetAndCloseMailform);
-        document.getElementById('mf-error-back')?.addEventListener('click', () => {
-            document.getElementById('mf-error-view').classList.remove('active');
-            document.getElementById('mf-form-body').classList.remove('hidden');
-            const lbl = document.getElementById('mf-submit-label');
-            if (lbl) lbl.textContent = '送信する';
-            if (mfSubmit) mfSubmit.disabled = false;
-        });
+        const mfSentClose = document.getElementById('mf-sent-close');
+        if (mfSentClose) mfSentClose.addEventListener('click', resetAndCloseMailform);
+        
+        const mfErrorBack = document.getElementById('mf-error-back');
+        if (mfErrorBack) {
+            mfErrorBack.addEventListener('click', () => {
+                const eView = document.getElementById('mf-error-view');
+                const fBody = document.getElementById('mf-form-body');
+                if (eView) eView.classList.remove('active');
+                if (fBody) fBody.classList.remove('hidden');
+                const lbl = document.getElementById('mf-submit-label');
+                if (lbl) lbl.textContent = '送信する';
+                if (mfSubmit) mfSubmit.disabled = false;
+            });
+        }
 
-        // ── 送信処理（Web3Forms） ──
         const WEB3FORMS_KEY = '024186dc-30db-47bf-ace4-12bde7a53c6f';
+        if (mfSubmit) {
+            mfSubmit.addEventListener('click', async () => {
+                const name    = (document.getElementById('mf-name')?.value    || '').trim();
+                const email   = (document.getElementById('mf-email')?.value   || '').trim();
+                const sns     = (document.getElementById('mf-sns')?.value     || '').trim();
+                const place   = (document.getElementById('mf-place')?.value   || '').trim();
+                const message = (document.getElementById('mf-message')?.value || '').trim();
 
-        if (mfSubmit) mfSubmit.addEventListener('click', async () => {
-            const name    = (document.getElementById('mf-name')?.value    || '').trim();
-            const email   = (document.getElementById('mf-email')?.value   || '').trim();
-            const sns     = (document.getElementById('mf-sns')?.value     || '').trim();
-            const place   = (document.getElementById('mf-place')?.value   || '').trim();
-            const message = (document.getElementById('mf-message')?.value || '').trim();
+                if (!name)    { alert('お名前をご入力ください。'); return; }
+                if (!email)   { alert('返信希望メールアドレスをご入力ください。'); return; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('メールアドレスの形式が正しくありません。'); return; }
+                if (!message) { alert('ご相談内容をご入力ください。'); return; }
 
-            if (!name)    { alert('お名前をご入力ください。'); return; }
-            if (!email)   { alert('返信希望メールアドレスをご入力ください。'); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('メールアドレスの形式が正しくありません。'); return; }
-            if (!message) { alert('ご相談内容をご入力ください。'); return; }
+                const lbl = document.getElementById('mf-submit-label');
+                if (lbl) lbl.textContent = '送信中…';
+                mfSubmit.disabled = true;
 
-            const lbl = document.getElementById('mf-submit-label');
-            if (lbl) lbl.textContent = '送信中…';
-            mfSubmit.disabled = true;
+                const { items, total } = getSelections();
+                const selectedText = items.length > 0
+                    ? items.map(i => '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')).join('\n')
+                    : '（未選択）';
+                const totalText = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
 
-            const { items, total } = getSelections();
-            const selectedText = items.length > 0
-                ? items.map(i => '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')).join('\n')
-                : '（未選択）';
-            const totalText = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
+                const formData = {
+                    access_key:   WEB3FORMS_KEY,
+                    subject:      `【お仕事のご相談】${name} 様より`,
+                    from_name:    'Sharnoth Grenadine 公式サイト',
+                    name:         name,
+                    email:        email,
+                    replyto:      email,
+                    message:
+                        `▼ お名前\n${name}\n\n` +
+                        `▼ 返信先メール\n${email}\n\n` +
+                        `▼ SNSアカウント\n${sns || 'なし'}\n\n` +
+                        `▼ 活動場所・所属\n${place || 'なし'}\n\n` +
+                        `▼ 選択項目\n${selectedText}\n\n` +
+                        `▼ 予想合計\n${totalText}\n\n` +
+                        `▼ ご相談内容\n${message}`,
+                    botcheck: ''
+                };
 
-            const formData = {
-                access_key:   WEB3FORMS_KEY,
-                subject:      `【お仕事のご相談】${name} 様より`,
-                from_name:    'Sharnoth Grenadine 公式サイト',
-                name:         name,
-                email:        email,
-                replyto:      email,
-                message:
-                    `▼ お名前\n${name}\n\n` +
-                    `▼ 返信先メール\n${email}\n\n` +
-                    `▼ SNSアカウント\n${sns || 'なし'}\n\n` +
-                    `▼ 活動場所・所属\n${place || 'なし'}\n\n` +
-                    `▼ 選択項目\n${selectedText}\n\n` +
-                    `▼ 予想合計\n${totalText}\n\n` +
-                    `▼ ご相談内容\n${message}`,
-                botcheck: ''
-            };
-
-            try {
-                const res = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                const data = await res.json();
-                if (data.success) {
-                    document.getElementById('mf-form-body').classList.add('hidden');
-                    document.getElementById('mf-sent-view').classList.add('active');
-                    // 送信完了後に依頼モーダルのチェックもリセット
-                    setTimeout(resetInquiryModal, 500);
-                } else {
-                    throw new Error(data.message || '送信に失敗しました。');
+                try {
+                    const res = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        const fBody = document.getElementById('mf-form-body');
+                        const sView = document.getElementById('mf-sent-view');
+                        if (fBody) fBody.classList.add('hidden');
+                        if (sView) sView.classList.add('active');
+                        setTimeout(resetInquiryModal, 500);
+                    } else {
+                        throw new Error(data.message || '送信に失敗しました。');
+                    }
+                } catch (err) {
+                    const fBody = document.getElementById('mf-form-body');
+                    const errView = document.getElementById('mf-error-view');
+                    const errMsg  = document.getElementById('mf-error-msg');
+                    if (fBody) fBody.classList.add('hidden');
+                    if (errMsg) errMsg.innerHTML =
+                        '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、<br>直接 <strong style="color:rgba(209,173,63,0.9);">grenadine0syrup@gmail.com</strong> へご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
+                    if (errView) errView.classList.add('active');
                 }
-            } catch (err) {
-                document.getElementById('mf-form-body').classList.add('hidden');
-                const errView = document.getElementById('mf-error-view');
-                const errMsg  = document.getElementById('mf-error-msg');
-                if (errMsg) errMsg.innerHTML =
-                    '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、<br>直接 <strong style="color:rgba(209,173,63,0.9);">grenadine0syrup@gmail.com</strong> へご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
-                if (errView) errView.classList.add('active');
-            }
-        });
+            });
+        }
 
-        // カーソルホバー対象に追加
         document.querySelectorAll('.inq-tab, .inq-service-row, .inq-spinner-row, .inq-contact-btn, .inquiry-close, #open-inquiry, #open-mailform, .mf-submit, .mf-cancel, .inq-spin-btn, .inq-select, .mailform-content input, .mailform-content textarea').forEach(el => {
-            el.addEventListener('mouseenter', () => cursorWrap.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorWrap.classList.remove('hover'));
+            el.addEventListener('mouseenter', () => { if(cursorWrap) cursorWrap.classList.add('hover') });
+            el.addEventListener('mouseleave', () => { if(cursorWrap) cursorWrap.classList.remove('hover') });
         });
 
         /* ── Creator モーダル ── */
@@ -2504,60 +2561,58 @@
             }
         };
 
-        // カード数バッジ更新
-        document.getElementById('illust-count').textContent = creatorData.illust.items.length + ' works';
-        document.getElementById('live2d-count').textContent = creatorData.live2d.items.length + ' works';
-        document.getElementById('mv-count').textContent     = creatorData.mv.items.length + ' works';
+        const illustCount = document.getElementById('illust-count');
+        const live2dCount = document.getElementById('live2d-count');
+        const mvCount     = document.getElementById('mv-count');
+        if (illustCount) illustCount.textContent = creatorData.illust.items.length + ' works';
+        if (live2dCount) live2dCount.textContent = creatorData.live2d.items.length + ' works';
+        if (mvCount)     mvCount.textContent     = creatorData.mv.items.length + ' works';
 
         function openCreatorModal(type) {
             const d = creatorData[type];
-            document.getElementById('creator-modal-icon').textContent  = d.icon;
-            document.getElementById('creator-modal-title').textContent = d.title;
-            document.getElementById('creator-modal-sub').textContent   = d.sub;
-            creatorTimeline.innerHTML = d.items.map(it => `
-                <div class="tl-item">
-                    <div class="tl-dot"></div>
-                    <div class="tl-date">${it.date}</div>
-                    <div class="tl-title">${it.title.replace(/\n/g, '<br>')}</div>
-                    <div class="tl-desc">${it.desc}</div>
-                    ${it.url ? `<a href="${it.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:0.75rem;color:rgba(209,173,63,0.7);text-decoration:none;letter-spacing:1px;transition:color 0.3s;" onmouseenter="this.style.color='rgba(219,15,77,0.9)'" onmouseleave="this.style.color='rgba(209,173,63,0.7)'"><svg viewBox='0 0 24 24' fill='currentColor' style='width:13px;height:13px;'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg>View</a>` : ''}
-                </div>`).join('');
-            creatorModal.classList.add('active');
+            const iconEl  = document.getElementById('creator-modal-icon');
+            const titleEl = document.getElementById('creator-modal-title');
+            const subEl   = document.getElementById('creator-modal-sub');
+            if (iconEl)  iconEl.textContent  = d.icon;
+            if (titleEl) titleEl.textContent = d.title;
+            if (subEl)   subEl.textContent   = d.sub;
+            if (creatorTimeline) {
+                creatorTimeline.innerHTML = d.items.map(it => `
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-date">${it.date}</div>
+                        <div class="tl-title">${it.title.replace(/\n/g, '<br>')}</div>
+                        <div class="tl-desc">${it.desc}</div>
+                        ${it.url ? `<a href="${it.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:0.75rem;color:rgba(209,173,63,0.7);text-decoration:none;letter-spacing:1px;transition:color 0.3s;" onmouseenter="this.style.color='rgba(219,15,77,0.9)'" onmouseleave="this.style.color='rgba(209,173,63,0.7)'"><svg viewBox='0 0 24 24' fill='currentColor' style='width:13px;height:13px;'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg>View</a>` : ''}
+                    </div>`).join('');
+            }
+            if (creatorModal) creatorModal.classList.add('active');
         }
 
-        document.getElementById('open-illust').addEventListener('click', () => openCreatorModal('illust'));
-        document.getElementById('open-live2d').addEventListener('click', () => openCreatorModal('live2d'));
-        document.getElementById('open-mv').addEventListener('click',     () => openCreatorModal('mv'));
-        creatorClose.addEventListener('click', () => creatorModal.classList.remove('active'));
-        creatorModal.addEventListener('click', e => { if (e.target === creatorModal) creatorModal.classList.remove('active'); });
+        const openIllustBtn = document.getElementById('open-illust');
+        const openLive2dBtn = document.getElementById('open-live2d');
+        const openMvBtn     = document.getElementById('open-mv');
+        if (openIllustBtn) openIllustBtn.addEventListener('click', () => openCreatorModal('illust'));
+        if (openLive2dBtn) openLive2dBtn.addEventListener('click', () => openCreatorModal('live2d'));
+        if (openMvBtn)     openMvBtn.addEventListener('click',     () => openCreatorModal('mv'));
+        
+        if (creatorClose) creatorClose.addEventListener('click', () => { if(creatorModal) creatorModal.classList.remove('active'); });
+        if (creatorModal) creatorModal.addEventListener('click', e => { if (e.target === creatorModal) creatorModal.classList.remove('active'); });
 
         /* ── 支援者モーダル ── */
         const supportersModal = document.getElementById('supporters-modal');
         const supportersClose = document.getElementById('supporters-close');
         const openSupporters  = document.getElementById('open-supporters');
-        if (openSupporters) openSupporters.addEventListener('click', () => supportersModal.classList.add('active'));
-        if (supportersClose) supportersClose.addEventListener('click', () => supportersModal.classList.remove('active'));
+        if (openSupporters) openSupporters.addEventListener('click', () => { if(supportersModal) supportersModal.classList.add('active'); });
+        if (supportersClose) supportersClose.addEventListener('click', () => { if(supportersModal) supportersModal.classList.remove('active'); });
         if (supportersModal) supportersModal.addEventListener('click', e => { if (e.target === supportersModal) supportersModal.classList.remove('active'); });
 
         // カーソルホバー対象に追加
         document.querySelectorAll('.creator-card, .cf-supporters-btn').forEach(el => {
-            el.addEventListener('mouseenter', () => cursorWrap.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorWrap.classList.remove('hover'));
+            el.addEventListener('mouseenter', () => { if (cursorWrap) cursorWrap.classList.add('hover'); });
+            el.addEventListener('mouseleave', () => { if (cursorWrap) cursorWrap.classList.remove('hover'); });
         });
 
-        /* ── ロード ── */
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                if (loader) loader.classList.add('loaded');
-                const obs = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
-                    });
-                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-                document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-            }, 1800);
-        });
     </script>
 </body>
 </html>
