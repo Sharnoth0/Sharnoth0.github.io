@@ -658,6 +658,67 @@
             letter-spacing: 2px;
         }
 
+        /* ── Game バナー ── */
+        .game-banner-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 80px 40px;
+            border-radius: 18px;
+            border: 1px solid rgba(219,15,77,0.5);
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.8), 0 0 30px rgba(219,15,77,0.15), 0 0 60px rgba(219,15,77,0.08), inset 0 0 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #050005;
+        }
+        .game-banner-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://sharnoth0.github.io/images/%E5%91%8A%E7%9F%A5%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%E3%83%A9%E3%83%95%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            z-index: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        .game-banner-inner:hover .game-banner-bg {
+            transform: scale(1.05);
+            opacity: 0.7;
+        }
+        .game-banner-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            background: rgba(10, 0, 15, 0.7);
+            padding: 25px 50px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(219,15,77,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .game-banner-inner .banner-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: 8px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(219,15,77,0.9), 0 0 30px var(--crimson);
+            margin: 0;
+        }
+        .game-banner-inner .banner-sub {
+            font-family: 'Kaisei Decol', serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: rgba(240,220,160,0.95);
+            letter-spacing: 4px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+        }
+
         .stream-tags-section { margin-top: 40px; }
         .stream-tags { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 18px; align-items: center; }
         .stream-tag { background: rgba(10,0,0,0.6); border: 1px solid var(--gold-dim); color: var(--text-color); padding: 8px 18px; border-radius: 20px; font-size: 0.95rem; letter-spacing: 1px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); position: relative; display: inline-flex; align-items: center; z-index: 10; }
@@ -1351,6 +1412,67 @@
         @keyframes sepBreath { 0%,100%{opacity:0.6;}50%{opacity:0.18;} }
         @keyframes scanline { 0%{transform:translateY(-100%);}100%{transform:translateY(100%);} }
         @keyframes glitch-anim { 0%{transform:translate(0);}20%{transform:translate(-2px,2px);}40%{transform:translate(-2px,-2px);}60%{transform:translate(2px,2px);}80%{transform:translate(2px,-2px);}100%{transform:translate(0);} }
+
+        /* ── Game バナー ── */
+        .game-banner-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 80px 40px;
+            border-radius: 18px;
+            border: 1px solid rgba(219,15,77,0.5);
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.8), 0 0 30px rgba(219,15,77,0.15), 0 0 60px rgba(219,15,77,0.08), inset 0 0 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #050005;
+        }
+        .game-banner-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://sharnoth0.github.io/images/%E5%91%8A%E7%9F%A5%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%E3%83%A9%E3%83%95%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            z-index: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        .game-banner-inner:hover .game-banner-bg {
+            transform: scale(1.05);
+            opacity: 0.7;
+        }
+        .game-banner-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            background: rgba(10, 0, 15, 0.7);
+            padding: 25px 50px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(219,15,77,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .game-banner-inner .banner-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: 8px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(219,15,77,0.9), 0 0 30px var(--crimson);
+            margin: 0;
+        }
+        .game-banner-inner .banner-sub {
+            font-family: 'Kaisei Decol', serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: rgba(240,220,160,0.95);
+            letter-spacing: 4px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+        }
     </style>
 </head>
 <body>
@@ -1515,7 +1637,7 @@
                     <p>なんか大邪神っぽいという理由で、夫と妻を10人くらい迎え入れる予定。<br>（ファーストダーリンは決まったので、セカンドダーリンとファーストハニーを募集中）</p>
                     <p>信仰（深徒）を集め、理想の"ドリームランド"を作ろうとしている。</p>
                     <p>いわゆるセルフ受肉で、特技は姿を変化させること。<br>（力を使うので乱用は出来ない）</p>
-                    <div class="youtube-wrap" style="margin: 30px auto 10px; max-width: 320px; border: 1px solid rgba(209,173,63,0.3);">
+                    <div class="youtube-wrap" style="margin: 30px 0 10px 0; max-width: 320px; border: 1px solid rgba(209,173,63,0.3);">
                         <iframe src="https://www.youtube.com/embed/3KAkgTgFG9o" title="YouTube" allowfullscreen></iframe>
                     </div>
                     <div class="stream-tags-section">
@@ -1665,9 +1787,14 @@
         <div class="section-wrapper fade-up"><h2 class="section-title">Game</h2></div>
         <div class="section-divider fade-up delay-1"></div>
         <div class="media-grid" style="grid-template-columns:1fr;max-width:800px;">
-            <div class="media-item fade-up delay-2" style="padding:50px;">
-                <h3 style="color:var(--crimson);font-family:'Cinzel',serif;font-size:2rem;margin-bottom:20px;">GrimLily</h3>
-                <p style="line-height:2.2;color:rgba(255,255,255,0.8);margin-bottom:0;font-size:1.2rem;letter-spacing:2px;">第一作目 Coming soon...</p>
+            <div class="media-item fade-up delay-2" style="padding:0; background: transparent; border: none; box-shadow: none;">
+                <div class="game-banner-inner">
+                    <div class="game-banner-bg"></div>
+                    <div class="game-banner-content">
+                        <h3 class="banner-title">GrimLily</h3>
+                        <span class="banner-sub">第一作目 Coming soon...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
