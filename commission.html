@@ -225,12 +225,16 @@
         .svc-price.option { color: rgba(150,180,220,0.8); background: rgba(150,180,220,0.06); border-color: rgba(150,180,220,0.25); }
         .svc-row-link { cursor: pointer; }
         .svc-row-link:hover { border-color: rgba(209,173,63,0.5); background: rgba(209,173,63,0.06); }
+        .svc-row-link-cb { cursor: pointer; }
+        .svc-row-link-cb:hover { border-color: rgba(209,173,63,0.5); background: rgba(209,173,63,0.06); }
         .svc-link-label {
             font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px;
             color: rgba(209,173,63,0.7); white-space: nowrap;
             transition: color 0.3s, letter-spacing 0.3s;
+            cursor: pointer;
         }
-        .svc-row-link:hover .svc-link-label { color: var(--gold); letter-spacing: 3px; }
+        .svc-row-link:hover .svc-link-label,
+        .svc-row-link-cb:hover .svc-link-label { color: var(--gold); letter-spacing: 3px; }
 
         /* ── Section label ── */
         .svc-section-label {
@@ -504,8 +508,8 @@
                 </div>
                 <div class="svc-section-label">✦ 提携クリエイター</div>
                 <div class="svc-list">
-                    <div class="svc-row svc-row-link" id="open-designer-modal"><div style="width:24px"></div><div class="svc-info"><span class="svc-name">提携デザイナー様の紹介を希望する</span><span class="svc-detail">サムネイルだけでなく、ロゴなど幅広く対応していただけます。</span></div><span class="svc-link-label">詳細はこちら →</span></div>
-                    <div class="svc-row svc-row-link" id="open-bgartist-modal"><div style="width:24px"></div><div class="svc-info"><span class="svc-name">詳細な背景イラストを希望する（提携絵師様紹介）</span><span class="svc-detail">複雑な背景が必要な場合、提携絵師様をご紹介します。</span></div><span class="svc-link-label">詳細はこちら →</span></div>
+                    <label class="svc-row svc-row-link-cb"><input type="checkbox" class="svc-cb" data-price="0" data-label="提携デザイナー様の紹介を希望する"><div class="svc-info"><span class="svc-name">提携デザイナー様の紹介を希望する</span><span class="svc-detail">サムネイルだけでなく、ロゴなど幅広く対応していただけます。</span></div><span class="svc-link-label" data-modal="designer-modal">詳細はこちら →</span></label>
+                    <label class="svc-row svc-row-link-cb"><input type="checkbox" class="svc-cb" data-price="0" data-label="詳細な背景イラストを希望する（提携絵師様紹介）"><div class="svc-info"><span class="svc-name">詳細な背景イラストを希望する（提携絵師様紹介）</span><span class="svc-detail">複雑な背景が必要な場合、提携絵師様をご紹介します。</span></div><span class="svc-link-label" data-modal="bgartist-modal">詳細はこちら →</span></label>
                 </div>
                 <div class="svc-section-label">✦ Option</div>
                 <div class="svc-list">
@@ -530,8 +534,7 @@
                         </div>
                     </div>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="1000" data-label="見切れなし"><div class="svc-info"><span class="svc-name">見切れなし</span><span class="svc-detail">髪と頭が切れないファイルをご用意します。MV制作やサムネイルなどにお使いいただける場合オススメです。</span></div><span class="svc-price option">+¥1,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-percent="10" data-label="商用利用（収益化済チャンネルでの使用）合計金額の＋10%"><div class="svc-info"><span class="svc-name">商用利用：収益化済チャンネルでの使用、グッズ化など</span><span class="svc-detail">合計金額の＋10%</span></div><span class="svc-price option">+10%</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-percent="50" data-label="商用利用（全て）合計金額の＋50%"><div class="svc-info"><span class="svc-name">商用利用：全て</span><span class="svc-detail">合計金額の＋50%</span></div><span class="svc-price option">+50%</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-percent="50" data-label="グッズ化などの商用利用（合計金額の＋50%）"><div class="svc-info"><span class="svc-name">グッズ化などの商用利用</span><span class="svc-detail">合計金額の＋50%</span></div><span class="svc-price option">+50%</span></label>
                 </div>
                 <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
@@ -549,7 +552,12 @@
         <!-- ═══ Live2D ═══ -->
         <div class="comm-panel" id="panel-live2d">
             <div class="panel-body">
-                <p class="panel-desc">Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>素材（PSD）はご依頼者様からご提供いただきます。</p>
+                <p class="panel-desc">
+                    Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>
+                    パーツ分け素材（PSD）はご依頼者様からご提供いただきます。<br>
+                    こちらでパーツの加筆などが可能です。<br>
+                    希望する場合絵師様に許可をお取りください。
+                </p>
                 <div class="svc-list">
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="30000" data-label="簡易モデリング"><div class="svc-info"><span class="svc-name">簡易モデリング</span><span class="svc-detail">瞳揺れ・瞬き・頭XY斜め・髪ゆれ。パーツ分けPSD前提。</span></div><span class="svc-price">¥30,000〜</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="60000" data-label="フルモデリング（全身）"><div class="svc-info"><span class="svc-name">フルモデリング（全身）</span><span class="svc-detail">全身フルリギング・物理設定込み。PSD支給前提。</span></div><span class="svc-price">¥60,000〜</span></label>
@@ -567,6 +575,7 @@
                             <span class="spin-price" id="live2d-key-price">+¥3,000</span>
                         </div>
                     </div>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-label="パーツの加筆希望"><div class="svc-info"><span class="svc-name">パーツの加筆希望</span><span class="svc-detail">こちらでパーツの加筆を行います。事前に絵師様の許可をお取りください。</span></div><span class="svc-price consult">要相談</span></label>
                 </div>
                 <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
@@ -585,20 +594,16 @@
             <div class="panel-body">
                 <p class="panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
                 <div class="svc-list">
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="10000" data-label="歌ってみた動画編集（シンプル）"><div class="svc-info"><span class="svc-name">歌ってみた動画編集（シンプル）</span><span class="svc-detail">支給素材の組み合わせ・エフェクト・字幕込み。</span></div><span class="svc-price">¥10,000〜</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="25000" data-label="リリックビデオ制作"><div class="svc-info"><span class="svc-name">リリックビデオ制作</span><span class="svc-detail">歌詞アニメーション付きビデオ。テロップデザイン込み。</span></div><span class="svc-price">¥25,000〜</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="60000" data-label="フルアニメーションMV"><div class="svc-info"><span class="svc-name">フルアニメーションMV</span><span class="svc-detail">キャラクター動きあり・背景込みのフルMV（4分以内目安）。</span></div><span class="svc-price">¥60,000〜</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="8000" data-label="サムネイル制作"><div class="svc-info"><span class="svc-name">サムネイル制作</span><span class="svc-detail">YouTube・各種動画サイト用サムネイルデザイン。</span></div><span class="svc-price add">+¥8,000〜</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="5000" data-label="4K書き出し対応"><div class="svc-info"><span class="svc-name">4K書き出し対応</span><span class="svc-detail">4K（3840×2160）での書き出しが必要な場合に追加。</span></div><span class="svc-price add">+¥5,000〜</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="10000" data-label="急ぎ対応（通常納期の半分以下）"><div class="svc-info"><span class="svc-name">急ぎ対応（通常納期の半分以下）</span><span class="svc-detail">特急料金。内容により対応不可の場合があります。</span></div><span class="svc-price add">+¥10,000〜</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="3000" data-label="ショート動画"><div class="svc-info"><span class="svc-name">ショート動画</span><span class="svc-detail">歌ってみたも可。動画内に字幕をご希望される場合内容をご指定ください。</span></div><span class="svc-price">¥3,000</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="8000" data-label="MV‐シンプルコース"><div class="svc-info"><span class="svc-name">MV‐シンプルコース</span><span class="svc-detail">1枚絵と歌詞のみが表示されれば良い方向けです。</span></div><span class="svc-price">¥8,000</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="15000" data-label="MV‐スタンダード"><div class="svc-info"><span class="svc-name">MV‐スタンダード</span><span class="svc-detail">歌詞アニメーションや演出を含みます。作業量などで金額が変わります。</span></div><span class="svc-price">¥15,000〜</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="1200" data-label="サムネイル制作"><div class="svc-info"><span class="svc-name">サムネイル制作</span></div><span class="svc-price">¥1,200</span></label>
                 </div>
                 <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。尺・内容により変動します。</li>
-                        <li>使用ソフト：Adobe After Effects / Premiere Pro。</li>
-                        <li>納品形式：MP4（H.264）。RAWデータは別途ご相談。</li>
-                        <li>納期目安：シンプル編集 1週間〜、フルMV 4〜8週間。</li>
+                        <li>納品形式：MP4。</li>
                     </ul>
                 </div>
             </div>
@@ -669,7 +674,7 @@
                         <span id="mf-submit-label">送信する</span>
                     </button>
                 </div>
-                <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="365144535857525f585306454f44434676515b575f5a1855595b">[email&#160;protected]</a></p>
+                <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5d2c7d0dbd4d1dcdbd085c6ccc7c0c5f5d2d8d4dcd99bd6dad8">[email&#160;protected]</a></p>
             </div>
             <div class="mf-sent-view" id="mf-sent-view">
                 <div class="mf-sent-icon">𓂀</div>
@@ -856,20 +861,20 @@
         document.querySelectorAll('.svc-cb').forEach(cb => cb.addEventListener('change', updateTotal));
 
         /* ── Partner Modals ── */
-        const designerModal = document.getElementById('designer-modal');
-        const designerClose = document.getElementById('designer-modal-close');
-        const bgartistModal = document.getElementById('bgartist-modal');
-        const bgartistClose = document.getElementById('bgartist-modal-close');
-        const openDesigner = document.getElementById('open-designer-modal');
-        const openBgartist = document.getElementById('open-bgartist-modal');
-
-        if (openDesigner) openDesigner.addEventListener('click', () => { if(designerModal) designerModal.classList.add('active'); });
-        if (designerClose) designerClose.addEventListener('click', () => { if(designerModal) designerModal.classList.remove('active'); });
-        if (designerModal) designerModal.addEventListener('click', e => { if (e.target === designerModal) designerModal.classList.remove('active'); });
-
-        if (openBgartist) openBgartist.addEventListener('click', () => { if(bgartistModal) bgartistModal.classList.add('active'); });
-        if (bgartistClose) bgartistClose.addEventListener('click', () => { if(bgartistModal) bgartistModal.classList.remove('active'); });
-        if (bgartistModal) bgartistModal.addEventListener('click', e => { if (e.target === bgartistModal) bgartistModal.classList.remove('active'); });
+        /* ── Partner Modals via data-modal ── */
+        document.querySelectorAll('.svc-link-label[data-modal]').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const modal = document.getElementById(el.dataset.modal);
+                if (modal) modal.classList.add('active');
+            });
+        });
+        document.querySelectorAll('#designer-modal, #bgartist-modal').forEach(modal => {
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+            modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+        });
 
         /* ── Mailform ── */
         const mailformModal = document.getElementById('mailform-modal');
@@ -994,5 +999,11 @@
                     const errView = document.getElementById('mf-error-view');
                     const errMsg = document.getElementById('mf-error-msg');
                     if (fBody) fBody.classList.add('hidden');
-                    if (errMsg) errMsg.innerHTML =
-                        '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、<br>直接 <strong style="color:rgba(209,173,63,0.9);">grenadine0syrup@gmail.com</stron
+                    if (errMsg) errMsg.innerHTML = '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、<br>直接 grenadine0syrup@gmail.com へご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
+                    if (errView) errView.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
