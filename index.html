@@ -308,11 +308,16 @@
             </div>
 
             <div class="works-note">
-                ※ 掲載可能な実績のみを記載しています。非公開案件については掲載しておりません。<br><br>
-                <button class="works-inquiry" id="open-inquiry">
-                    <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    お仕事のご依頼はこちら
-                </button>
+                ※ 掲載可能な実績のみを記載しています。非公開案件については掲載しておりません。
+            </div>
+            <div style="text-align:center;margin-top:30px;">
+                <a href="commission.html" class="works-inquiry-btn">
+                    <span class="works-inquiry-deco left"></span>
+                    <span class="works-inquiry-deco right"></span>
+                    <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span class="works-inquiry-label">お仕事のご依頼はこちら</span>
+                    <span class="works-inquiry-arrow">→</span>
+                </a>
             </div>
         </div>
     </section>
@@ -339,18 +344,35 @@
         <div class="section-divider fade-up delay-1"></div>
         <div class="media-grid" style="grid-template-columns:1fr;max-width:800px;">
             <div class="media-item fade-up delay-2" style="padding:0; background: transparent; border: none; box-shadow: none;">
-                <p style="line-height:2.2;color:rgba(255,255,255,0.8);margin-bottom:30px; text-align: center;">
-                    応援してくれる深徒、深徒候補を認知するファンクラブ。<br>
-                    音声動画や料理日記、シチュエーションボイス、1on1通話など⋯⋯<br>
-                    様々なお返しをご用意しています。<br>
-                    支援の使い道は活動費がメイン。<br>
-                    ゲーム制作の日記もお読みいただけます！<br>
-                    きっとご満足していただけますのでこの機会にどうぞ🎶
-                </p>
-                <a href="https://ci-en.net/creator/35826" target="_blank" rel="noopener noreferrer" class="ci-en-banner-inner">
-                    <h3 class="banner-title">Official Fanclub</h3>
-                    <span class="banner-sub">Ci-enへ入会する</span>
-                </a>
+                <div class="cien-desc-card">
+                    <div class="cien-desc-corner tl">✦</div>
+                    <div class="cien-desc-corner tr">✦</div>
+                    <div class="cien-desc-corner bl">✦</div>
+                    <div class="cien-desc-corner br">✦</div>
+                    <div class="cien-desc-glow"></div>
+                    <div class="cien-desc-header">
+                        <span class="cien-desc-label">Official Fanclub</span>
+                    </div>
+                    <p class="cien-desc-text">
+                        応援してくれる深徒、深徒候補を認知する<br>オフィシャルファンクラブです。
+                    </p>
+                    <div class="cien-desc-features">
+                        <span class="cien-feature">音声動画</span>
+                        <span class="cien-feature">料理日記</span>
+                        <span class="cien-feature">シチュエーションボイス</span>
+                        <span class="cien-feature">1on1通話</span>
+                        <span class="cien-feature">ゲーム制作日記</span>
+                    </div>
+                    <p class="cien-desc-sub">
+                        様々なお返しをご用意しています。<br>
+                        支援の使い道は活動費がメイン。<br>
+                        きっとご満足していただけますのでこの機会にどうぞ🎶
+                    </p>
+                    <a href="https://ci-en.net/creator/35826" target="_blank" rel="noopener noreferrer" class="cien-card-btn">
+                        <span class="cien-card-btn-text">Ci-enへ入会する</span>
+                        <span class="cien-card-btn-arrow">→</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -388,355 +410,7 @@
         </ul>
     </nav>
 
-    <!-- ══ お仕事依頼モーダル ══ -->
-    <div class="modal-overlay inquiry-overlay" id="inquiry-modal">
-        <div class="inquiry-modal-wrap">
-            <button class="modal-close inquiry-close" id="inquiry-close">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-            <div class="inq-header">
-                <div class="inq-header-deco">𓂀</div>
-                <h3 class="inq-title">Commission &amp; Works</h3>
-                <p class="inq-subtitle">ご依頼内容を選択すると予想金額が表示されます</p>
-            </div>
-            <div class="inq-tabs">
-                <button class="inq-tab active" data-inq="vtuber">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-                    VTuber案件
-                </button>
-                <button class="inq-tab" data-inq="illust">🎨 Illustration</button>
-                <button class="inq-tab" data-inq="live2d">✦ Live2D</button>
-                <button class="inq-tab" data-inq="mv">🎬 MV</button>
-            </div>
-            <div class="inq-body">
-                <div class="inq-panel active" id="inq-vtuber">
-                    <p class="inq-panel-desc">企業様・個人様問わずご依頼を承っております。<br>配信・PRなどお気軽にご相談ください。</p>
-                    <div class="inq-notice">
-                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0;margin-top:2px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                        VTuber案件の金額はすべてご相談ベースです。詳細はDMにてお問い合わせください。
-                    </div>
-                    <div class="inq-service-list">
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="ゲームタイアップ配信">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">ゲームタイアップ配信</span>
-                                <span class="inq-service-detail">指定ゲームのプレイ・紹介配信。配信時間・条件等はご相談。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="PR配信（商品・サービス紹介配信）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">PR配信（商品・サービス紹介配信）</span>
-                                <span class="inq-service-detail">配信枠内での商品・サービス紹介。尺・内容はご相談。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="PR投稿（SNS・動画）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">PR投稿（SNS・動画）</span>
-                                <span class="inq-service-detail">X（Twitter）・YouTube等でのプロモーション投稿。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="ASMRコンテンツ案件">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">ASMRコンテンツ案件</span>
-                                <span class="inq-service-detail">企業依頼によるASMR収録・配信。台本ありなし両対応。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="ナレーション・ボイス収録">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">ナレーション・ボイス収録</span>
-                                <span class="inq-service-detail">CM・動画・ゲーム用ナレーション、キャラクターボイス等。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="その他（コラボ・イベント等）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">その他（コラボ・イベント等）</span>
-                                <span class="inq-service-detail">上記以外の企画・コラボレーション等もお気軽にどうぞ。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                    </div>
-                    <div class="inq-terms">
-                        <div class="inq-terms-title">✦ ご依頼の流れ</div>
-                        <ol class="inq-steps">
-                            <li>XのDMまたはメールにてご連絡</li>
-                            <li>内容・条件のすり合わせ</li>
-                            <li>お見積もり提示・ご確認</li>
-                            <li>契約・制作・納品</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="inq-panel" id="inq-illust">
-                    <p class="inq-panel-desc">キャラクターイラスト・アイコン・サムネイルなど承ります。<br>下記からご希望の内容にチェックを入れてください。</p>
-                    <div class="inq-service-list">
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="5000" data-label="アイコン・バナー（バストアップ）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">アイコン・バナー（バストアップ）</span>
-                                <span class="inq-service-detail">SNSアイコン・配信バナー等。シンプル背景込み。</span>
-                            </div>
-                            <span class="inq-price-badge">¥5,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="8000" data-label="腰までのイラスト（フル彩色）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">腰までのイラスト（フル彩色）</span>
-                                <span class="inq-service-detail">ラフ〜線画〜着色。シンプル背景込み。</span>
-                            </div>
-                            <span class="inq-price-badge">¥8,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="10000" data-label="全身イラスト（フル彩色）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">全身イラスト（フル彩色）</span>
-                                <span class="inq-service-detail">ラフ〜線画〜着色。シンプル背景込み。</span>
-                            </div>
-                            <span class="inq-price-badge">¥10,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="0" data-label="詳細な背景イラストを希望する（提携絵師紹介）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">詳細な背景イラストを希望する（提携絵師紹介）</span>
-                                <span class="inq-service-detail">複雑な背景が必要な場合、提携絵師をご紹介します。</span>
-                            </div>
-                            <span class="inq-price-badge consult">要相談</span>
-                        </label>
-                        <div class="inq-service-row inq-spinner-row" id="illust-diff-row">
-                            <div class="inq-spinner-check">
-                                <input type="checkbox" class="inq-cb-spinner" id="illust-diff-cb">
-                            </div>
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">表情差分追加</span>
-                                <span class="inq-service-detail">1点につき ¥1,000。個数を選択してください。</span>
-                            </div>
-                            <div class="inq-spinner-wrap">
-                                <button class="inq-spin-btn" data-target="illust-diff-num" data-dir="-1">−</button>
-                                <span class="inq-spin-num" id="illust-diff-num">1</span>
-                                <button class="inq-spin-btn" data-target="illust-diff-num" data-dir="1">＋</button>
-                                <span class="inq-spin-price" id="illust-diff-price">+¥1,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inq-terms">
-                        <div class="inq-terms-title">✦ 注意事項</div>
-                        <ul class="inq-caution">
-                            <li>料金はすべて目安です。内容により変動します。</li>
-                            <li>修正は軽微なもの2回まで無料。大幅変更は別途費用。</li>
-                            <li>納期はご依頼内容により異なります（目安：2〜4週間）。</li>
-                            <li>NG設定・詳細はフォームまたはDMにてご確認ください。</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="inq-panel" id="inq-live2d">
-                    <p class="inq-panel-desc">Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>素材（PSD）はご依頼者様からご提供いただきます。</p>
-                    <div class="inq-service-list">
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="30000" data-label="簡易モデリング（瞳揺れ・瞬き・頭XY斜め・髪ゆれ）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">簡易モデリング</span>
-                                <span class="inq-service-detail">瞳揺れ・瞬き・頭XY斜め・髪ゆれ。PSD支給前提。</span>
-                            </div>
-                            <span class="inq-price-badge">¥30,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="60000" data-label="フルモデリング（全身）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">フルモデリング（全身）</span>
-                                <span class="inq-service-detail">全身フルリギング・物理設定込み。PSD支給前提。</span>
-                            </div>
-                            <span class="inq-price-badge">¥60,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="20000" data-label="衣装差分追加（1点）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">衣装差分追加（1点）</span>
-                                <span class="inq-service-detail">既存モデルへの衣装差分追加・リギング。</span>
-                            </div>
-                            <span class="inq-price-badge add">+¥20,000〜</span>
-                        </label>
-                        <div class="inq-service-row inq-spinner-row" id="live2d-key-row">
-                            <div class="inq-spinner-check">
-                                <input type="checkbox" class="inq-cb-spinner" id="live2d-key-cb">
-                            </div>
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">キーバインド表情追加</span>
-                                <span class="inq-service-detail">個数 × ¥3,000。最大6個まで。</span>
-                            </div>
-                            <div class="inq-spinner-wrap">
-                                <button class="inq-spin-btn" data-target="live2d-key-num" data-dir="-1">−</button>
-                                <span class="inq-spin-num" id="live2d-key-num">1</span>
-                                <button class="inq-spin-btn" data-target="live2d-key-num" data-dir="1">＋</button>
-                                <span class="inq-spin-price" id="live2d-key-price">+¥3,000</span>
-                            </div>
-                        </div>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="15000" data-label="パーツ追加（アクセサリ等）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">パーツ追加（アクセサリ等）</span>
-                                <span class="inq-service-detail">帽子・小物・エフェクト等のパーツ追加。</span>
-                            </div>
-                            <span class="inq-price-badge add">+¥15,000〜</span>
-                        </label>
-                    </div>
-                    <div class="inq-terms">
-                        <div class="inq-terms-title">✦ 注意事項</div>
-                        <ul class="inq-caution">
-                            <li>料金はすべて目安です。パーツ数・複雑さにより変動します。</li>
-                            <li>素材（PSD）はパーツを分けてご支給いただく必要があります。</li>
-                            <li>納期目安：新規モデル 8〜12週間、追加改修 2〜4週間。</li>
-                            <li>Cubism Pro使用。納品はcmo3ファイル形式。</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="inq-panel" id="inq-mv">
-                    <p class="inq-panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
-                    <div class="inq-service-list">
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="10000" data-label="歌ってみた動画編集（シンプル）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">歌ってみた動画編集（シンプル）</span>
-                                <span class="inq-service-detail">支給素材の組み合わせ・エフェクト・字幕込み。</span>
-                            </div>
-                            <span class="inq-price-badge">¥10,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="25000" data-label="リリックビデオ制作">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">リリックビデオ制作</span>
-                                <span class="inq-service-detail">歌詞アニメーション付きビデオ。テロップデザイン込み。</span>
-                            </div>
-                            <span class="inq-price-badge">¥25,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="60000" data-label="フルアニメーションMV">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">フルアニメーションMV</span>
-                                <span class="inq-service-detail">キャラクター動きあり・背景込みのフルMV（4分以内目安）。</span>
-                            </div>
-                            <span class="inq-price-badge">¥60,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="8000" data-label="サムネイル制作">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">サムネイル制作</span>
-                                <span class="inq-service-detail">YouTube・各種動画サイト用サムネイルデザイン。</span>
-                            </div>
-                            <span class="inq-price-badge add">+¥8,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="5000" data-label="4K書き出し対応">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">4K書き出し対応</span>
-                                <span class="inq-service-detail">4K（3840×2160）での書き出しが必要な場合に追加。</span>
-                            </div>
-                            <span class="inq-price-badge add">+¥5,000〜</span>
-                        </label>
-                        <label class="inq-service-row">
-                            <input type="checkbox" class="inq-cb" data-price="10000" data-label="急ぎ対応（通常納期の半分以下）">
-                            <div class="inq-service-info">
-                                <span class="inq-service-name">急ぎ対応（通常納期の半分以下）</span>
-                                <span class="inq-service-detail">特急料金。内容により対応不可の場合があります。</span>
-                            </div>
-                            <span class="inq-price-badge add">+¥10,000〜</span>
-                        </label>
-                    </div>
-                    <div class="inq-terms">
-                        <div class="inq-terms-title">✦ 注意事項</div>
-                        <ul class="inq-caution">
-                            <li>料金はすべて目安です。尺・内容により変動します。</li>
-                            <li>使用ソフト：Adobe After Effects / Premiere Pro。</li>
-                            <li>納品形式：MP4（H.264）。RAWデータは別途ご相談。</li>
-                            <li>納期目安：シンプル編集 1週間〜、フルMV 4〜8週間。</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="inq-total-bar">
-                <div class="inq-selected-list" id="inq-selected-list">
-                    <span class="inq-no-select">← 上からご希望の項目を選択してください</span>
-                </div>
-                <div class="inq-total-right">
-                    <div class="inq-total-label">予想合計金額</div>
-                    <div class="inq-total-amount" id="inq-total">¥0</div>
-                    <div class="inq-total-note">（目安 / 税込・要相談）</div>
-                </div>
-            </div>
-            <div class="inq-footer">
-                <p class="inq-footer-note">上記はあくまで目安金額です。内容・納期・オプション等により変動します。<br>フォームから選択内容と金額を添えてご相談いただけます。</p>
-                <button class="inq-contact-btn" id="open-mailform">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    ご相談フォームを開く
-                </button>
-            </div>
-        </div>
-    </div>
 
-    <!-- ══ メールフォームモーダル ══ -->
-    <div class="modal-overlay" id="mailform-modal">
-        <div class="modal-content mailform-content">
-            <button class="modal-close" id="mailform-close">
-                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-            <div style="text-align:center;margin-bottom:24px;">
-                <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.68rem;letter-spacing:5px;margin-bottom:6px;">COMMISSION REQUEST</div>
-                <h3 style="font-family:'Cinzel',serif;color:#fff;font-size:1.4rem;letter-spacing:4px;margin:0;">お仕事のご相談</h3>
-            </div>
-            <div class="mf-summary" id="mf-summary">
-                <div class="mf-summary-title">選択中の項目</div>
-                <div class="mf-summary-items" id="mf-summary-items">（未選択）</div>
-                <div class="mf-summary-total">予想合計：<span id="mf-total-disp">¥0</span></div>
-            </div>
-            <div class="mf-form-body" id="mf-form-body">
-                <div class="mf-field">
-                    <label class="mf-label">お名前 <span class="mf-required">*</span></label>
-                    <input type="text" class="mf-input" id="mf-name" placeholder="例：シャルノス ／ Sharnoth">
-                </div>
-                <div class="mf-field">
-                    <label class="mf-label">返信希望メールアドレス <span class="mf-required">*</span></label>
-                    <input type="email" class="mf-input" id="mf-email" placeholder="例：your@email.com">
-                </div>
-                <div class="mf-field">
-                    <label class="mf-label">SNSアカウント <span class="mf-opt">任意</span></label>
-                    <input type="text" class="mf-input" id="mf-sns" placeholder="例：@grenadinesyrup_（X）">
-                </div>
-                <div class="mf-field">
-                    <label class="mf-label">活動場所・所属 <span class="mf-opt">任意</span></label>
-                    <input type="text" class="mf-input" id="mf-place" placeholder="例：個人Vtuber ／ ○○プロ所属">
-                </div>
-                <div class="mf-field">
-                    <label class="mf-label">ご相談内容 <span class="mf-required">*</span></label>
-                    <textarea class="mf-textarea" id="mf-message" rows="5" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。"></textarea>
-                </div>
-                <div class="mf-actions">
-                    <button class="mf-cancel" id="mf-cancel">キャンセル</button>
-                    <button class="mf-submit" id="mf-submit">
-                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                        <span id="mf-submit-label">送信する</span>
-                    </button>
-                </div>
-                <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f09782959e9194999e95c08389828580b0979d91999cde939f9d">[email&#160;protected]</a></p>
-            </div>
-            <div class="mf-sent-view" id="mf-sent-view">
-                <div class="mf-sent-icon">𓂀</div>
-                <div class="mf-sent-title">ご相談を受け付けました</div>
-                <p class="mf-sent-msg">お問い合わせありがとうございます。<br>内容を確認のうえ、折り返しご連絡いたします。<br>今しばらくお待ちください。</p>
-                <button class="mf-cancel" id="mf-sent-close" style="margin-top:8px;width:100%;">閉じる</button>
-            </div>
-            <div class="mf-error-view" id="mf-error-view">
-                <div class="mf-error-msg" id="mf-error-msg"></div>
-                <button class="mf-cancel" id="mf-error-back" style="margin-top:8px;width:100%;">戻って再送信</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Creator モーダル (Illust / Live2D / MV 共通) -->
     <div class="modal-overlay" id="creator-modal">
