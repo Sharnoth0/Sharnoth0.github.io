@@ -155,20 +155,188 @@
         }
         .intro-payment-title {
             font-family: 'Cinzel', serif; font-size: 0.72rem;
-            letter-spacing: 4px; color: var(--gold); margin-bottom: 12px;
+            letter-spacing: 4px; color: var(--gold); margin-bottom: 18px;
         }
-        .intro-payment-methods {
-            display: flex; flex-wrap: wrap; gap: 10px;
+        .intro-payment-group {
+            margin-bottom: 14px;
         }
-        .intro-payment-chip {
-            font-size: 0.9rem; color: rgba(255,255,255,0.85);
-            padding: 8px 20px; border-radius: 22px;
-            background: rgba(209,173,63,0.08);
-            border: 1px solid rgba(209,173,63,0.3);
-            letter-spacing: 1px;
+        .intro-payment-group:last-child { margin-bottom: 0; }
+        .intro-payment-group-label {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: rgba(209,173,63,0.55);
+            margin-bottom: 8px;
         }
-        .intro-payment-note {
-            font-size: 0.75rem; color: rgba(180,160,120,0.5); margin-top: 10px; line-height: 1.8;
+        .intro-payment-brands {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            align-items: center;
+        }
+        .pay-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.25s, border-color 0.25s, background 0.25s;
+        }
+        .pay-brand:hover {
+            transform: translateY(-2px);
+            border-color: rgba(209,173,63,0.4);
+            background: rgba(255,255,255,0.08);
+        }
+        .pay-brand svg {
+            display: block;
+            height: 26px;
+            width: auto;
+        }
+
+        /* ── Availability Gauges ── */
+        .intro-availability {
+            margin: 28px 0 24px;
+            padding: 22px 26px;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(219,15,77,0.06) 0%, transparent 70%),
+                rgba(0,0,0,0.35);
+            border: 1px solid rgba(209,173,63,0.2);
+            border-left: 3px solid var(--crimson);
+            border-radius: 10px;
+        }
+        .intro-availability-title {
+            font-family: 'Cinzel', serif; font-size: 0.72rem;
+            letter-spacing: 4px; color: var(--gold); margin-bottom: 16px;
+        }
+        .availability-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+        }
+        @media (max-width: 480px) {
+            .availability-grid { grid-template-columns: 1fr; gap: 18px; }
+        }
+        .availability-item { position: relative; }
+        .availability-top {
+            display: flex; align-items: baseline; justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .availability-month {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.4rem; letter-spacing: 2px;
+            color: rgba(240,220,160,0.9);
+            text-shadow: 0 0 12px rgba(209,173,63,0.3);
+            display: inline-flex; align-items: baseline; gap: 10px;
+        }
+        .availability-month-ja {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 0.78rem; letter-spacing: 3px;
+            color: rgba(209,173,63,0.6);
+            text-shadow: none;
+            font-weight: normal;
+        }
+        .availability-percent {
+            font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 700;
+            letter-spacing: 1px; color: rgba(240,140,160,0.95);
+            text-shadow: 0 0 10px rgba(240,140,160,0.25);
+        }
+        .availability-percent .percent-sign {
+            font-size: 0.85rem; opacity: 0.7; margin-left: 2px;
+        }
+        .availability-bar {
+            position: relative; height: 14px;
+            border-radius: 8px; overflow: hidden;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(209,173,63,0.22);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.6);
+        }
+        .availability-bar-track {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(90deg,
+                transparent 0, transparent 6px,
+                rgba(209,173,63,0.05) 6px, rgba(209,173,63,0.05) 7px);
+            background-size: 7px 100%;
+        }
+        .availability-bar-fill {
+            position: absolute; top: 0; bottom: 0; left: 0;
+            width: var(--pct);
+            background: linear-gradient(90deg,
+                rgba(219,15,77,0.85),
+                rgba(240,140,160,0.95) 50%,
+                rgba(255,200,120,0.95));
+            box-shadow:
+                0 0 10px rgba(240,140,160,0.5),
+                0 0 20px rgba(219,15,77,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            border-radius: 8px;
+            animation: gaugeFill 1.6s cubic-bezier(0.25,1,0.5,1) 0.2s backwards;
+            overflow: hidden;
+        }
+        .availability-bar-fill[style*="--pct:0%"],
+        .availability-bar-fill[style*="--pct: 0%"] {
+            display: none;
+        }
+        .availability-bar-fill::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255,255,255,0.3),
+                transparent);
+            animation: gaugeShimmer 2.5s ease-in-out infinite;
+        }
+        @keyframes gaugeFill {
+            from { width: 0; }
+            to   { width: var(--pct); }
+        }
+        @keyframes gaugeShimmer {
+            0%   { transform: translateX(-100%); }
+            60%  { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+        .availability-sparkle {
+            position: absolute; top: -3px; right: 6px;
+            width: 6px; height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #fff, 0 0 14px rgba(255,200,120,0.8);
+            animation: sparkleIdle 2.8s ease-in-out infinite;
+            opacity: 0;
+        }
+        .availability-item:has([data-pct="50"]) .availability-sparkle { opacity: 1; }
+        .availability-item:has([data-pct="0"]) .availability-sparkle { opacity: 0; }
+        @keyframes sparkleIdle {
+            0%,100% { transform: scale(0.8); opacity: 0.5; }
+            50%     { transform: scale(1.4); opacity: 1; }
+        }
+        .availability-status {
+            margin-top: 8px;
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.72rem; letter-spacing: 2px;
+            padding: 2px 10px; border-radius: 12px;
+        }
+        .availability-status .status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        .status-full {
+            color: rgba(200,180,140,0.6);
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(180,160,120,0.25);
+        }
+        .status-full .status-dot {
+            background: rgba(180,160,120,0.5);
+            box-shadow: 0 0 6px rgba(180,160,120,0.4);
+        }
+        .status-half {
+            color: rgba(240,220,160,0.9);
+            background: rgba(219,15,77,0.08);
+            border: 1px solid rgba(219,15,77,0.3);
+        }
+        .status-half .status-dot {
+            background: rgba(240,140,160,0.95);
+            box-shadow: 0 0 6px rgba(240,140,160,0.8), 0 0 12px rgba(219,15,77,0.5);
+        }
+        @keyframes statusPulse {
+            0%,100% { opacity: 0.8; transform: scale(1); }
+            50%     { opacity: 1;   transform: scale(1.2); }
         }
 
         /* ── Panel Body ── */
@@ -393,6 +561,90 @@
         .mf-cancel:hover { border-color: rgba(180,155,100,0.5); color: rgba(200,180,140,0.8); }
         .mf-submit { flex: 2; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; background: linear-gradient(135deg, rgba(219,15,77,0.22), rgba(180,5,50,0.15)); border: 1px solid rgba(219,15,77,0.55); color: rgba(255,200,200,0.95); font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 2px; cursor: pointer; transition: all 0.35s; }
         .mf-submit:hover { background: linear-gradient(135deg, rgba(219,15,77,0.35), rgba(180,5,50,0.25)); border-color: rgba(219,15,77,0.9); color: #fff; box-shadow: 0 0 25px rgba(219,15,77,0.25); }
+        .mf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* Notice box inside mailform */
+        .mf-notice-box {
+            margin: 22px 0 14px;
+            padding: 14px 18px;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(219,15,77,0.08) 0%, transparent 70%),
+                rgba(0,0,0,0.35);
+            border: 1px solid rgba(219,15,77,0.3);
+            border-left: 3px solid var(--crimson);
+            border-radius: 8px;
+        }
+        .mf-notice-heading {
+            font-family: 'Cinzel', serif; font-size: 0.72rem;
+            letter-spacing: 3px; color: rgba(240,140,160,0.95);
+            margin: 0 0 8px;
+        }
+        .mf-notice-main {
+            font-size: 0.92rem; color: rgba(240,225,185,0.95);
+            line-height: 1.8; margin: 0 0 6px;
+            letter-spacing: 0.5px;
+        }
+        .mf-notice-main strong {
+            color: #fff;
+            background: linear-gradient(transparent 55%, rgba(219,15,77,0.55) 0%);
+            padding: 2px 4px;
+            font-weight: 700;
+        }
+        .mf-notice-sub {
+            font-size: 0.8rem; color: rgba(200,180,140,0.7);
+            line-height: 1.8; margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        /* Agreement checkbox */
+        .mf-agree {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px; margin-bottom: 6px;
+            background: rgba(5,0,10,0.5);
+            border: 1px solid rgba(209,173,63,0.18);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .mf-agree:hover {
+            border-color: rgba(209,173,63,0.4);
+            background: rgba(209,173,63,0.04);
+        }
+        .mf-agree:has(.mf-agree-cb:checked) {
+            border-color: rgba(219,15,77,0.5);
+            background: rgba(219,15,77,0.06);
+            box-shadow: 0 0 14px rgba(219,15,77,0.08);
+        }
+        .mf-agree-cb {
+            position: absolute; opacity: 0; pointer-events: none;
+        }
+        .mf-agree-box {
+            flex-shrink: 0;
+            width: 20px; height: 20px;
+            border: 1px solid rgba(209,173,63,0.45);
+            border-radius: 5px;
+            background: rgba(5,0,10,0.8);
+            position: relative;
+            transition: all 0.2s;
+        }
+        .mf-agree-cb:checked + .mf-agree-box {
+            background: var(--crimson);
+            border-color: var(--crimson);
+            box-shadow: 0 0 10px rgba(219,15,77,0.55);
+        }
+        .mf-agree-cb:checked + .mf-agree-box::after {
+            content: '';
+            position: absolute; left: 6px; top: 2px;
+            width: 6px; height: 11px;
+            border: 2px solid #fff;
+            border-top: none; border-left: none;
+            transform: rotate(45deg);
+        }
+        .mf-agree-text {
+            font-size: 0.88rem;
+            color: rgba(230,215,180,0.9);
+            letter-spacing: 0.5px;
+        }
         .mf-form-body { transition: opacity 0.3s; }
         .mf-form-body.hidden { opacity: 0; pointer-events: none; height: 0; overflow: hidden; }
         .mf-sent-view, .mf-error-view { display: none; text-align: center; padding: 20px 10px 10px; }
@@ -452,13 +704,77 @@
                     チェックを入れると大体の料金感がわかると思いますので<br>
                     ぜひ試してみてくださいませ。
                 </p>
+                <div class="intro-availability">
+                    <div class="intro-availability-title">✦ 現在の空き状況</div>
+                    <div class="availability-grid">
+                        <div class="availability-item">
+                            <div class="availability-top">
+                                <span class="availability-month">April<span class="availability-month-ja">4月</span></span>
+                                <span class="availability-percent" data-pct="0">0<span class="percent-sign">%</span></span>
+                            </div>
+                            <div class="availability-bar">
+                                <div class="availability-bar-track"></div>
+                                <div class="availability-bar-fill" style="--pct:0%;"></div>
+                                <div class="availability-sparkle"></div>
+                            </div>
+                            <div class="availability-status status-full">
+                                <span class="status-dot"></span>受付終了
+                            </div>
+                        </div>
+                        <div class="availability-item">
+                            <div class="availability-top">
+                                <span class="availability-month">May<span class="availability-month-ja">5月</span></span>
+                                <span class="availability-percent" data-pct="50">50<span class="percent-sign">%</span></span>
+                            </div>
+                            <div class="availability-bar">
+                                <div class="availability-bar-track"></div>
+                                <div class="availability-bar-fill" style="--pct:50%;"></div>
+                                <div class="availability-sparkle"></div>
+                            </div>
+                            <div class="availability-status status-half">
+                                <span class="status-dot"></span>残り僅か
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="intro-payment">
                     <div class="intro-payment-title">✦ お支払い方法</div>
-                    <div class="intro-payment-methods">
-                        <span class="intro-payment-chip">PayPay</span>
-                        <span class="intro-payment-chip">PayPal</span>
+                    <div class="intro-payment-group">
+                        <div class="intro-payment-group-label">クレジットカード</div>
+                        <div class="intro-payment-brands">
+                            <span class="pay-brand pay-visa" title="VISA">
+                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><text x="20" y="17" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="10" font-weight="900" font-style="italic" fill="#1A1F71">VISA</text></svg>
+                            </span>
+                            <span class="pay-brand pay-mc" title="Mastercard">
+                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><circle cx="16" cy="13" r="7" fill="#EB001B"/><circle cx="24" cy="13" r="7" fill="#F79E1B" opacity="0.92"/><path d="M20 7.5a7 7 0 0 0 0 11 7 7 0 0 0 0-11z" fill="#FF5F00"/></svg>
+                            </span>
+                            <span class="pay-brand pay-amex" title="AMEX">
+                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#006FCF"/><text x="20" y="16" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="6.5" font-weight="900" fill="#fff" letter-spacing="0.5">AMEX</text></svg>
+                            </span>
+                            <span class="pay-brand pay-unionpay" title="UnionPay">
+                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><path d="M10 6h7l-3 14H7z" fill="#E21836"/><path d="M17 6h7l-3 14h-7z" fill="#00447C"/><path d="M24 6h7l-3 14h-7z" fill="#007B3A"/></svg>
+                            </span>
+                        </div>
                     </div>
-                    <p class="intro-payment-note">※ PayPayはBusinessに加入していますので規約違反ではありません。</p>
+                    <div class="intro-payment-group">
+                        <div class="intro-payment-group-label">モバイル決済</div>
+                        <div class="intro-payment-brands">
+                            <span class="pay-brand pay-apple" title="Apple Pay">
+                                <svg viewBox="0 0 50 26" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="26" rx="3" fill="#000"/><path d="M14.5 11.3c-.02-1.9 1.56-2.83 1.63-2.88-.9-1.3-2.28-1.48-2.77-1.5-1.18-.12-2.3.69-2.9.69-.6 0-1.52-.67-2.5-.66-1.28.02-2.48.75-3.14 1.9-1.34 2.33-.34 5.77.97 7.66.64.92 1.4 1.96 2.38 1.92.96-.04 1.32-.62 2.48-.62s1.48.62 2.5.6c1.03-.02 1.69-.94 2.32-1.87.73-1.07 1.03-2.11 1.05-2.17-.02-.01-2.01-.77-2.03-3.07zm-1.92-5.64c.53-.64.89-1.53.79-2.41-.76.03-1.69.51-2.24 1.15-.49.56-.92 1.46-.81 2.33.86.06 1.73-.43 2.26-1.07z" fill="#fff"/><text x="31" y="17.5" font-family="-apple-system,Helvetica,sans-serif" font-size="9" font-weight="500" fill="#fff">Pay</text></svg>
+                            </span>
+                            <span class="pay-brand pay-google" title="Google Pay">
+                                <svg viewBox="0 0 50 26" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="26" rx="3" fill="#fff"/><text x="25" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="500" fill="#5F6368"><tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC04">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan><tspan> Pay</tspan></text></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="intro-payment-group">
+                        <div class="intro-payment-group-label">その他</div>
+                        <div class="intro-payment-brands">
+                            <span class="pay-brand pay-paypal" title="PayPal">
+                                <svg viewBox="0 0 50 26" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="26" rx="3" fill="#fff"/><text x="25" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="700" font-style="italic"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -504,7 +820,6 @@
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="7000" data-label="腰上までのイラスト"><div class="svc-info"><span class="svc-name">腰上までのイラスト</span></div><span class="svc-price">¥7,000</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="12000" data-label="全身イラスト"><div class="svc-info"><span class="svc-name">全身イラスト</span><span class="svc-detail">腰上より下が入る場合はこちらです。</span></div><span class="svc-price">¥12,000</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="60000" data-label="Live2D用イラスト"><div class="svc-info"><span class="svc-name">Live2D用イラスト</span><span class="svc-detail">パーツ分け済デザイン込。</span></div><span class="svc-price">¥60,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="1200" data-label="サムネイル作成"><div class="svc-info"><span class="svc-name">サムネイル作成</span></div><span class="svc-price">¥1,200</span></label>
                 </div>
                 <div class="svc-section-label">✦ 提携クリエイター</div>
                 <div class="svc-list">
@@ -656,17 +971,23 @@
                     <input type="email" class="mf-input" id="mf-email" placeholder="例：your@email.com">
                 </div>
                 <div class="mf-field">
-                    <label class="mf-label">SNSアカウント <span class="mf-opt">任意</span></label>
-                    <input type="text" class="mf-input" id="mf-sns" placeholder="例：@grenadinesyrup_（X）">
-                </div>
-                <div class="mf-field">
-                    <label class="mf-label">活動場所・所属 <span class="mf-opt">任意</span></label>
-                    <input type="text" class="mf-input" id="mf-place" placeholder="例：個人Vtuber ／ ○○プロ所属">
+                    <label class="mf-label">SNSアカウント / Webサイト <span class="mf-opt">任意</span></label>
+                    <input type="text" class="mf-input" id="mf-sns" placeholder="例：@grenadinesyrup_（X）／ https://〜">
                 </div>
                 <div class="mf-field">
                     <label class="mf-label">ご相談内容 <span class="mf-required">*</span></label>
                     <textarea class="mf-textarea" id="mf-message" rows="5" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。"></textarea>
                 </div>
+                <div class="mf-notice-box">
+                    <p class="mf-notice-heading">⚠ お支払い・キャンセルについて</p>
+                    <p class="mf-notice-main">お支払いタイミングは<strong>前払いかラフ完成後</strong>になります。</p>
+                    <p class="mf-notice-sub">キャンセル料金はラフ着手後から発生いたしますのでご注意ください。</p>
+                </div>
+                <label class="mf-agree">
+                    <input type="checkbox" class="mf-agree-cb" id="mf-agree">
+                    <span class="mf-agree-box"></span>
+                    <span class="mf-agree-text">上記を了承しました <span class="mf-required">*</span></span>
+                </label>
                 <div class="mf-actions">
                     <button class="mf-cancel" id="mf-cancel">キャンセル</button>
                     <button class="mf-submit" id="mf-submit">
@@ -674,7 +995,6 @@
                         <span id="mf-submit-label">送信する</span>
                     </button>
                 </div>
-                <p style="text-align:center;font-size:0.72rem;color:rgba(180,155,100,0.4);margin-top:12px;letter-spacing:1px;">送信先：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5d2c7d0dbd4d1dcdbd085c6ccc7c0c5f5d2d8d4dcd99bd6dad8">[email&#160;protected]</a></p>
             </div>
             <div class="mf-sent-view" id="mf-sent-view">
                 <div class="mf-sent-icon">𓂀</div>
@@ -909,9 +1229,11 @@
                 if (fBody) fBody.classList.remove('hidden');
                 if (sView) sView.classList.remove('active');
                 if (eView) eView.classList.remove('active');
-                ['mf-name','mf-email','mf-sns','mf-place','mf-message'].forEach(id => {
+                ['mf-name','mf-email','mf-sns','mf-message'].forEach(id => {
                     const el = document.getElementById(id); if (el) el.value = '';
                 });
+                const agreeCb = document.getElementById('mf-agree');
+                if (agreeCb) agreeCb.checked = false;
                 const lbl = document.getElementById('mf-submit-label');
                 if (lbl) lbl.textContent = '送信する';
                 if (mfSubmit) mfSubmit.disabled = false;
@@ -944,13 +1266,14 @@
                 const name    = (document.getElementById('mf-name')?.value    || '').trim();
                 const email   = (document.getElementById('mf-email')?.value   || '').trim();
                 const sns     = (document.getElementById('mf-sns')?.value     || '').trim();
-                const place   = (document.getElementById('mf-place')?.value   || '').trim();
                 const message = (document.getElementById('mf-message')?.value || '').trim();
+                const agreed  = !!document.getElementById('mf-agree')?.checked;
 
                 if (!name)  { alert('お名前をご入力ください。'); return; }
                 if (!email) { alert('返信希望メールアドレスをご入力ください。'); return; }
                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('メールアドレスの形式が正しくありません。'); return; }
                 if (!message) { alert('ご相談内容をご入力ください。'); return; }
+                if (!agreed)  { alert('お支払い・キャンセルについてご確認のうえ「了承しました」にチェックを入れてください。'); return; }
 
                 const lbl = document.getElementById('mf-submit-label');
                 if (lbl) lbl.textContent = '送信中…';
@@ -971,8 +1294,7 @@
                     message:
                         `▼ お名前\n${name}\n\n` +
                         `▼ 返信先メール\n${email}\n\n` +
-                        `▼ SNSアカウント\n${sns || 'なし'}\n\n` +
-                        `▼ 活動場所・所属\n${place || 'なし'}\n\n` +
+                        `▼ SNSアカウント / Webサイト\n${sns || 'なし'}\n\n` +
                         `▼ 選択項目\n${selectedText}\n\n` +
                         `▼ 予想合計\n${totalText}\n\n` +
                         `▼ ご相談内容\n${message}`,
@@ -999,7 +1321,7 @@
                     const errView = document.getElementById('mf-error-view');
                     const errMsg = document.getElementById('mf-error-msg');
                     if (fBody) fBody.classList.add('hidden');
-                    if (errMsg) errMsg.innerHTML = '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、<br>直接 grenadine0syrup@gmail.com へご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
+                    if (errMsg) errMsg.innerHTML = '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、XのDMよりご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
                     if (errView) errView.classList.add('active');
                 }
             });
