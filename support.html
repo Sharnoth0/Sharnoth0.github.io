@@ -83,33 +83,42 @@ body{font-family:var(--fb);color:var(--tx);background:var(--white);overflow-x:hi
 
 /* ===== PLAN CARD ===== */
 .plan-section{max-width:960px;margin:72px auto 0;padding:0 24px}
-.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.plan-card{position:relative;text-align:center;padding:32px 20px;border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.65),rgba(250,249,252,.5));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(209,179,195,.15);box-shadow:0 12px 48px rgba(137,194,212,.08),0 0 0 1px rgba(255,255,255,.3) inset;overflow:hidden;transition:box-shadow .4s,transform .4s}
+.plan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.plan-card{position:relative;display:flex;flex-direction:column;padding:36px 32px;border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.65),rgba(250,249,252,.5));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(209,179,195,.15);box-shadow:0 12px 48px rgba(137,194,212,.08),0 0 0 1px rgba(255,255,255,.3) inset;overflow:hidden;transition:box-shadow .4s,transform .4s}
 .plan-card:hover{box-shadow:0 16px 56px rgba(137,194,212,.12),0 0 0 1px rgba(255,255,255,.4) inset;transform:translateY(-3px)}
 .plan-card.featured{border-color:rgba(157,192,204,.3);box-shadow:0 12px 48px rgba(137,194,212,.12),0 0 0 1px rgba(157,192,204,.15) inset}
-.plan-card::before{content:'';position:absolute;top:-50%;right:-30%;width:200px;height:200px;border-radius:50%;background:radial-gradient(ellipse,rgba(240,198,217,.08),transparent 70%);pointer-events:none}
-.plan-badge{position:absolute;top:14px;right:14px;font-family:var(--fu);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ld));color:var(--white)}
-.plan-label{font-family:var(--fu);font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--wm);margin-bottom:6px;position:relative}
-.plan-name{font-family:var(--fd);font-size:1.15rem;font-weight:300;letter-spacing:.08em;color:var(--tx);margin-bottom:6px;position:relative}
-.plan-price{position:relative;margin-bottom:4px}
-.plan-price .amount{font-family:var(--fd);font-size:1.9rem;font-weight:300;color:var(--tx);letter-spacing:.02em}
-.plan-price .currency{font-family:var(--fu);font-size:.75rem;color:var(--tl);margin-right:3px}
-.plan-price .period{font-family:var(--fu);font-size:.68rem;color:var(--tl);letter-spacing:.05em}
-.plan-desc{font-family:var(--fu);font-size:.66rem;color:var(--tl);letter-spacing:.04em;margin-bottom:22px;position:relative;line-height:1.7;min-height:3.4em}
+.plan-card::before{content:'';position:absolute;top:-50%;right:-30%;width:240px;height:240px;border-radius:50%;background:radial-gradient(ellipse,rgba(240,198,217,.08),transparent 70%);pointer-events:none}
+.plan-badge{position:absolute;top:14px;right:14px;font-family:var(--fu);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ld));color:var(--white);z-index:2}
+.plan-header{text-align:center;position:relative;padding-bottom:22px;margin-bottom:22px;border-bottom:1px dashed rgba(209,179,195,.2)}
+.plan-label{font-family:var(--fu);font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--wm);margin-bottom:8px}
+.plan-name{font-family:var(--fd);font-size:1.5rem;font-weight:400;letter-spacing:.06em;color:var(--tx);margin-bottom:4px;white-space:nowrap}
+.plan-name-en{font-family:var(--fa);font-style:italic;font-size:.78rem;color:var(--tl);letter-spacing:.1em;margin-bottom:14px;font-weight:300}
+.plan-price{position:relative}
+.plan-price .amount{font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--tx);letter-spacing:.02em}
+.plan-price .currency{font-family:var(--fu);font-size:.8rem;color:var(--tl);margin-right:3px}
+.plan-price .period{font-family:var(--fu);font-size:.7rem;color:var(--tl);letter-spacing:.05em}
+.plan-feats{list-style:none;padding:0;margin:0 0 28px;flex-grow:1}
+.plan-feats li{position:relative;padding:4px 0 4px 18px;font-family:var(--fb);font-size:.84rem;color:var(--tm);font-weight:300;line-height:1.85;margin-bottom:6px}
+.plan-feats li::before{content:'';position:absolute;left:0;top:.95em;width:10px;height:1px;background:linear-gradient(90deg,var(--ac),var(--ld))}
+.plan-feats li:last-child{margin-bottom:0}
+.plan-feats .soon{display:inline-block;font-family:var(--fu);font-size:.62rem;letter-spacing:.08em;color:var(--wm);background:rgba(240,198,217,.15);padding:1px 8px;border-radius:8px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+.plan-feats .note{display:block;padding:6px 0 0 0;font-size:.72rem;color:var(--tl);line-height:1.7;font-weight:300}
 .plan-note{font-family:var(--fu);font-size:.68rem;color:var(--tl);letter-spacing:.06em;margin-bottom:32px;position:relative}
 
 /* ===== BOOST (one-time) ===== */
-.boost-section{max-width:480px;margin:28px auto 0;padding:0 24px}
-.boost-card{text-align:center;padding:32px 28px;border-radius:16px;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);border:1px dashed rgba(209,179,195,.25);transition:border-color .3s,box-shadow .3s}
-.boost-card:hover{border-color:rgba(209,179,195,.4);box-shadow:0 8px 28px rgba(137,194,212,.06)}
-.boost-title{font-family:var(--fd);font-size:1.1rem;font-weight:300;letter-spacing:.08em;color:var(--tx);margin-bottom:4px}
-.boost-sub{font-family:var(--fu);font-size:.62rem;color:var(--tl);letter-spacing:.1em;margin-bottom:18px}
-.boost-btn{display:inline-flex;align-items:center;gap:6px;padding:11px 32px;border:1px solid rgba(209,179,195,.3);border-radius:30px;background:transparent;font-family:var(--fu);font-size:.76rem;letter-spacing:.1em;color:var(--tm);cursor:pointer;transition:all .3s}
-.boost-btn:hover{background:rgba(240,198,217,.1);border-color:rgba(209,179,195,.5);color:var(--tx)}
-.boost-btn svg{width:14px;height:14px}
+.boost-section{max-width:620px;margin:40px auto 0;padding:0 24px}
+.boost-card{text-align:center;padding:48px 36px;border-radius:20px;background:rgba(255,255,255,.45);backdrop-filter:blur(12px);border:1px dashed rgba(209,179,195,.35);transition:border-color .3s,box-shadow .3s,transform .3s}
+.boost-card:hover{border-color:rgba(209,179,195,.55);box-shadow:0 12px 40px rgba(137,194,212,.1);transform:translateY(-2px)}
+.boost-title{font-family:var(--fd);font-size:1.6rem;font-weight:300;letter-spacing:.1em;color:var(--tx);margin-bottom:8px}
+.boost-sub{font-family:var(--fu);font-size:.72rem;color:var(--tl);letter-spacing:.1em;margin-bottom:28px;line-height:1.7}
+.boost-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 48px;border:none;border-radius:32px;background:linear-gradient(135deg,var(--wm),var(--ld));color:var(--white);font-family:var(--fu);font-size:.88rem;letter-spacing:.12em;font-weight:500;cursor:pointer;transition:all .4s cubic-bezier(.22,.61,.36,1);box-shadow:0 4px 20px rgba(209,179,195,.3)}
+.boost-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(209,179,195,.4)}
+.boost-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.boost-btn svg{width:18px;height:18px}
 
 /* ===== CHECKOUT BUTTON ===== */
-.checkout-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 24px;border:none;border-radius:40px;font-family:var(--fu);font-size:.74rem;letter-spacing:.1em;cursor:pointer;color:var(--white);background:linear-gradient(135deg,var(--ac),var(--ld));box-shadow:0 4px 18px rgba(157,192,204,.3);transition:all .4s cubic-bezier(.22,.61,.36,1);overflow:hidden}
+.checkout-btn{position:relative;display:inline-flex;align-self:center;align-items:center;justify-content:center;gap:6px;padding:14px 36px;border:none;border-radius:40px;font-family:var(--fu);font-size:.82rem;letter-spacing:.1em;cursor:pointer;color:var(--white);background:linear-gradient(135deg,var(--ac),var(--ld));box-shadow:0 4px 18px rgba(157,192,204,.3);transition:all .4s cubic-bezier(.22,.61,.36,1);overflow:hidden;margin-top:auto}
+.checkout-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .checkout-btn::before{content:'';position:absolute;inset:0;border-radius:40px;background:linear-gradient(135deg,var(--ld),var(--wm));opacity:0;transition:opacity .4s}
 .checkout-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(157,192,204,.35)}
 .checkout-btn:hover::before{opacity:1}
@@ -169,18 +178,33 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
 @keyframes ripO{0%{opacity:.25;transform:scale(0)}100%{opacity:0;transform:scale(3)}}
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .plan-grid{grid-template-columns:repeat(2,1fr);max-width:520px;margin:0 auto}
-}
 @media(max-width:640px){
   .top-bar{padding:16px 20px}
   .back-link{left:16px;top:16px}
   .support-hero{padding:130px 18px 60px}
   .message-card{padding:32px 26px}
-  .plan-grid{grid-template-columns:1fr;max-width:300px;margin:0 auto}
-  .plan-card{padding:32px 24px}
+  .plan-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+  .plan-card{padding:32px 26px}
   .benefit-item{padding:18px 20px}
   .faq-section{padding:0 18px 80px}
+}
+
+/* ── 日本語の改行を自然な位置で行う（モダンブラウザ） ── */
+.message-card p, .message-card .greeting, .benefit-text,
+.plan-feats li, .plan-feats .note,
+.boost-sub, .faq-q, .faq-a{
+  word-break:auto-phrase;
+  line-break:strict;
+  overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+/* auto-phrase 未対応ブラウザ用のフォールバック */
+@supports not (word-break: auto-phrase){
+  .message-card p, .message-card .greeting, .benefit-text,
+  .plan-feats li, .plan-feats .note,
+  .boost-sub, .faq-q, .faq-a{
+    word-break:keep-all;
+  }
 }
 </style>
 </head>
@@ -230,7 +254,7 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
   <div class="message-section reveal rd1">
     <div class="message-card">
       <p class="greeting">GrimLily の活動に興味を持ってくださり、ありがとうございます。</p>
-      <p>月額サポーターになっていただくと、制作の裏側が覗ける <strong>Discord サーバー</strong>にご招待します。活動日誌や進捗のあれこれを、いちばん近い場所でお届けします。</p>
+      <p>サポーターになっていただくと、制作の裏側が覗ける <strong>Discord サーバー</strong>にご招待します。活動日誌や進捗のあれこれを、いちばん近い場所でお届けします。</p>
       <p>今後はグッズ販売や限定コンテンツなど、サポーターの方に楽しんでいただける企画も増やしていく予定です。</p>
       <p>いただいたご支援は、サークルの制作環境や作品づくりに大切に使わせていただきます。どうぞよろしくお願いいたします。</p>
       <p class="sign">— GrimLily</p>
@@ -270,58 +294,90 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
   <div class="plan-grid">
     <!-- Plan 1 -->
     <div class="plan-card">
-      <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Quartz</h2>
-      <div class="plan-price">
-        <span class="currency">¥</span><span class="amount">500</span>
-        <span class="period">/ 月</span>
+      <div class="plan-header">
+        <p class="plan-label">Monthly</p>
+        <h2 class="plan-name">クォーツ</h2>
+        <p class="plan-name-en">Quartz</p>
+        <div class="plan-price">
+          <span class="currency">¥</span><span class="amount">500</span>
+          <span class="period">/ 月</span>
+        </div>
       </div>
-      <p class="plan-desc">Discord 参加権<br>活動日誌の閲覧</p>
+      <ul class="plan-feats">
+        <li>活動日誌の閲覧（Discord）、スタンプ、コメント</li>
+      </ul>
       <button class="checkout-btn" onclick="handleCheckout('quartz')">
         <span>クォーツになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
+
     <!-- Plan 2 -->
     <div class="plan-card featured">
       <div class="plan-badge">おすすめ</div>
-      <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Amethyst</h2>
-      <div class="plan-price">
-        <span class="currency">¥</span><span class="amount">3,000</span>
-        <span class="period">/ 月</span>
+      <div class="plan-header">
+        <p class="plan-label">Monthly</p>
+        <h2 class="plan-name">アメジスト</h2>
+        <p class="plan-name-en">Amethyst</p>
+        <div class="plan-price">
+          <span class="currency">¥</span><span class="amount">1,500</span>
+          <span class="period">/ 月</span>
+        </div>
       </div>
-      <p class="plan-desc">Quartz の特典に加え<br>特典内容をここに記載</p>
+      <ul class="plan-feats">
+        <li>活動日誌の閲覧（Discord）、スタンプ、コメント</li>
+        <li>作品のスタッフロールに支援者としてお名前の掲載</li>
+        <li>リリース前の体験版の先行プレイ権<span class="soon">準備中</span></li>
+      </ul>
       <button class="checkout-btn" onclick="handleCheckout('amethyst')">
         <span>アメジストになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
+
     <!-- Plan 3 -->
     <div class="plan-card">
-      <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Sapphire</h2>
-      <div class="plan-price">
-        <span class="currency">¥</span><span class="amount">5,000</span>
-        <span class="period">/ 月</span>
+      <div class="plan-header">
+        <p class="plan-label">Monthly</p>
+        <h2 class="plan-name">サファイア</h2>
+        <p class="plan-name-en">Sapphire</p>
+        <div class="plan-price">
+          <span class="currency">¥</span><span class="amount">5,000</span>
+          <span class="period">/ 月</span>
+        </div>
       </div>
-      <p class="plan-desc">Amethyst の特典に加え<br>特典内容をここに記載</p>
+      <ul class="plan-feats">
+        <li>活動日誌の閲覧（Discord）、スタンプ、コメント</li>
+        <li>作品のスタッフロールに支援者としてお名前の掲載</li>
+        <li>リリース前の体験版の先行プレイ権<span class="soon">準備中</span></li>
+        <li>ゲームにちなんだ限定グッズ購入権<span class="soon">準備中</span></li>
+      </ul>
       <button class="checkout-btn" onclick="handleCheckout('sapphire')">
         <span>サファイアになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
+
     <!-- Plan 4 -->
     <div class="plan-card">
-      <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Diamond Lily</h2>
-      <div class="plan-price">
-        <span class="currency">¥</span><span class="amount">10,000</span>
-        <span class="period">/ 月</span>
+      <div class="plan-header">
+        <p class="plan-label">Monthly</p>
+        <h2 class="plan-name">ダイヤモンド・リリィ</h2>
+        <p class="plan-name-en">Diamond Lily</p>
+        <div class="plan-price">
+          <span class="currency">¥</span><span class="amount">10,000</span>
+          <span class="period">/ 月</span>
+        </div>
       </div>
-      <p class="plan-desc">Sapphire の特典に加え<br>特典内容をここに記載</p>
+      <ul class="plan-feats">
+        <li>活動日誌の閲覧（Discord）、スタンプ、コメント</li>
+        <li>作品のスタッフロールに支援者としてお名前の掲載</li>
+        <li>ゲームにちなんだ限定グッズ購入権<span class="soon">準備中</span></li>
+        <li>リリース前の体験版の先行プレイ権<span class="soon">準備中</span></li>
+        <li>12ヶ月継続記念として、ゲーム内希望キャラクターのサイン入り色紙（シャルノスによる直筆）<span class="note">※ 欲しいサインのある関係者がいる場合は、その方にも書いてもらえるよう交渉いたします。</span></li>
+      </ul>
       <button class="checkout-btn" onclick="handleCheckout('diamond')">
-        <span>ダイヤリリーになる</span>
+        <span>ダイヤモンド・リリィになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
@@ -425,7 +481,7 @@ if(matchMedia('(pointer:fine)').matches){
    1. Stripe ダッシュボードで各プランの Product を作成
       ★ Product Name は下記と完全一致させる（大文字小文字も）
       - Quartz       ¥500/月 (recurring)
-      - Amethyst     ¥3,000/月 (recurring)
+      - Amethyst     ¥1,500/月 (recurring)
       - Sapphire     ¥5,000/月 (recurring)
       - Diamond Lily ¥10,000/月 (recurring)
       - Boost        自由金額 (one_time, customer_chooses_price)
@@ -436,18 +492,20 @@ if(matchMedia('(pointer:fine)').matches){
 const API_BASE = 'https://grimlily.grenadine0syrup.workers.dev';
 
 const priceMap = {
-  quartz:   'price_1TN7elGfyAVlSOBgDIRql45r',   // ¥500/月（元light）
-  amethyst: 'price_1TNCQDGfyAVlSOBgnCR7yaQ0',       // ¥3,000/月 ★Stripeで新規作成して差し替える
-  sapphire: 'price_1TNCQZGfyAVlSOBgRDpMez4K',       // ¥5,000/月 ★Stripeで新規作成して差し替える
-  diamond:  'price_1TNCQsGfyAVlSOBghjYUq45k',   // ¥10,000/月（元patron）
-  boost:    'price_1TNCTXGfyAVlSOBgEi6d9Dou',    // 任意の金額（都度）
+  quartz:   'price_1TNLksGfyAVlSOBgUiq2N7d8',   // ¥500/月（元light）
+  amethyst: 'price_AMETHYST_XXXXXXXXXXXX',       // ¥1,500/月 ★Stripeで新規作成して差し替える
+  sapphire: 'price_SAPPHIRE_XXXXXXXXXXXX',       // ¥5,000/月 ★Stripeで新規作成して差し替える
+  diamond:  'price_1TNM7dGfyAVlSOBg8AbgC8vT',   // ¥10,000/月（元patron）
+  boost:    'price_1TNLtrGfyAVlSOBgUjxgLN2h',    // 任意の金額（都度）
 };
 
 async function handleCheckout(plan) {
   const btn = event.currentTarget;
-  const originalText = btn.querySelector('span').textContent;
+  const span = btn.querySelector('span');
+  // ★ 元のボタン文言を保存しておく（戻ってきた時のリセット用）
+  if (!btn.dataset.originalText) btn.dataset.originalText = span.textContent;
   btn.disabled = true;
-  btn.querySelector('span').textContent = '処理中...';
+  span.textContent = '処理中...';
 
   try {
     const isBoost = plan === 'boost';
@@ -461,16 +519,26 @@ async function handleCheckout(plan) {
       }),
     });
 
-    const { url } = await res.json();
-    window.location.href = url;
+    const data = await res.json();
+    if (!data.url) throw new Error(data.error || '決済URLが取得できませんでした');
+    window.location.href = data.url;
 
   } catch (err) {
     console.error('Checkout error:', err);
     alert('決済ページの読み込みに失敗しました。もう一度お試しください。');
     btn.disabled = false;
-    btn.querySelector('span').textContent = originalText;
+    span.textContent = btn.dataset.originalText;
   }
 }
+
+// ★ Stripeから戻ってきた時にボタンを元に戻す（bfcache対策も兼ねる）
+window.addEventListener('pageshow', () => {
+  document.querySelectorAll('.checkout-btn, .boost-btn').forEach(btn => {
+    const span = btn.querySelector('span');
+    btn.disabled = false;
+    if (btn.dataset.originalText && span) span.textContent = btn.dataset.originalText;
+  });
+});
 
 /* ── 決済結果の表示 ── */
 (function(){
@@ -490,18 +558,6 @@ async function handleCheckout(plan) {
         </div>
         <h2 class="result-title">ありがとうございます！</h2>
         <p class="result-desc">サポーター登録が完了しました。<br>ご登録のメールアドレスに限定ページへのリンクをお送りしましたので、ご確認ください。</p>
-        <button class="result-btn" onclick="this.closest('.result-overlay').remove();history.replaceState(null,'','/support.html')">閉じる</button>
-      </div>
-    `;
-  } else if (result === 'boost_success') {
-    // 追加：Boost用の支援完了
-    overlay.innerHTML = `
-      <div class="result-box">
-        <div class="result-icon success">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-        </div>
-        <h2 class="result-title">ご支援ありがとうございます！</h2>
-        <p class="result-desc">Boostでの温かいご支援、心より感謝申し上げます。<br>いただいたご支援は、サークルの活動や作品づくりに大切に活用させていただきます。<br>ご登録のメールアドレスにお礼のメッセージをお送りいたしました。</p>
         <button class="result-btn" onclick="this.closest('.result-overlay').remove();history.replaceState(null,'','/support.html')">閉じる</button>
       </div>
     `;
