@@ -152,6 +152,18 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
+/* ===== RESULT OVERLAY ===== */
+.result-overlay{position:fixed;inset:0;z-index:9999;background:rgba(44,54,64,.15);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;animation:fadeIn .5s forwards}
+.result-box{text-align:center;max-width:400px;padding:48px 40px;background:rgba(255,255,255,.75);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.5);border-radius:20px;box-shadow:0 20px 60px rgba(137,194,212,.1);transform:translateY(20px);animation:fadeUp .6s .1s forwards;opacity:0}
+.result-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.result-icon.success{background:linear-gradient(135deg,var(--ac),var(--ld))}
+.result-icon.cancel{background:linear-gradient(135deg,var(--rs),var(--wm))}
+.result-icon svg{width:28px;height:28px;color:var(--white)}
+.result-title{font-family:var(--fd);font-size:1.3rem;font-weight:300;letter-spacing:.08em;margin-bottom:12px}
+.result-desc{font-size:.86rem;color:var(--tm);font-weight:300;line-height:1.9;margin-bottom:28px}
+.result-btn{display:inline-block;padding:12px 36px;border:none;border-radius:28px;font-family:var(--fu);font-size:.76rem;letter-spacing:.1em;cursor:pointer;color:var(--white);background:linear-gradient(135deg,var(--ac),var(--ld));box-shadow:0 4px 16px rgba(157,192,204,.25);transition:all .3s;text-decoration:none}
+.result-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(157,192,204,.3)}
+
 /* ===== RIPPLE ===== */
 .ripple{position:fixed;pointer-events:none;width:8px;height:8px;border-radius:50%;border:1px solid rgba(137,194,212,.35);z-index:9998;opacity:0;animation:ripO .8s forwards}
 @keyframes ripO{0%{opacity:.25;transform:scale(0)}100%{opacity:0;transform:scale(3)}}
@@ -259,14 +271,14 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
     <!-- Plan 1 -->
     <div class="plan-card">
       <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Light</h2>
+      <h2 class="plan-name">Quartz</h2>
       <div class="plan-price">
         <span class="currency">¥</span><span class="amount">500</span>
         <span class="period">/ 月</span>
       </div>
       <p class="plan-desc">Discord 参加権<br>活動日誌の閲覧</p>
-      <button class="checkout-btn" onclick="handleCheckout('light')">
-        <span>はじめる</span>
+      <button class="checkout-btn" onclick="handleCheckout('quartz')">
+        <span>クォーツになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
@@ -274,42 +286,42 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
     <div class="plan-card featured">
       <div class="plan-badge">おすすめ</div>
       <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Supporter</h2>
+      <h2 class="plan-name">Amethyst</h2>
       <div class="plan-price">
         <span class="currency">¥</span><span class="amount">3,000</span>
         <span class="period">/ 月</span>
       </div>
-      <p class="plan-desc">Light の特典に加え<br>特典内容をここに記載</p>
-      <button class="checkout-btn" onclick="handleCheckout('supporter')">
-        <span>サポーターになる</span>
+      <p class="plan-desc">Quartz の特典に加え<br>特典内容をここに記載</p>
+      <button class="checkout-btn" onclick="handleCheckout('amethyst')">
+        <span>アメジストになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
     <!-- Plan 3 -->
     <div class="plan-card">
       <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Backer</h2>
+      <h2 class="plan-name">Sapphire</h2>
       <div class="plan-price">
         <span class="currency">¥</span><span class="amount">5,000</span>
         <span class="period">/ 月</span>
       </div>
-      <p class="plan-desc">Supporter の特典に加え<br>特典内容をここに記載</p>
-      <button class="checkout-btn" onclick="handleCheckout('backer')">
-        <span>バッカーになる</span>
+      <p class="plan-desc">Amethyst の特典に加え<br>特典内容をここに記載</p>
+      <button class="checkout-btn" onclick="handleCheckout('sapphire')">
+        <span>サファイアになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
     <!-- Plan 4 -->
     <div class="plan-card">
       <p class="plan-label">Monthly</p>
-      <h2 class="plan-name">Patron</h2>
+      <h2 class="plan-name">Diamond Lily</h2>
       <div class="plan-price">
         <span class="currency">¥</span><span class="amount">10,000</span>
         <span class="period">/ 月</span>
       </div>
-      <p class="plan-desc">Backer の特典に加え<br>特典内容をここに記載</p>
-      <button class="checkout-btn" onclick="handleCheckout('patron')">
-        <span>パトロンになる</span>
+      <p class="plan-desc">Sapphire の特典に加え<br>特典内容をここに記載</p>
+      <button class="checkout-btn" onclick="handleCheckout('diamond')">
+        <span>ダイヤリリーになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
     </div>
@@ -410,26 +422,25 @@ if(matchMedia('(pointer:fine)').matches){
    ══════════════════════════════════════
 
    【セットアップ手順】
-   1. Stripe ダッシュボードで各プランの Price を作成
-      - Light:     ¥500/月 (recurring)   → price_LIGHT_XXXX
-      - Supporter: ¥3,000/月 (recurring) → price_SUPPORTER_XXXX
-      - Backer:    ¥5,000/月 (recurring) → price_BACKER_XXXX
-      - Patron:    ¥10,000/月 (recurring) → price_PATRON_XXXX
-      - Boost:     自由金額 (one_time, customer_chooses_price) → price_BOOST_XXXX
-   2. 下の API_BASE を Netlify のドメインに差し替え
-   3. 下記の priceMap を実際の Price ID に差し替え
+   1. Stripe ダッシュボードで各プランの Product を作成
+      ★ Product Name は下記と完全一致させる（大文字小文字も）
+      - Quartz       ¥500/月 (recurring)
+      - Amethyst     ¥3,000/月 (recurring)
+      - Sapphire     ¥5,000/月 (recurring)
+      - Diamond Lily ¥10,000/月 (recurring)
+      - Boost        自由金額 (one_time, customer_chooses_price)
+   2. 下の priceMap を実際の Price ID に差し替え
 */
 
-// ★ デプロイ後に表示される Workers の URL に差し替える
-// 例: https://grimlily.あんたのサブドメイン.workers.dev
+// ★ 自分の Workers の URL
 const API_BASE = 'https://grimlily.grenadine0syrup.workers.dev';
 
 const priceMap = {
-  light:     'price_1TN7elGfyAVlSOBgDIRql45r',      // ¥500/月
-  supporter: 'price_SUPPORTER_XXXXXXXXXXXX',   // ¥3,000/月
-  backer:    'price_BACKER_XXXXXXXXXXXX',      // ¥5,000/月
-  patron:    'price_PATRON_XXXXXXXXXXXX',      // ¥10,000/月
-  boost:     'price_1TNCTXGfyAVlSOBgEi6d9Dou',       // 任意の金額（都度）
+  quartz:   'price_1TNLksGfyAVlSOBgUiq2N7d8',   // ¥500/月（元light）
+  amethyst: 'price_1TNLy9GfyAVlSOBghwzLe0iO',       // ¥3,000/月 ★Stripeで新規作成して差し替える
+  sapphire: 'price_1TNM66GfyAVlSOBg1Ly8dRt5',       // ¥5,000/月 ★Stripeで新規作成して差し替える
+  diamond:  'price_1TNM7dGfyAVlSOBg8AbgC8vT',   // ¥10,000/月（元patron）
+  boost:    'price_1TNLtrGfyAVlSOBgUjxgLN2h',    // 任意の金額（都度）
 };
 
 async function handleCheckout(plan) {
@@ -460,6 +471,56 @@ async function handleCheckout(plan) {
     btn.querySelector('span').textContent = originalText;
   }
 }
+
+/* ── 決済結果の表示 ── */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const result = params.get('result');
+  if (!result) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'result-overlay';
+
+  if (result === 'success') {
+    // 既存：通常のサポーター登録完了
+    overlay.innerHTML = `
+      <div class="result-box">
+        <div class="result-icon success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2 class="result-title">ありがとうございます！</h2>
+        <p class="result-desc">サポーター登録が完了しました。<br>ご登録のメールアドレスに限定ページへのリンクをお送りしましたので、ご確認ください。</p>
+        <button class="result-btn" onclick="this.closest('.result-overlay').remove();history.replaceState(null,'','/support.html')">閉じる</button>
+      </div>
+    `;
+  } else if (result === 'boost_success') {
+    // 追加：Boost用の支援完了
+    overlay.innerHTML = `
+      <div class="result-box">
+        <div class="result-icon success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2 class="result-title">ご支援ありがとうございます！</h2>
+        <p class="result-desc">Boostでの温かいご支援、心より感謝申し上げます。<br>いただいたご支援は、サークルの活動や作品づくりに大切に活用させていただきます。<br>ご登録のメールアドレスにお礼のメッセージをお送りいたしました。</p>
+        <button class="result-btn" onclick="this.closest('.result-overlay').remove();history.replaceState(null,'','/support.html')">閉じる</button>
+      </div>
+    `;
+  } else if (result === 'cancel') {
+    // 既存：キャンセル
+    overlay.innerHTML = `
+      <div class="result-box">
+        <div class="result-icon cancel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </div>
+        <h2 class="result-title">決済がキャンセルされました</h2>
+        <p class="result-desc">お支払いは完了していません。<br>もう一度お試しいただくか、別のプランをご検討ください。</p>
+        <button class="result-btn" onclick="this.closest('.result-overlay').remove();history.replaceState(null,'','/support.html')">閉じる</button>
+      </div>
+    `;
+  }
+
+  document.body.appendChild(overlay);
+})();
 </script>
 </body>
 </html>
