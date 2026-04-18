@@ -74,10 +74,20 @@ body{font-family:var(--fb);color:var(--tx);background:var(--white);overflow-x:hi
 .message-card p:last-child{margin-bottom:0}
 .message-card .greeting{font-family:var(--fd);font-size:1.12rem;color:var(--tx);letter-spacing:.05em;margin-bottom:22px;font-weight:400}
 .message-card .sign{text-align:right;font-family:var(--fd);font-size:.92rem;color:var(--ac);letter-spacing:.08em;margin-top:32px}
+/* 「ビジター」を本文になじませる水彩ハイライト（ヒーローのmarkerと同系統） */
+.visitor-term{
+  font-family:inherit;
+  font-weight:500;
+  color:var(--tx);
+  padding:0 5px;
+  background:linear-gradient(transparent 58%,rgba(240,198,217,.38) 58%,rgba(196,176,216,.28) 100%);
+  border-radius:2px;
+}
 
 /* ===== BENEFITS ===== */
 .benefits{max-width:680px;margin:60px auto 0;padding:0 24px}
-.benefits-title{font-family:var(--fu);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);text-align:center;margin-bottom:28px}
+.benefits-title{font-family:var(--fd);font-size:1.15rem;font-weight:400;letter-spacing:.14em;color:var(--tx);text-align:center;margin-bottom:28px}
+.benefits-title-en{display:block;font-family:var(--fa);font-style:italic;font-size:.68rem;color:var(--wm);letter-spacing:.12em;font-weight:300;margin-top:6px;text-transform:none}
 .benefit-list{display:grid;gap:14px}
 .benefit-item{display:flex;align-items:flex-start;gap:16px;padding:22px 26px;border-radius:12px;background:rgba(255,255,255,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.45);transition:transform .3s,box-shadow .3s}
 .benefit-item:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(137,194,212,.08)}
@@ -134,11 +144,19 @@ body{font-family:var(--fb);color:var(--tx);background:var(--white);overflow-x:hi
 .checkout-btn:active{transform:translateY(0)}
 
 /* ===== PAYMENT METHODS ===== */
-.payment-methods{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:22px;position:relative}
-.payment-methods span{font-family:var(--fu);font-size:.58rem;letter-spacing:.1em;color:var(--tl)}
-.pay-icons{display:flex;gap:6px}
-.pay-icon{width:34px;height:22px;border-radius:4px;background:rgba(137,194,212,.06);border:1px solid rgba(137,194,212,.1);display:flex;align-items:center;justify-content:center}
-.pay-icon svg{width:18px;height:12px;opacity:.4}
+.payment-info{max-width:640px;margin:28px auto 0;padding:24px 28px;border-radius:16px;background:rgba(255,255,255,.4);backdrop-filter:blur(10px);border:1px solid rgba(209,179,195,.18);text-align:center}
+.payment-label{font-family:var(--fu);font-size:.7rem;letter-spacing:.18em;color:var(--tm);margin-bottom:14px;text-transform:uppercase;font-weight:500}
+.pay-methods{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:14px}
+.pay-chip{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:32px;padding:0 10px;border-radius:6px;background:var(--white);border:1px solid rgba(137,194,212,.18);box-shadow:0 1px 3px rgba(137,194,212,.05);font-family:var(--fu);font-size:.66rem;font-weight:600;letter-spacing:.06em;color:var(--tm);transition:all .25s}
+.pay-chip:hover{border-color:rgba(157,192,204,.35);box-shadow:0 2px 8px rgba(137,194,212,.12)}
+.pay-chip span{display:inline-block}
+.pay-chip .jcb{background:linear-gradient(90deg,#0b3087 0%,#0b3087 33%,#b12028 33%,#b12028 66%,#009246 66%,#009246 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+.pay-chip .gpay{display:inline-flex;align-items:center;gap:3px;color:#5f6368;font-weight:500}
+.pay-chip .gpay .g{font-weight:700;background:linear-gradient(90deg,#4285f4,#34a853 50%,#fbbc04 75%,#ea4335);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pay-chip .link-pay{color:#00d66f;font-weight:700;letter-spacing:.02em}
+.pay-chip svg{display:block}
+.payment-note{font-family:var(--fu);font-size:.68rem;color:var(--tl);letter-spacing:.05em;line-height:1.8;margin-top:6px}
+.payment-note strong{color:var(--tm);font-weight:600}
 
 /* ===== FAQ ===== */
 .faq-section{max-width:680px;margin:80px auto 0;padding:0 24px 120px}
@@ -272,12 +290,11 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
       </div>
       <p class="letter-head">— GrimLily の庭より —</p>
 
-      <p class="greeting">この庭の扉を見つけてくださって、ありがとうございます。</p>
-      <p>GrimLily の小さな庭には、人目に触れない制作の裏側や、まだ形になる前の想いが、ひっそりと息づいています。</p>
-      <p>ビジターになっていただくと、<strong>Discord</strong> という小径を抜けて、活動日誌や進捗のささやかな物語を、いちばん近い場所でお届けします。</p>
-      <p>今後は、庭の片隅で咲く限定グッズや、ビジターの方だけにお楽しみいただける小さな秘密も、少しずつ育てていく予定です。</p>
-      <p>いただいたお気持ちは、この庭の土や水として、新しい花を咲かせるために大切に使わせていただきます。</p>
-      <p>どうぞ、ゆっくりとお過ごしくださいね。</p>
+      <p class="greeting">扉を見つけてくださって、ありがとうございます。</p>
+      <p>この先には、人目に触れない制作の裏側や、まだ形になる前の想いが、ひっそりと息づいています。</p>
+      <p><span class="visitor-term">ビジター</span>になっていただくと、<strong>限定の Discord サーバー</strong>にて、活動日誌や進捗のささやかな物語を、いちばん近い場所でお届けします。</p>
+      <p>いただいたお気持ちは、サークルの発展のために大切に使わせていただきます。</p>
+      <p>どうぞ、ごゆっくりとお過ごしくださいませ。</p>
 
       <p class="sign">— GrimLily</p>
     </div>
@@ -286,25 +303,25 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
 
 <!-- BENEFITS -->
 <div class="benefits reveal rd2">
-  <p class="benefits-title">In the Garden</p>
+  <p class="benefits-title">ビジター特典 <span class="benefits-title-en">— Visitor Benefits —</span></p>
   <div class="benefit-list">
     <div class="benefit-item">
       <div class="benefit-icon discord">
         <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
       </div>
-      <div class="benefit-text"><strong>Discord という小径</strong><br>庭の奥で、活動日誌や制作の裏話をそっとお届けします</div>
+      <div class="benefit-text"><strong>Discord コミュニティへ招待</strong><br>ビジター専用のDiscordサーバーで、活動日誌や制作の裏話、進捗情報をリアルタイムで共有します。</div>
     </div>
     <div class="benefit-item">
       <div class="benefit-icon goods">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-2-4H5L3 8m18 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0H3m9 4v4m-2-4h4"/></svg>
       </div>
-      <div class="benefit-text"><strong>庭で咲く限定グッズ・コンテンツ</strong><span style="display:inline-block;font-family:var(--fu);font-size:.58rem;letter-spacing:.08em;color:var(--wm);background:rgba(240,198,217,.15);padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle">準備中</span><br>ビジター限定のグッズや、ささやかな秘密を少しずつ育てていきます</div>
+      <div class="benefit-text"><strong>限定グッズ・コンテンツ</strong><span style="display:inline-block;font-family:var(--fu);font-size:.58rem;letter-spacing:.08em;color:var(--wm);background:rgba(240,198,217,.15);padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle">準備中</span><br>ビジター限定のグッズ販売や特典コンテンツを、これから順次追加していく予定です。</div>
     </div>
     <div class="benefit-item">
       <div class="benefit-icon content">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
       </div>
-      <div class="benefit-text"><strong>この庭を育てる土と水に</strong><br>いただいたお気持ちは、制作環境と新しい作品のために使わせていただきます</div>
+      <div class="benefit-text"><strong>サークルの制作活動を支援</strong><br>いただいたお気持ちは、制作環境の整備や新しい作品づくりに大切に使わせていただきます。</div>
     </div>
   </div>
 </div>
@@ -404,14 +421,23 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
       </button>
     </div>
   </div>
-  <p style="text-align:center;font-family:var(--fu);font-size:.6rem;color:var(--tl);letter-spacing:.08em;margin-top:16px">クレジットカード・銀行振込に対応</p>
-  <div class="payment-methods" style="margin-top:10px">
-    <span>対応決済</span>
-    <div class="pay-icons">
-      <div class="pay-icon" title="Visa"><svg viewBox="0 0 24 16"><text x="12" y="11" text-anchor="middle" font-size="7" font-weight="bold" fill="var(--tm)" font-family="var(--fu)">VISA</text></svg></div>
-      <div class="pay-icon" title="Mastercard"><svg viewBox="0 0 24 16"><circle cx="9" cy="8" r="5" fill="rgba(219,100,77,.2)"/><circle cx="15" cy="8" r="5" fill="rgba(209,173,63,.2)"/></svg></div>
-      <div class="pay-icon" title="銀行振込"><svg viewBox="0 0 24 16" fill="none" stroke="var(--tm)" stroke-width="1"><path d="M4 6l8-3 8 3M5 6v6M19 6v6M4 12h16M3 14h18" opacity=".4"/></svg></div>
+  <!-- 対応決済 -->
+  <div class="payment-info">
+    <p class="payment-label">月額プラン 対応決済</p>
+    <div class="pay-methods">
+      <div class="pay-chip" title="Visa"><span>VISA</span></div>
+      <div class="pay-chip" title="Mastercard">
+        <svg viewBox="0 0 40 24" width="34" height="20"><circle cx="16" cy="12" r="7" fill="rgba(219,100,77,.45)"/><circle cx="24" cy="12" r="7" fill="rgba(209,173,63,.5)"/></svg>
+      </div>
+      <div class="pay-chip" title="JCB"><span class="jcb">JCB</span></div>
+      <div class="pay-chip" title="American Express"><span>AMEX</span></div>
+      <div class="pay-chip" title="Apple Pay">
+        <svg viewBox="0 0 40 24" width="34" height="20" fill="currentColor"><path d="M11.8 8.5c.4-.5.7-1.2.6-1.9-.6 0-1.3.4-1.7.9-.4.4-.7 1.1-.6 1.8.7 0 1.3-.3 1.7-.8zm.6.9c-1 0-1.8.6-2.3.6-.5 0-1.2-.5-2-.5-1 0-2 .6-2.5 1.5-1.1 1.9-.3 4.7.8 6.3.5.7 1.1 1.6 1.9 1.6.8 0 1-.5 2-.5s1.2.5 2 .5 1.3-.8 1.8-1.6c.6-.8.8-1.7.8-1.7s-1.6-.6-1.6-2.4c0-1.5 1.3-2.3 1.3-2.3s-.7-1.1-2.2-1.5zM21 7.5v10h1.5v-3.4h2.1c2 0 3.3-1.3 3.3-3.3s-1.3-3.3-3.2-3.3H21zm1.5 1.3h1.7c1.3 0 2 .7 2 2s-.7 2-2 2h-1.7v-4zm7.8 8.8c1 0 1.9-.5 2.3-1.3v1.2h1.4V12c0-1.4-1.1-2.3-2.9-2.3-1.6 0-2.8.9-2.9 2.2h1.4c.1-.6.7-1 1.5-1 1 0 1.5.5 1.5 1.2v.6l-2 .1c-1.8.1-2.8.9-2.8 2.2 0 1.3 1 2.2 2.5 2.2zm.4-1.2c-.8 0-1.4-.4-1.4-1.1 0-.7.5-1.1 1.5-1.2l1.8-.1v.6c0 1.1-.9 1.8-1.9 1.8zM37 20c1.6 0 2.3-.6 3-2.3l2.8-7.8h-1.6l-1.9 6.1h0l-1.9-6.1h-1.6l2.7 7.5-.1.5c-.2.8-.6 1-1.3 1-.1 0-.4 0-.5 0v1.2c.1 0 .5 0 .5 0z"/></svg>
+      </div>
+      <div class="pay-chip" title="Google Pay"><span class="gpay"><span class="g">G</span> Pay</span></div>
+      <div class="pay-chip" title="Link"><span class="link-pay">Link</span></div>
     </div>
+    <p class="payment-note">※ Boost では上記に加えて<strong>銀行振込</strong>もご利用いただけます</p>
   </div>
 </div>
 
