@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ブラウザキャッシュ対策：更新時に古いHTMLが残らないように -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Support | GrimLily</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500&family=Quicksand:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -353,7 +357,7 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
       <ul class="plan-feats">
         <li>活動日誌の閲覧（Discord）、スタンプ、コメント</li>
       </ul>
-      <button class="checkout-btn" onclick="handleCheckout('quartz')">
+      <button class="checkout-btn" onclick="handleCheckout('Quartz')">
         <span>クォーツになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
@@ -376,7 +380,7 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
         <li>作品のスタッフロールに支援者としてお名前の掲載</li>
         <li>リリース前の体験版の先行プレイ権<span class="soon">準備中</span></li>
       </ul>
-      <button class="checkout-btn" onclick="handleCheckout('amethyst')">
+      <button class="checkout-btn" onclick="handleCheckout('Amethyst')">
         <span>アメジストになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
@@ -399,7 +403,7 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
         <li>リリース前の体験版の先行プレイ権<span class="soon">準備中</span></li>
         <li>ゲームにちなんだ限定グッズ購入権<span class="soon">準備中</span></li>
       </ul>
-      <button class="checkout-btn" onclick="handleCheckout('sapphire')">
+      <button class="checkout-btn" onclick="handleCheckout('Sapphire')">
         <span>サファイアになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
@@ -423,7 +427,7 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
         <li>リリース前の体験版の先行プレイ権<span class="soon">準備中</span></li>
         <li>12ヶ月継続記念として、ゲーム内希望キャラクターのサイン入り色紙（シャルノスによる直筆）<span class="note">※ 欲しいサインのある関係者がいる場合は、その方にも書いてもらえるよう交渉いたします。</span></li>
       </ul>
-      <button class="checkout-btn" onclick="handleCheckout('diamond')">
+      <button class="checkout-btn" onclick="handleCheckout('Diamond')">
         <span>ダイヤモンド・リリィになる</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
@@ -454,7 +458,7 @@ footer p{font-family:var(--fu);font-size:.88rem;letter-spacing:.16em;color:var(-
   <div class="boost-card">
     <p class="boost-title">Boost</p>
     <p class="boost-sub">お好きな金額で、お好きなタイミングで ─ 何度でも応援できます</p>
-    <button class="boost-btn" onclick="handleCheckout('boost')">
+    <button class="boost-btn" onclick="handleCheckout('Boost')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
       <span>金額を選んで応援する</span>
     </button>
@@ -552,11 +556,11 @@ if(matchMedia('(pointer:fine)').matches){
 const API_BASE = 'https://grimlily.grenadine0syrup.workers.dev';
 
 const priceMap = {
-  quartz:   'price_1TN7elGfyAVlSOBgDIRql45r',   // ¥500/月（元light）
-  amethyst: 'price_1TNCQDGfyAVlSOBgnCR7yaQ0',       // ¥1,500/月 ★Stripeで新規作成して差し替える
-  sapphire: 'price_1TNCQZGfyAVlSOBgRDpMez4K',       // ¥5,000/月 ★Stripeで新規作成して差し替える
-  diamond:  'price_1TNCQsGfyAVlSOBghjYUq45k',   // ¥10,000/月（元patron）
-  boost:    'price_1TNCTXGfyAVlSOBgEi6d9Dou',    // 任意の金額（都度）
+  Quartz:   'price_1TNLksGfyAVlSOBgUiq2N7d8',   // ¥500/月（元light）
+  Amethyst: 'price_AMETHYST_XXXXXXXXXXXX',       // ¥1,500/月 ★Stripeで新規作成して差し替える
+  Sapphire: 'price_SAPPHIRE_XXXXXXXXXXXX',       // ¥5,000/月 ★Stripeで新規作成して差し替える
+  Diamond:  'price_1TNM7dGfyAVlSOBg8AbgC8vT',   // ¥10,000/月（元patron）
+  Boost:    'price_1TNLtrGfyAVlSOBgUjxgLN2h',    // 任意の金額（都度）
 };
 
 async function handleCheckout(plan) {
@@ -568,7 +572,7 @@ async function handleCheckout(plan) {
   span.textContent = '処理中...';
 
   try {
-    const isBoost = plan === 'boost';
+    const isBoost = plan === 'Boost';
 
     const res = await fetch(`${API_BASE}/create-checkout-session`, {
       method: 'POST',
