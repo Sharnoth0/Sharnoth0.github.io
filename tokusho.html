@@ -138,8 +138,23 @@ footer p{font-family:var(--fu);font-size:.7rem;letter-spacing:.14em;color:var(--
 .chk.agr span{flex:1}
 
 .submit-btn{width:100%;padding:17px 24px;background:linear-gradient(135deg,rgba(157,192,204,.92),rgba(196,176,216,.92));color:#fff;border:none;border-radius:13px;font-family:var(--fu);font-size:.82rem;font-weight:500;letter-spacing:.18em;cursor:pointer;transition:all .35s;margin-top:14px;box-shadow:0 8px 24px rgba(157,192,204,.25);text-transform:uppercase}
-.submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(157,192,204,.35)}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 30px rgba(157,192,204,.35)}
 .submit-btn:active{transform:translateY(0)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;background:linear-gradient(135deg,rgba(157,192,204,.6),rgba(196,176,216,.6))}
+
+/* ═══ Thank-you modal ═══ */
+.thank-overlay{z-index:110;background:rgba(44,54,64,.35)}
+.thank-modal{max-width:440px;text-align:center;padding:56px 44px 44px}
+.thank-icon{width:68px;height:68px;margin:0 auto 22px;position:relative;display:flex;align-items:center;justify-content:center}
+.thank-icon svg{width:100%;height:100%}
+.thank-icon .thank-icon-bg{fill:rgba(157,192,204,.12);stroke:rgba(157,192,204,.4);stroke-width:1.5}
+.thank-icon .thank-icon-check{fill:none;stroke:var(--ac);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .6s ease .2s}
+.thank-overlay.active .thank-icon .thank-icon-check{stroke-dashoffset:0}
+.thank-title{font-family:var(--fd);font-size:1.45rem;font-weight:400;letter-spacing:.08em;color:var(--tx);margin-bottom:10px}
+.thank-sub{font-family:var(--fa);font-style:italic;font-size:.8rem;color:var(--wm);letter-spacing:.04em;margin-bottom:22px}
+.thank-msg{font-size:.85rem;color:var(--tm);line-height:1.95;margin-bottom:32px;font-weight:300}
+.thank-btn{padding:13px 56px;background:linear-gradient(135deg,rgba(157,192,204,.92),rgba(196,176,216,.92));color:#fff;border:none;border-radius:30px;font-family:var(--fu);font-size:.76rem;font-weight:500;letter-spacing:.18em;cursor:pointer;transition:all .35s;box-shadow:0 6px 18px rgba(157,192,204,.25);text-transform:uppercase}
+.thank-btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(157,192,204,.35)}
 
 body.modal-open{overflow:hidden}
 
@@ -307,16 +322,13 @@ body.modal-open{overflow:hidden}
     <form class="modal-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" accept-charset="UTF-8">
 
       <!-- ↓↓↓ web3forms のアクセスキーを貼り付け ↓↓↓ -->
-      <input type="hidden" name="access_key" value="024186dc-30db-47bf-ace4-12bde7a53c6f">
+      <input type="hidden" name="access_key" value="edcda91d-2e91-4f11-986c-9fd41bcb8a5a">
 
       <!-- 管理者宛てメールの件名（JSで動的に更新されます）-->
       <input type="hidden" name="subject" id="ct_subject" value="【GrimLily】お問い合わせ">
 
       <!-- 管理者宛てメールの差出人名 -->
       <input type="hidden" name="from_name" value="GrimLily お問い合わせフォーム">
-
-      <!-- 送信完了後のリダイレクト先（任意）-->
-      <input type="hidden" name="redirect" value="https://grimlily.com/thanks.html">
 
       <!-- ハニーポット（スパム対策：人間には不可視）-->
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
@@ -429,6 +441,27 @@ body.modal-open{overflow:hidden}
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════ -->
+<!-- 送信完了モーダル                        -->
+<!-- ═══════════════════════════════════════ -->
+<div class="modal-overlay thank-overlay" id="thankyouModal" onclick="handleThankOverlayClick(event)" role="alertdialog" aria-modal="true" aria-labelledby="thanks_title">
+  <div class="modal thank-modal" role="document">
+
+    <div class="thank-icon" aria-hidden="true">
+      <svg viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg">
+        <circle class="thank-icon-bg" cx="34" cy="34" r="30"/>
+        <path class="thank-icon-check" d="M21 35 L30 44 L47 25"/>
+      </svg>
+    </div>
+
+    <h3 id="thanks_title" class="thank-title">Thank you</h3>
+    <p class="thank-sub" id="thanks_sub">Your message has been received</p>
+    <p class="thank-msg" id="thanks_msg">お問い合わせ内容を受け付けました。<br>数日以内にご返信いたします。<br>今しばらくお待ちくださいませ。</p>
+
+    <button type="button" class="thank-btn" onclick="closeThankYou()">OK</button>
+  </div>
+</div>
+
 <footer>
   <div class="f-line"></div>
   <div style="margin-bottom:12px"><a href="/privacy.html" style="font-family:'Quicksand',sans-serif;font-size:.72rem;letter-spacing:.1em;color:var(--tl);text-decoration:none;border-bottom:1px solid rgba(209,179,195,.3);padding-bottom:2px;transition:color .3s,border-color .3s">プライバシーポリシー →</a></div>
@@ -457,18 +490,30 @@ body.modal-open{overflow:hidden}
     const el = document.getElementById(id);
     if(!el) return;
     el.classList.remove('active');
-    document.body.classList.remove('modal-open');
+    // 他にアクティブなモーダルが無ければ body のスクロール解除
+    if(!document.querySelector('.modal-overlay.active')){
+      document.body.classList.remove('modal-open');
+    }
   }
   function handleOverlayClick(e){
     if(e.target.classList.contains('modal-overlay')){
       closeModal(e.target.id);
     }
   }
+  // サンクスモーダルの背景クリック → 両モーダルを閉じる
+  function handleThankOverlayClick(e){
+    if(e.target.id === 'thankyouModal') closeThankYou();
+  }
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape'){
-      document.querySelectorAll('.modal-overlay.active').forEach(function(m){
-        closeModal(m.id);
-      });
+      // サンクスモーダルが開いていれば、そちらを優先して閉じる（両方閉じる）
+      if(document.getElementById('thankyouModal').classList.contains('active')){
+        closeThankYou();
+      } else {
+        document.querySelectorAll('.modal-overlay.active').forEach(function(m){
+          closeModal(m.id);
+        });
+      }
     }
   });
 
@@ -531,17 +576,82 @@ body.modal-open{overflow:hidden}
     typeSelect.addEventListener('change', updateDisclosureMode);
   }
 
-  // ── 送信時バリデーション（開示請求時：希望情報を最低1つ必須）──
+  // ── 送信完了モーダルの表示 ──
+  const thanksTitle = document.getElementById('thanks_title');
+  const thanksSub   = document.getElementById('thanks_sub');
+  const thanksMsg   = document.getElementById('thanks_msg');
+
+  function showThankYou(isDisclosure){
+    if(isDisclosure){
+      thanksTitle.textContent = 'ご請求を受け付けました';
+      thanksSub.textContent   = 'Disclosure request received';
+      thanksMsg.innerHTML     = 'ご請求内容を確認のうえ、ご登録のメールアドレス宛に<br>通常1週間以内にご案内いたします。<br>今しばらくお待ちくださいませ。';
+    } else {
+      thanksTitle.textContent = 'Thank you';
+      thanksSub.textContent   = 'Your message has been received';
+      thanksMsg.innerHTML     = 'お問い合わせ内容を受け付けました。<br>数日以内にご返信いたします。<br>今しばらくお待ちくださいませ。';
+    }
+    document.getElementById('thankyouModal').classList.add('active');
+    document.body.classList.add('modal-open');
+  }
+
+  // OK ボタン → サンクスとお問い合わせモーダルを同時に閉じてフォームをリセット
+  function closeThankYou(){
+    const thank   = document.getElementById('thankyouModal');
+    const contact = document.getElementById('contactModal');
+    thank.classList.remove('active');
+    contact.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    // アニメーション完了後にフォームをリセット
+    setTimeout(function(){
+      contactForm.reset();
+      updateDisclosureMode();
+    }, 450);
+  }
+
+  // ── 送信処理（AJAX）──
   const contactForm = document.getElementById('contactForm');
   if(contactForm){
-    contactForm.addEventListener('submit', function(e){
-      if(typeSelect.value === '事業者情報の開示請求'){
+    contactForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      const isDisclosure = typeSelect.value === '事業者情報の開示請求';
+
+      // 開示請求時：希望情報を最低1つ必須
+      if(isDisclosure){
         const checked = contactForm.querySelectorAll('input[name="開示希望情報"]:checked');
         if(checked.length === 0){
-          e.preventDefault();
           alert('開示をご希望の情報を1つ以上選択してください。');
           document.getElementById('dc_items_grp').scrollIntoView({behavior:'smooth',block:'center'});
+          return;
         }
+      }
+
+      const submitBtn = contactForm.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
+
+      try{
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        const result = await response.json();
+
+        if(response.ok && result.success){
+          showThankYou(isDisclosure);
+        } else {
+          alert('送信に失敗しました：' + (result.message || '時間をおいて再度お試しください。'));
+        }
+      } catch(err){
+        alert('送信中にエラーが発生しました。インターネット接続をご確認のうえ、再度お試しください。');
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
       }
     });
   }
