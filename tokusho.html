@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ブラウザキャッシュ対策 -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -205,7 +204,7 @@ body.modal-open{overflow:hidden}
       <dd>GrimLily<span class="sub">※ 販売業者の氏名は、ご請求があった場合に遅滞なく開示いたします。</span></dd>
 
       <dt>所在地</dt>
-      <dd>ご請求があった場合に遅滞なく開示いたします</dd>
+      <dd>〒154-0004<br>東京都世田谷区太子堂4丁目18番15号マガザン三軒茶屋2 3F-3</dd>
 
       <dt>電話番号</dt>
       <dd>ご請求があった場合に遅滞なく開示いたします<span class="sub">※ お問い合わせは下記の「お問い合わせ」フォームよりお願いいたします。</span></dd>
@@ -277,10 +276,6 @@ body.modal-open{overflow:hidden}
 
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- 統合お問い合わせモーダル                -->
-<!--（開示請求選択時に追加項目が展開されます）-->
-<!-- ═══════════════════════════════════════ -->
 <div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
   <div class="modal" role="document">
     <button type="button" class="modal-close" onclick="closeModal('contactModal')" aria-label="閉じる">
@@ -302,7 +297,6 @@ body.modal-open{overflow:hidden}
       </ul>
     </div>
 
-    <!-- 開示請求選択時のみ表示される追加警告 -->
     <div class="m-notice m-notice--warn" id="disclosure_notice" hidden>
       <span class="nt">事業者情報の開示請求についての重要事項</span>
       <ul>
@@ -314,26 +308,16 @@ body.modal-open{overflow:hidden}
       </ul>
     </div>
 
-    <!-- ═══════════════════════════════════════════════ -->
-<!-- web3forms 設定箇所                              -->
-<!-- access_key の value に取得したAPIキーを貼付    -->
-<!-- https://web3forms.com/ で無料取得できます      -->
-<!-- ═══════════════════════════════════════════════ -->
     <form class="modal-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" accept-charset="UTF-8">
 
-      <!-- ↓↓↓ web3forms のアクセスキーを貼り付け ↓↓↓ -->
       <input type="hidden" name="access_key" value="edcda91d-2e91-4f11-986c-9fd41bcb8a5a">
 
-      <!-- 管理者宛てメールの件名（JSで動的に更新されます）-->
       <input type="hidden" name="subject" id="ct_subject" value="【GrimLily】お問い合わせ">
 
-      <!-- 管理者宛てメールの差出人名 -->
       <input type="hidden" name="from_name" value="GrimLily お問い合わせフォーム">
 
-      <!-- ハニーポット（スパム対策：人間には不可視）-->
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
-      <!-- ─── 基本情報 ─── -->
       <div class="fsec">
         <div class="field">
           <label class="lbl" for="ct_type">お問い合わせ種別 <span class="req">必須</span></label>
@@ -362,7 +346,6 @@ body.modal-open{overflow:hidden}
         </div>
       </div>
 
-      <!-- ─── 開示請求専用セクション（非表示） ─── -->
       <div class="fsec fsec--conditional" id="disclosure_section" hidden>
         <div class="sec-title">Purchase Verification</div>
 
@@ -395,13 +378,11 @@ body.modal-open{overflow:hidden}
           <label class="lbl">開示をご希望の情報 <span class="req">必須・複数選択可</span></label>
           <div class="chk-grp" id="dc_items_grp">
             <label class="chk"><input type="checkbox" name="開示希望情報" value="氏名"> 氏名</label>
-            <label class="chk"><input type="checkbox" name="開示希望情報" value="住所"> 住所</label>
             <label class="chk"><input type="checkbox" name="開示希望情報" value="電話番号"> 電話番号</label>
           </div>
         </div>
       </div>
 
-      <!-- ─── お問い合わせ内容 / 開示理由 ─── -->
       <div class="fsec">
         <div class="field">
           <label class="lbl" for="ct_message"><span id="content_label_txt">お問い合わせ内容</span> <span class="req">必須</span></label>
@@ -410,7 +391,6 @@ body.modal-open{overflow:hidden}
         </div>
       </div>
 
-      <!-- ─── 同意事項（開示請求時のみ） ─── -->
       <div class="fsec fsec--conditional" id="disclosure_agreements" hidden>
         <div class="sec-title">Agreement</div>
 
@@ -441,9 +421,6 @@ body.modal-open{overflow:hidden}
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- 送信完了モーダル                        -->
-<!-- ═══════════════════════════════════════ -->
 <div class="modal-overlay thank-overlay" id="thankyouModal" onclick="handleThankOverlayClick(event)" role="alertdialog" aria-modal="true" aria-labelledby="thanks_title">
   <div class="modal thank-modal" role="document">
 
