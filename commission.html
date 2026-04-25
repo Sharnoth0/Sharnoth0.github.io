@@ -1043,7 +1043,7 @@
 
                 <!-- Cloudflare Turnstile（dark theme） -->
                 <div class="mf-turnstile-wrap">
-                    <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="dark" data-action="commission" data-callback="onSharnothTurnstileSuccess" data-expired-callback="onSharnothTurnstileExpired" data-error-callback="onSharnothTurnstileError"></div>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAADCz_guDrD8v_Rzx" data-theme="dark" data-action="commission" data-callback="onSharnothTurnstileSuccess" data-expired-callback="onSharnothTurnstileExpired" data-error-callback="onSharnothTurnstileError"></div>
                 </div>
                 <p class="mf-turnstile-hint">迷惑送信防止のため、送信前に認証をお願いいたします。</p>
 
@@ -1343,9 +1343,6 @@
         //  Cloudflare Turnstile コールバック
         // ============================================================
         var sharnothTurnstileWidgetId = null;
-        var sharnothTurnstileReady = false;
-        // ページロード後しばらくは error コールバックを無視（Cloudflare側の初期化ノイズ対策）
-        setTimeout(function () { sharnothTurnstileReady = true; }, 4000);
 
         function getSharnothTurnstileToken() {
             if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
@@ -1368,19 +1365,11 @@
         }
         window.onSharnothTurnstileSuccess = function () {};
         window.onSharnothTurnstileExpired = function () {
-            // 認証成功後の有効期限切れだけ通知する（ユーザー操作後）
-            if (sharnothTurnstileReady) {
-                showToast('認証の有効期限が切れました。もう一度認証してください。', 'warn');
-            }
+            showToast('認証の有効期限が切れました。もう一度認証してください。', 'warn');
         };
-        window.onSharnothTurnstileError = function () {
-            // 初期化直後の自動リトライ系エラーは無視。ユーザーが操作する頃には ready=true
-            if (!sharnothTurnstileReady) {
-                console.log('[Turnstile] init-time error suppressed');
-                return;
-            }
-            console.warn('[Turnstile] error callback fired');
-            // ここでもトーストは出さない（Turnstile自身がUI上にエラー表示するため二重通知を避ける）
+        // エラーコールバックではトーストを出さない。Turnstile自身がUI上にエラー表示するため。
+        window.onSharnothTurnstileError = function (errorCode) {
+            console.warn('[Turnstile] error:', errorCode);
         };
 
         // ============================================================
