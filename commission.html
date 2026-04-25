@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://grimlily.grenadine0syrup.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self';">
     <title>Commission & Works — Sharnoth Grenadine</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Cinzel:wght@400;700;900&family=Kaisei+Decol:wght@400;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
@@ -660,6 +661,54 @@
             .comm-tab { padding: 12px 14px; font-size: 0.72rem; }
             .total-bar { padding: 14px 18px; }
         }
+
+        /* ===== Toast (Sharnoth Grenadine 鴇金黒調) ===== */
+        .toast {
+            position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(20px);
+            max-width: min(440px, calc(100% - 40px));
+            padding: 14px 22px;
+            background: linear-gradient(135deg, rgba(15,12,18,.96), rgba(28,20,30,.94));
+            color: rgba(230,215,180,0.95);
+            border: 1px solid rgba(209,173,63,0.45);
+            border-radius: 4px;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 0.84rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            line-height: 1.7;
+            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(209,173,63,0.1) inset;
+            z-index: 10000;
+            opacity: 0; visibility: hidden;
+            transition: opacity .4s, visibility .4s, transform .45s cubic-bezier(.22,.61,.36,1);
+            text-align: center;
+            pointer-events: none;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        .toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .toast-error {
+            border-color: rgba(219,15,77,0.6);
+            color: rgba(255,210,210,0.95);
+            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(219,15,77,0.15) inset, 0 0 24px rgba(219,15,77,0.15);
+        }
+        .toast-warn {
+            border-color: rgba(209,173,63,0.7);
+            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(209,173,63,0.18) inset, 0 0 24px rgba(209,173,63,0.12);
+        }
+
+        /* ===== Cloudflare Turnstile (dark) ===== */
+        .mf-turnstile-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 8px 0 4px;
+        }
+        .mf-turnstile-hint {
+            font-size: 0.72rem;
+            color: rgba(180,155,100,0.5);
+            text-align: center;
+            margin-top: 6px;
+            letter-spacing: 0.04em;
+        }
     </style>
 </head>
 <body>
@@ -988,6 +1037,16 @@
                     <span class="mf-agree-box"></span>
                     <span class="mf-agree-text">上記を了承しました <span class="mf-required">*</span></span>
                 </label>
+
+                <!-- ハニーポット（人間には見えない隠しフィールド） -->
+                <input type="text" id="mf-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
+
+                <!-- Cloudflare Turnstile（dark theme） -->
+                <div class="mf-turnstile-wrap">
+                    <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="dark" data-action="commission" data-callback="onSharnothTurnstileSuccess" data-expired-callback="onSharnothTurnstileExpired" data-error-callback="onSharnothTurnstileError"></div>
+                </div>
+                <p class="mf-turnstile-hint">迷惑送信防止のため、送信前に認証をお願いいたします。</p>
+
                 <div class="mf-actions">
                     <button class="mf-cancel" id="mf-cancel">キャンセル</button>
                     <button class="mf-submit" id="mf-submit">
@@ -1260,72 +1319,183 @@
             });
         }
 
-        const WEB3FORMS_KEY = '024186dc-30db-47bf-ace4-12bde7a53c6f';
+        // ============================================================
+        //  トースト通知（Sharnoth Grenadine 鴇金黒調）
+        // ============================================================
+        function showToast(message, type, duration) {
+            type = type || 'info';
+            duration = duration || 4500;
+            document.querySelectorAll('.toast').forEach(function (el) { el.remove(); });
+            var toast = document.createElement('div');
+            toast.className = 'toast toast-' + type;
+            toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+            toast.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            requestAnimationFrame(function () { toast.classList.add('show'); });
+            setTimeout(function () {
+                toast.classList.remove('show');
+                setTimeout(function () { toast.remove(); }, 450);
+            }, duration);
+        }
+
+        // ============================================================
+        //  Cloudflare Turnstile コールバック
+        // ============================================================
+        var sharnothTurnstileWidgetId = null;
+        function getSharnothTurnstileToken() {
+            if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
+                try {
+                    var t = sharnothTurnstileWidgetId !== null
+                        ? window.turnstile.getResponse(sharnothTurnstileWidgetId)
+                        : window.turnstile.getResponse();
+                    return t || '';
+                } catch (e) { return ''; }
+            }
+            return '';
+        }
+        function resetSharnothTurnstile() {
+            if (window.turnstile && typeof window.turnstile.reset === 'function') {
+                try {
+                    if (sharnothTurnstileWidgetId !== null) window.turnstile.reset(sharnothTurnstileWidgetId);
+                    else window.turnstile.reset();
+                } catch (e) {}
+            }
+        }
+        window.onSharnothTurnstileSuccess = function () {};
+        window.onSharnothTurnstileExpired = function () {
+            showToast('認証の有効期限が切れました。もう一度認証してください。', 'warn');
+        };
+        window.onSharnothTurnstileError = function () {
+            showToast('認証に失敗しました。ページを再読み込みしてください。', 'error');
+        };
+
+        // ============================================================
+        //  フォーム送信処理（Worker /commission エンドポイントへ）
+        // ============================================================
+        var COMMISSION_API_BASE = 'https://grimlily.grenadine0syrup.workers.dev';
+        var COMMISSION_ENDPOINT = COMMISSION_API_BASE + '/commission';
+        var SHARNOTH_LAST_SUBMIT_KEY = 'sharnoth:commission-last-submit';
+
         if (mfSubmit) {
-            mfSubmit.addEventListener('click', async () => {
-                const name    = (document.getElementById('mf-name')?.value    || '').trim();
-                const email   = (document.getElementById('mf-email')?.value   || '').trim();
-                const sns     = (document.getElementById('mf-sns')?.value     || '').trim();
-                const message = (document.getElementById('mf-message')?.value || '').trim();
-                const agreed  = !!document.getElementById('mf-agree')?.checked;
+            mfSubmit.addEventListener('click', async function () {
+                var nameField    = document.getElementById('mf-name');
+                var emailField   = document.getElementById('mf-email');
+                var snsField     = document.getElementById('mf-sns');
+                var messageField = document.getElementById('mf-message');
+                var agreeField   = document.getElementById('mf-agree');
+                var botcheckField= document.getElementById('mf-botcheck');
 
-                if (!name)  { alert('お名前をご入力ください。'); return; }
-                if (!email) { alert('返信希望メールアドレスをご入力ください。'); return; }
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('メールアドレスの形式が正しくありません。'); return; }
-                if (!message) { alert('ご相談内容をご入力ください。'); return; }
-                if (!agreed)  { alert('お支払い・キャンセルについてご確認のうえ「了承しました」にチェックを入れてください。'); return; }
+                var name    = (nameField    && nameField.value    || '').trim();
+                var email   = (emailField   && emailField.value   || '').trim();
+                var sns     = (snsField     && snsField.value     || '').trim();
+                var message = (messageField && messageField.value || '').trim();
+                var agreed  = !!(agreeField && agreeField.checked);
 
-                const lbl = document.getElementById('mf-submit-label');
+                if (!name)    { showToast('お名前をご入力ください。', 'warn'); return; }
+                if (!email)   { showToast('返信希望メールアドレスをご入力ください。', 'warn'); return; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('メールアドレスの形式が正しくありません。', 'warn'); return; }
+                if (!message) { showToast('ご相談内容をご入力ください。', 'warn'); return; }
+                if (!agreed)  { showToast('お支払い・キャンセルについてご確認のうえ「了承しました」にチェックを入れてください。', 'warn'); return; }
+
+                // 連続送信防止
+                var nowTs = Date.now();
+                var lastTs = Number(sessionStorage.getItem(SHARNOTH_LAST_SUBMIT_KEY) || 0);
+                if (nowTs - lastTs < 15000) {
+                    showToast('短時間の連続送信を防ぐため、15秒ほどお待ちください。', 'warn');
+                    return;
+                }
+
+                // Turnstile トークン取得
+                var turnstileToken = getSharnothTurnstileToken();
+                if (!turnstileToken) {
+                    showToast('送信前に認証を完了してください。', 'warn');
+                    var tw = document.querySelector('.cf-turnstile');
+                    if (tw && tw.scrollIntoView) tw.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+
+                var lbl = document.getElementById('mf-submit-label');
+                var originalLabel = lbl ? lbl.textContent : '';
                 if (lbl) lbl.textContent = '送信中…';
                 mfSubmit.disabled = true;
+                mfSubmit.setAttribute('aria-busy', 'true');
 
-                const { items, total } = getSelections();
-                const selectedText = items.length > 0
-                    ? items.map(i => '・' + i.label + (i.price > 0 ? '（¥' + i.price.toLocaleString('ja-JP') + '〜）' : '（要相談）')).join('\n')
-                    : '（未選択）';
-                const totalText = total > 0 ? '¥' + total.toLocaleString('ja-JP') + '〜（目安）' : '要相談';
+                // 選択項目を取得
+                var selection = getSelections();
+                var items = (selection.items || []).map(function (i) {
+                    return {
+                        label: i.label || '',
+                        price: Number(i.price) || 0,
+                        percent: Number(i.percent) || 0
+                    };
+                });
+                var totalText = selection.total > 0
+                    ? '¥' + selection.total.toLocaleString('ja-JP') + '〜（目安）'
+                    : '要相談';
 
-                const formData = {
-                    access_key: WEB3FORMS_KEY,
-                    subject: `【お仕事のご相談】${name} 様より`,
-                    from_name: 'Sharnoth Grenadine 公式サイト',
-                    name, email,
-                    replyto: email,
-                    message:
-                        `▼ お名前\n${name}\n\n` +
-                        `▼ 返信先メール\n${email}\n\n` +
-                        `▼ SNSアカウント / Webサイト\n${sns || 'なし'}\n\n` +
-                        `▼ 選択項目\n${selectedText}\n\n` +
-                        `▼ 予想合計\n${totalText}\n\n` +
-                        `▼ ご相談内容\n${message}`,
-                    botcheck: ''
+                var payload = {
+                    name: name,
+                    email: email,
+                    sns: sns,
+                    message: message,
+                    agreed: agreed,
+                    items: items,
+                    totalText: totalText,
+                    turnstileToken: turnstileToken,
+                    botcheck: botcheckField ? botcheckField.value : ''
                 };
 
+                var controller = new AbortController();
+                var timeoutId = setTimeout(function () { controller.abort(); }, 20000);
+
                 try {
-                    const res = await fetch('https://api.web3forms.com/submit', {
+                    var res = await fetch(COMMISSION_ENDPOINT, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                        body: JSON.stringify(formData)
+                        body: JSON.stringify(payload),
+                        cache: 'no-store',
+                        credentials: 'omit',
+                        referrerPolicy: 'strict-origin-when-cross-origin',
+                        signal: controller.signal
                     });
-                    const data = await res.json();
-                    if (data.success) {
-                        const fBody = document.getElementById('mf-form-body');
-                        const sView = document.getElementById('mf-sent-view');
+                    var data = {};
+                    try { data = await res.json(); } catch (e) {}
+
+                    if (res.ok && data.success) {
+                        sessionStorage.setItem(SHARNOTH_LAST_SUBMIT_KEY, String(nowTs));
+                        var fBody = document.getElementById('mf-form-body');
+                        var sView = document.getElementById('mf-sent-view');
                         if (fBody) fBody.classList.add('hidden');
                         if (sView) sView.classList.add('active');
+                    } else if (res.status === 429) {
+                        showToast(data.message || '短時間に送信が集中しています。少し時間をおいてお試しください。', 'warn');
+                        resetSharnothTurnstile();
+                        if (lbl) lbl.textContent = originalLabel;
+                        mfSubmit.disabled = false;
+                        mfSubmit.removeAttribute('aria-busy');
                     } else {
                         throw new Error(data.message || '送信に失敗しました。');
                     }
                 } catch (err) {
-                    const fBody = document.getElementById('mf-form-body');
-                    const errView = document.getElementById('mf-error-view');
-                    const errMsg = document.getElementById('mf-error-msg');
-                    if (fBody) fBody.classList.add('hidden');
-                    if (errMsg) errMsg.innerHTML = '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、XのDMよりご連絡ください。<br><br><small style="opacity:0.6;">' + err.message + '</small>';
+                    var fBody2 = document.getElementById('mf-form-body');
+                    var errView = document.getElementById('mf-error-view');
+                    var errMsg = document.getElementById('mf-error-msg');
+                    var msg = err && err.name === 'AbortError'
+                        ? '通信がタイムアウトしました。時間をおいて再度お試しください。'
+                        : (err && err.message) || '送信中にエラーが発生しました。';
+                    if (fBody2) fBody2.classList.add('hidden');
+                    if (errMsg) errMsg.innerHTML = '⚠ 送信中にエラーが発生しました。<br>しばらく経ってから再試行するか、XのDMよりご連絡ください。<br><br><small style="opacity:0.6;">' + msg + '</small>';
                     if (errView) errView.classList.add('active');
+                    resetSharnothTurnstile();
+                } finally {
+                    clearTimeout(timeoutId);
                 }
             });
         }
     </script>
+
+    <!-- Cloudflare Turnstile API -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
