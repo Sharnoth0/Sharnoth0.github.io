@@ -6,22 +6,22 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://grimlily.grenadine0syrup.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self';">
     <title>Commission & Works — シャルノス・グレナデン</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Cinzel:wght@400;700;900&family=Kaisei+Decol:wght@400;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #050505;
-            --text-color: #e0e0e0;
-            --gold: #d1ad3f;
-            --gold-dim: rgba(209, 173, 63, 0.35);
-            --crimson: #db0f4d;
-            --crimson-dim: rgba(219, 15, 77, 0.3);
+            --bg-color: #08080b;
+            --text-color: #ece7df;
+            --gold: #c9a96a;
+            --gold-dim: rgba(201, 169, 106, 0.35);
+            --crimson: #9488ad;
+            --crimson-dim: rgba(148, 136, 173, 0.3);
         }
         *, *::before, *::after { box-sizing: border-box; }
         html, body {
             margin: 0; padding: 0;
             color: var(--text-color);
             background: var(--bg-color);
-            font-family: 'Kaisei Decol', serif;
+            font-family: 'Shippori Mincho', serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
@@ -41,12 +41,12 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; pointer-events: none;
             background:
-                radial-gradient(1px 1px at 15% 20%, rgba(209,173,63,0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 70% 12%, rgba(209,173,63,0.25) 0%, transparent 100%),
+                radial-gradient(1px 1px at 15% 20%, rgba(201, 169, 106,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 12%, rgba(201, 169, 106,0.25) 0%, transparent 100%),
                 radial-gradient(1px 1px at 85% 80%, rgba(255,255,255,0.15) 0%, transparent 100%),
-                radial-gradient(1px 1px at 50% 45%, rgba(219,15,77,0.2) 0%, transparent 100%),
-                radial-gradient(1.5px 1.5px at 25% 5%, rgba(209,173,63,0.45) 0%, transparent 100%),
-                radial-gradient(1px 1px at 55% 92%, rgba(209,173,63,0.15) 0%, transparent 100%);
+                radial-gradient(1px 1px at 50% 45%, rgba(148, 136, 173,0.2) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 25% 5%, rgba(201, 169, 106,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 55% 92%, rgba(201, 169, 106,0.15) 0%, transparent 100%);
         }
         .bg-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -61,7 +61,7 @@
         .back-link {
             display: inline-flex; align-items: center; gap: 8px;
             font-family: 'Cinzel', serif; font-size: 0.82rem;
-            letter-spacing: 3px; color: rgba(209,173,63,0.6);
+            letter-spacing: 3px; color: rgba(201, 169, 106,0.6);
             text-decoration: none; transition: color 0.3s;
             padding: 20px 30px;
         }
@@ -74,12 +74,13 @@
             text-align: center;
             padding: 30px 20px 40px;
         }
-        .comm-header-deco { font-size: 0.8rem; color: rgba(209,173,63,0.3); letter-spacing: 8px; margin-bottom: 12px; }
+        .comm-header-deco { font-size: 0.8rem; color: rgba(201, 169, 106,0.3); letter-spacing: 8px; margin-bottom: 12px; }
         .comm-title {
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            letter-spacing: 6px;
-            background: linear-gradient(90deg, var(--crimson), #fff 40%, var(--gold) 60%, var(--crimson));
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-weight: 500;
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            letter-spacing: 2px;
+            background: linear-gradient(96deg, #f3e2b4, #e3c98f 28%, var(--gold) 60%, #9488ad);
             background-size: 300% auto;
             -webkit-background-clip: text; background-clip: text; color: transparent;
             animation: titleFlow 5s linear infinite;
@@ -100,7 +101,7 @@
         /* ── Tabs ── */
         .comm-tabs {
             display: flex; gap: 0;
-            border-bottom: 1px solid rgba(209,173,63,0.15);
+            border-bottom: 1px solid rgba(201, 169, 106,0.15);
             padding: 0; overflow-x: auto;
             margin-bottom: 0;
         }
@@ -112,7 +113,7 @@
             transition: all 0.3s; background: none; border-top: none; border-left: none; border-right: none;
             cursor: pointer;
         }
-        .comm-tab:hover { color: rgba(209,173,63,0.8); }
+        .comm-tab:hover { color: rgba(201, 169, 106,0.8); }
         .comm-tab.active { color: var(--gold); border-bottom-color: var(--crimson); }
 
         /* ── Panels ── */
@@ -124,7 +125,7 @@
         .intro-card {
             position: relative;
             background: linear-gradient(160deg, rgba(8,2,14,0.85) 0%, rgba(12,3,18,0.9) 50%, rgba(8,2,14,0.85) 100%);
-            border: 1px solid rgba(209,173,63,0.25);
+            border: 1px solid rgba(201, 169, 106,0.25);
             border-radius: 16px;
             padding: 44px 40px;
             margin-top: 28px;
@@ -132,7 +133,7 @@
             overflow: hidden;
         }
         .intro-card-corner {
-            position: absolute; font-size: 0.7rem; color: rgba(209,173,63,0.25); line-height: 1;
+            position: absolute; font-size: 0.7rem; color: rgba(201, 169, 106,0.25); line-height: 1;
         }
         .intro-card-corner.tl { top: 12px; left: 14px; }
         .intro-card-corner.tr { top: 12px; right: 14px; }
@@ -140,16 +141,18 @@
         .intro-card-corner.br { bottom: 12px; right: 14px; }
         .intro-greeting {
             font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 5px;
-            text-transform: uppercase; color: rgba(219,15,77,0.65);
+            text-transform: uppercase; color: rgba(148, 136, 173,0.65);
             text-align: center; margin-bottom: 24px;
         }
         .intro-text {
             font-size: 1.05rem; line-height: 2.4; color: rgba(240,225,185,0.92);
             text-align: center; letter-spacing: 0.5px; margin: 0 0 30px;
+            max-width: 34em; margin-left: auto; margin-right: auto;
+            line-break: strict; word-break: auto-phrase; overflow-wrap: break-word;
         }
         .intro-payment {
             background: rgba(0,0,0,0.35);
-            border: 1px solid rgba(209,173,63,0.2);
+            border: 1px solid rgba(201, 169, 106,0.2);
             border-left: 3px solid var(--gold);
             border-radius: 10px;
             padding: 20px 24px;
@@ -165,7 +168,7 @@
         .intro-payment-group-label {
             font-size: 0.72rem;
             letter-spacing: 2px;
-            color: rgba(209,173,63,0.55);
+            color: rgba(201, 169, 106,0.55);
             margin-bottom: 8px;
         }
         .intro-payment-brands {
@@ -184,7 +187,7 @@
         }
         .pay-brand:hover {
             transform: translateY(-2px);
-            border-color: rgba(209,173,63,0.4);
+            border-color: rgba(201, 169, 106,0.4);
             background: rgba(255,255,255,0.08);
         }
         .pay-brand svg {
@@ -198,9 +201,9 @@
             margin: 28px 0 24px;
             padding: 22px 26px;
             background:
-                radial-gradient(ellipse at 50% 0%, rgba(219,15,77,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse at 50% 0%, rgba(148, 136, 173,0.06) 0%, transparent 70%),
                 rgba(0,0,0,0.35);
-            border: 1px solid rgba(209,173,63,0.2);
+            border: 1px solid rgba(201, 169, 106,0.2);
             border-left: 3px solid var(--crimson);
             border-radius: 10px;
         }
@@ -220,16 +223,16 @@
             margin-bottom: 8px;
         }
         .availability-month {
-            font-family: 'UnifrakturMaguntia', cursive;
+            font-family: 'Cormorant Garamond', cursive;
             font-size: 1.4rem; letter-spacing: 2px;
             color: rgba(240,220,160,0.9);
-            text-shadow: 0 0 12px rgba(209,173,63,0.3);
+            text-shadow: 0 0 12px rgba(201, 169, 106,0.3);
             display: inline-flex; align-items: baseline; gap: 10px;
         }
         .availability-month-ja {
-            font-family: 'Kaisei Decol', serif;
+            font-family: 'Shippori Mincho', serif;
             font-size: 0.78rem; letter-spacing: 3px;
-            color: rgba(209,173,63,0.6);
+            color: rgba(201, 169, 106,0.6);
             text-shadow: none;
             font-weight: normal;
         }
@@ -245,26 +248,26 @@
             position: relative; height: 14px;
             border-radius: 8px; overflow: hidden;
             background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(209,173,63,0.22);
+            border: 1px solid rgba(201, 169, 106,0.22);
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.6);
         }
         .availability-bar-track {
             position: absolute; inset: 0;
             background-image: linear-gradient(90deg,
                 transparent 0, transparent 6px,
-                rgba(209,173,63,0.05) 6px, rgba(209,173,63,0.05) 7px);
+                rgba(201, 169, 106,0.05) 6px, rgba(201, 169, 106,0.05) 7px);
             background-size: 7px 100%;
         }
         .availability-bar-fill {
             position: absolute; top: 0; bottom: 0; left: 0;
             width: var(--pct);
             background: linear-gradient(90deg,
-                rgba(219,15,77,0.85),
+                rgba(148, 136, 173,0.85),
                 rgba(240,140,160,0.95) 50%,
                 rgba(255,200,120,0.95));
             box-shadow:
                 0 0 10px rgba(240,140,160,0.5),
-                0 0 20px rgba(219,15,77,0.3),
+                0 0 20px rgba(148, 136, 173,0.3),
                 inset 0 1px 0 rgba(255,255,255,0.3);
             border-radius: 8px;
             animation: gaugeFill 1.6s cubic-bezier(0.25,1,0.5,1) 0.2s backwards;
@@ -328,12 +331,12 @@
         }
         .status-half {
             color: rgba(240,220,160,0.9);
-            background: rgba(219,15,77,0.08);
-            border: 1px solid rgba(219,15,77,0.3);
+            background: rgba(148, 136, 173,0.08);
+            border: 1px solid rgba(148, 136, 173,0.3);
         }
         .status-half .status-dot {
             background: rgba(240,140,160,0.95);
-            box-shadow: 0 0 6px rgba(240,140,160,0.8), 0 0 12px rgba(219,15,77,0.5);
+            box-shadow: 0 0 6px rgba(240,140,160,0.8), 0 0 12px rgba(148, 136, 173,0.5);
         }
         @keyframes statusPulse {
             0%,100% { opacity: 0.8; transform: scale(1); }
@@ -346,9 +349,9 @@
 
         .notice-box {
             display: flex; gap: 8px; align-items: flex-start;
-            background: rgba(209,173,63,0.06); border: 1px solid rgba(209,173,63,0.2);
+            background: rgba(201, 169, 106,0.06); border: 1px solid rgba(201, 169, 106,0.2);
             border-left: 3px solid var(--gold); border-radius: 8px;
-            padding: 12px 16px; font-size: 0.85rem; color: rgba(209,173,63,0.8);
+            padding: 12px 16px; font-size: 0.85rem; color: rgba(201, 169, 106,0.8);
             line-height: 1.8; margin-bottom: 20px;
         }
         .notice-box svg { flex-shrink: 0; margin-top: 2px; }
@@ -359,22 +362,22 @@
             display: grid; grid-template-columns: 24px 1fr auto;
             align-items: center; gap: 14px;
             padding: 14px 16px; border-radius: 10px;
-            border: 1px solid rgba(209,173,63,0.12);
+            border: 1px solid rgba(201, 169, 106,0.12);
             background: rgba(5,0,10,0.5);
             transition: all 0.3s; cursor: pointer;
         }
-        .svc-row:hover { border-color: rgba(209,173,63,0.35); background: rgba(209,173,63,0.04); }
+        .svc-row:hover { border-color: rgba(201, 169, 106,0.35); background: rgba(201, 169, 106,0.04); }
         .svc-row:has(input:checked) {
-            border-color: rgba(219,15,77,0.5);
-            background: rgba(219,15,77,0.06);
-            box-shadow: 0 0 16px rgba(219,15,77,0.08);
+            border-color: rgba(148, 136, 173,0.5);
+            background: rgba(148, 136, 173,0.06);
+            box-shadow: 0 0 16px rgba(148, 136, 173,0.08);
         }
         .svc-cb {
             appearance: none; -webkit-appearance: none; width: 18px; height: 18px; flex-shrink: 0;
-            border: 1px solid rgba(209,173,63,0.4); border-radius: 4px; background: rgba(5,0,10,0.8);
+            border: 1px solid rgba(201, 169, 106,0.4); border-radius: 4px; background: rgba(5,0,10,0.8);
             position: relative; transition: all 0.2s; cursor: pointer;
         }
-        .svc-cb:checked { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 8px rgba(219,15,77,0.5); }
+        .svc-cb:checked { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 8px rgba(148, 136, 173,0.5); }
         .svc-cb:checked::after {
             content: ''; position: absolute; left: 5px; top: 2px;
             width: 5px; height: 9px; border: 2px solid #fff;
@@ -385,42 +388,48 @@
         .svc-detail { font-size: 0.75rem; color: rgba(180,160,120,0.5); letter-spacing: 0.5px; line-height: 1.5; }
         .svc-price {
             font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 1px;
-            color: rgba(209,173,63,0.85); white-space: nowrap;
-            background: rgba(209,173,63,0.08); border: 1px solid rgba(209,173,63,0.25);
+            color: rgba(201, 169, 106,0.85); white-space: nowrap;
+            background: rgba(201, 169, 106,0.08); border: 1px solid rgba(201, 169, 106,0.25);
             padding: 4px 10px; border-radius: 6px;
         }
         .svc-price.consult { color: rgba(180,160,120,0.6); background: rgba(180,160,120,0.06); border-color: rgba(180,160,120,0.2); }
         .svc-price.add { color: rgba(240,140,160,0.9); background: rgba(240,140,160,0.06); border-color: rgba(240,140,160,0.25); }
         .svc-price.option { color: rgba(150,180,220,0.8); background: rgba(150,180,220,0.06); border-color: rgba(150,180,220,0.25); }
         .svc-row-link { cursor: pointer; }
-        .svc-row-link:hover { border-color: rgba(209,173,63,0.5); background: rgba(209,173,63,0.06); }
+        .svc-row-link:hover { border-color: rgba(201, 169, 106,0.5); background: rgba(201, 169, 106,0.06); }
         .svc-row-link-cb { cursor: pointer; }
-        .svc-row-link-cb:hover { border-color: rgba(209,173,63,0.5); background: rgba(209,173,63,0.06); }
+        .svc-row-link-cb:hover { border-color: rgba(201, 169, 106,0.5); background: rgba(201, 169, 106,0.06); }
         .svc-link-label {
-            font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px;
-            color: rgba(209,173,63,0.7); white-space: nowrap;
-            transition: color 0.3s, letter-spacing 0.3s;
-            cursor: pointer;
+            font-family: 'Cinzel', serif; font-size: 0.74rem; letter-spacing: 1.5px;
+            color: var(--gold); white-space: nowrap;
+            padding: 8px 16px; border: 1px solid rgba(201, 169, 106,0.55);
+            border-radius: 999px; background: rgba(201, 169, 106,0.08);
+            box-shadow: 0 0 14px -6px rgba(201, 169, 106,0.5);
+            transition: all 0.3s; cursor: pointer;
         }
         .svc-row-link:hover .svc-link-label,
-        .svc-row-link-cb:hover .svc-link-label { color: var(--gold); letter-spacing: 3px; }
+        .svc-row-link-cb:hover .svc-link-label,
+        .svc-link-label:hover {
+            color: #0b0a08; background: var(--gold); border-color: var(--gold);
+            letter-spacing: 2px; box-shadow: 0 8px 20px -8px rgba(201, 169, 106,0.7);
+        }
 
         /* ── Section label ── */
         .svc-section-label {
             font-family: 'Cinzel', serif; font-size: 0.68rem;
-            letter-spacing: 4px; color: rgba(209,173,63,0.5);
+            letter-spacing: 4px; color: rgba(201, 169, 106,0.5);
             margin: 20px 0 10px; text-transform: uppercase;
         }
 
         /* ── Spinner ── */
-        .svc-spinner-row { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(209,173,63,0.12); background: rgba(5,0,10,0.5); transition: all 0.3s; }
-        .svc-spinner-row.active { border-color: rgba(219,15,77,0.5); background: rgba(219,15,77,0.06); }
-        .svc-cb-spinner { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border: 1px solid rgba(209,173,63,0.4); border-radius: 4px; background: rgba(5,0,10,0.8); position: relative; transition: all 0.2s; cursor: pointer; flex-shrink: 0; }
-        .svc-cb-spinner:checked { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 8px rgba(219,15,77,0.5); }
+        .svc-spinner-row { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(201, 169, 106,0.12); background: rgba(5,0,10,0.5); transition: all 0.3s; }
+        .svc-spinner-row.active { border-color: rgba(148, 136, 173,0.5); background: rgba(148, 136, 173,0.06); }
+        .svc-cb-spinner { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border: 1px solid rgba(201, 169, 106,0.4); border-radius: 4px; background: rgba(5,0,10,0.8); position: relative; transition: all 0.2s; cursor: pointer; flex-shrink: 0; }
+        .svc-cb-spinner:checked { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 8px rgba(148, 136, 173,0.5); }
         .svc-cb-spinner:checked::after { content: ''; position: absolute; left: 5px; top: 2px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
         .spin-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        .spin-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(209,173,63,0.3); background: rgba(209,173,63,0.07); color: var(--gold); font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; cursor: pointer; }
-        .spin-btn:hover { background: rgba(209,173,63,0.18); border-color: var(--gold); }
+        .spin-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(201, 169, 106,0.3); background: rgba(201, 169, 106,0.07); color: var(--gold); font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; cursor: pointer; }
+        .spin-btn:hover { background: rgba(201, 169, 106,0.18); border-color: var(--gold); }
         .spin-num { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; min-width: 24px; text-align: center; }
         .spin-price { font-family: 'Cinzel', serif; font-size: 0.78rem; color: rgba(240,140,160,0.9); white-space: nowrap; min-width: 72px; text-align: right; }
 
@@ -438,7 +447,7 @@
             display: flex; align-items: center; justify-content: space-between; gap: 16px;
             padding: 16px 28px;
             background: rgba(3,0,8,0.97);
-            border-top: 1px solid rgba(209,173,63,0.2);
+            border-top: 1px solid rgba(201, 169, 106,0.2);
             border-radius: 16px 16px 0 0;
             box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
             margin-top: 30px;
@@ -459,7 +468,7 @@
         .partner-header {
             text-align: center; margin-bottom: 24px;
             padding-bottom: 18px;
-            border-bottom: 1px solid rgba(209,173,63,0.2);
+            border-bottom: 1px solid rgba(201, 169, 106,0.2);
         }
         .partner-title {
             font-family: 'Cinzel', serif; font-size: 1.3rem;
@@ -476,7 +485,7 @@
             margin-top: 24px;
             padding: 20px;
             background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(209,173,63,0.15);
+            border: 1px solid rgba(201, 169, 106,0.15);
             border-radius: 10px;
             text-align: center;
             color: rgba(180,160,120,0.45);
@@ -491,7 +500,7 @@
             font-family: 'Cinzel', serif; font-size: 1.6rem;
             color: var(--gold); letter-spacing: 2px; line-height: 1.1;
             transition: all 0.3s;
-            text-shadow: 0 0 20px rgba(209,173,63,0.4);
+            text-shadow: 0 0 20px rgba(201, 169, 106,0.4);
         }
         .total-amount.has-value { color: #fff; text-shadow: 0 0 20px rgba(240,140,160,0.5); }
         .total-note { font-size: 0.62rem; color: rgba(180,155,100,0.4); letter-spacing: 1px; }
@@ -502,26 +511,26 @@
         }
         .comm-footer-note { font-size: 0.78rem; color: rgba(180,160,120,0.5); line-height: 2.0; letter-spacing: 0.5px; margin-bottom: 18px; }
         .comm-contact-btn {
-            display: inline-flex; align-items: center; gap: 12px;
-            padding: 18px 50px; border-radius: 12px;
-            background: linear-gradient(135deg, rgba(219,15,77,0.18), rgba(180,5,50,0.12));
-            border: 1px solid rgba(219,15,77,0.5);
-            color: rgba(255,200,200,0.95); font-family: 'Cinzel', serif;
-            font-size: 0.95rem; letter-spacing: 3px; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 14px;
+            padding: 22px 64px; border-radius: 12px;
+            background: linear-gradient(135deg, rgba(201, 169, 106,0.24), rgba(148, 136, 173,0.18));
+            border: 1px solid rgba(201, 169, 106,0.65);
+            color: #f3e2b4; font-family: 'Cinzel', serif;
+            font-size: 1.08rem; letter-spacing: 4px; text-decoration: none;
             transition: all 0.35s cubic-bezier(0.25,1,0.5,1);
-            box-shadow: 0 0 25px rgba(219,15,77,0.1);
+            box-shadow: 0 0 34px rgba(201, 169, 106,0.2);
             cursor: pointer; overflow: hidden; position: relative;
         }
         .comm-contact-btn::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(219,15,77,0.08), rgba(255,255,255,0.04), transparent);
+            background: linear-gradient(90deg, transparent, rgba(148, 136, 173,0.08), rgba(255,255,255,0.04), transparent);
             transition: left 0.6s ease; pointer-events: none;
         }
         .comm-contact-btn:hover::before { left: 150%; }
         .comm-contact-btn:hover {
-            background: linear-gradient(135deg, rgba(219,15,77,0.32), rgba(180,5,50,0.22));
-            border-color: rgba(219,15,77,0.9); color: #fff;
-            box-shadow: 0 0 40px rgba(219,15,77,0.3); transform: translateY(-3px);
+            background: linear-gradient(135deg, rgba(201, 169, 106,0.4), rgba(148, 136, 173,0.3));
+            border-color: var(--gold); color: #0b0a08;
+            box-shadow: 0 0 50px rgba(201, 169, 106,0.45); transform: translateY(-3px);
         }
 
         /* ── Mailform Modal ── */
@@ -536,7 +545,7 @@
             background: rgba(15,5,5,0.98); border: 1px solid var(--gold);
             padding: 40px 30px; border-radius: 15px;
             max-width: 550px; width: 90%; max-height: 90vh; overflow-y: auto;
-            position: relative; box-shadow: 0 0 50px rgba(219,15,77,0.4);
+            position: relative; box-shadow: 0 0 50px rgba(148, 136, 173,0.4);
         }
         .modal-close {
             position: absolute; top: 15px; right: 15px; color: var(--gold);
@@ -545,23 +554,23 @@
             border-radius: 50%; transition: all 0.3s ease; cursor: pointer;
         }
         .modal-close svg { width: 28px; height: 28px; }
-        .modal-close:hover { background: rgba(219,15,77,0.15); color: var(--crimson); transform: rotate(90deg); }
-        .mf-summary { background: rgba(0,0,0,0.4); border: 1px solid rgba(209,173,63,0.2); border-left: 3px solid var(--gold); border-radius: 8px; padding: 14px 18px; margin-bottom: 22px; }
-        .mf-summary-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 4px; color: rgba(209,173,63,0.6); margin-bottom: 8px; }
+        .modal-close:hover { background: rgba(148, 136, 173,0.15); color: var(--crimson); transform: rotate(90deg); }
+        .mf-summary { background: rgba(0,0,0,0.4); border: 1px solid rgba(201, 169, 106,0.2); border-left: 3px solid var(--gold); border-radius: 8px; padding: 14px 18px; margin-bottom: 22px; }
+        .mf-summary-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 4px; color: rgba(201, 169, 106,0.6); margin-bottom: 8px; }
         .mf-summary-items { font-size: 0.82rem; color: rgba(220,205,170,0.8); line-height: 2.0; }
-        .mf-summary-total { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(209,173,63,0.15); }
+        .mf-summary-total { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(201, 169, 106,0.15); }
         .mf-field { margin-bottom: 16px; }
-        .mf-label { display: block; font-size: 0.78rem; color: rgba(209,173,63,0.75); letter-spacing: 2px; margin-bottom: 6px; font-family: 'Cinzel', serif; }
+        .mf-label { display: block; font-size: 0.78rem; color: rgba(201, 169, 106,0.75); letter-spacing: 2px; margin-bottom: 6px; font-family: 'Cinzel', serif; }
         .mf-required { color: var(--crimson); }
         .mf-opt { font-size: 0.65rem; color: rgba(180,160,120,0.45); letter-spacing: 1px; }
-        .mf-input, .mf-textarea { width: 100%; background: rgba(3,0,8,0.8); border: 1px solid rgba(209,173,63,0.2); border-radius: 8px; color: rgba(230,215,180,0.9); font-family: 'Kaisei Decol', serif; font-size: 0.9rem; padding: 10px 14px; outline: none; transition: border-color 0.3s; resize: vertical; box-sizing: border-box; }
-        .mf-input:focus, .mf-textarea:focus { border-color: rgba(209,173,63,0.6); box-shadow: 0 0 12px rgba(209,173,63,0.08); }
+        .mf-input, .mf-textarea { width: 100%; background: rgba(3,0,8,0.8); border: 1px solid rgba(201, 169, 106,0.2); border-radius: 8px; color: rgba(230,215,180,0.9); font-family: 'Shippori Mincho', serif; font-size: 0.9rem; padding: 10px 14px; outline: none; transition: border-color 0.3s; resize: vertical; box-sizing: border-box; }
+        .mf-input:focus, .mf-textarea:focus { border-color: rgba(201, 169, 106,0.6); box-shadow: 0 0 12px rgba(201, 169, 106,0.08); }
         .mf-input::placeholder, .mf-textarea::placeholder { color: rgba(180,155,100,0.3); font-size: 0.85rem; }
         .mf-actions { display: flex; gap: 12px; margin-top: 24px; }
         .mf-cancel { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid rgba(180,155,100,0.25); background: transparent; color: rgba(180,155,100,0.5); font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 2px; cursor: pointer; transition: all 0.3s; }
         .mf-cancel:hover { border-color: rgba(180,155,100,0.5); color: rgba(200,180,140,0.8); }
-        .mf-submit { flex: 2; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; background: linear-gradient(135deg, rgba(219,15,77,0.22), rgba(180,5,50,0.15)); border: 1px solid rgba(219,15,77,0.55); color: rgba(255,200,200,0.95); font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 2px; cursor: pointer; transition: all 0.35s; }
-        .mf-submit:hover { background: linear-gradient(135deg, rgba(219,15,77,0.35), rgba(180,5,50,0.25)); border-color: rgba(219,15,77,0.9); color: #fff; box-shadow: 0 0 25px rgba(219,15,77,0.25); }
+        .mf-submit { flex: 2; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; background: linear-gradient(135deg, rgba(201, 169, 106,0.26), rgba(148, 136, 173,0.2)); border: 1px solid rgba(201, 169, 106,0.6); color: #f3e2b4; font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 2px; cursor: pointer; transition: all 0.35s; }
+        .mf-submit:hover { background: linear-gradient(135deg, rgba(201, 169, 106,0.42), rgba(148, 136, 173,0.3)); border-color: var(--gold); color: #0b0a08; box-shadow: 0 0 28px rgba(201, 169, 106,0.4); }
         .mf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* Notice box inside mailform */
@@ -569,9 +578,9 @@
             margin: 22px 0 14px;
             padding: 14px 18px;
             background:
-                radial-gradient(ellipse at 50% 0%, rgba(219,15,77,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 50% 0%, rgba(148, 136, 173,0.08) 0%, transparent 70%),
                 rgba(0,0,0,0.35);
-            border: 1px solid rgba(219,15,77,0.3);
+            border: 1px solid rgba(148, 136, 173,0.3);
             border-left: 3px solid var(--crimson);
             border-radius: 8px;
         }
@@ -587,7 +596,7 @@
         }
         .mf-notice-main strong {
             color: #fff;
-            background: linear-gradient(transparent 55%, rgba(219,15,77,0.55) 0%);
+            background: linear-gradient(transparent 55%, rgba(148, 136, 173,0.55) 0%);
             padding: 2px 4px;
             font-weight: 700;
         }
@@ -602,19 +611,19 @@
             display: flex; align-items: center; gap: 10px;
             padding: 12px 14px; margin-bottom: 6px;
             background: rgba(5,0,10,0.5);
-            border: 1px solid rgba(209,173,63,0.18);
+            border: 1px solid rgba(201, 169, 106,0.18);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.25s;
         }
         .mf-agree:hover {
-            border-color: rgba(209,173,63,0.4);
-            background: rgba(209,173,63,0.04);
+            border-color: rgba(201, 169, 106,0.4);
+            background: rgba(201, 169, 106,0.04);
         }
         .mf-agree:has(.mf-agree-cb:checked) {
-            border-color: rgba(219,15,77,0.5);
-            background: rgba(219,15,77,0.06);
-            box-shadow: 0 0 14px rgba(219,15,77,0.08);
+            border-color: rgba(148, 136, 173,0.5);
+            background: rgba(148, 136, 173,0.06);
+            box-shadow: 0 0 14px rgba(148, 136, 173,0.08);
         }
         .mf-agree-cb {
             position: absolute; opacity: 0; pointer-events: none;
@@ -622,7 +631,7 @@
         .mf-agree-box {
             flex-shrink: 0;
             width: 20px; height: 20px;
-            border: 1px solid rgba(209,173,63,0.45);
+            border: 1px solid rgba(201, 169, 106,0.45);
             border-radius: 5px;
             background: rgba(5,0,10,0.8);
             position: relative;
@@ -631,7 +640,7 @@
         .mf-agree-cb:checked + .mf-agree-box {
             background: var(--crimson);
             border-color: var(--crimson);
-            box-shadow: 0 0 10px rgba(219,15,77,0.55);
+            box-shadow: 0 0 10px rgba(148, 136, 173,0.55);
         }
         .mf-agree-cb:checked + .mf-agree-box::after {
             content: '';
@@ -650,10 +659,10 @@
         .mf-form-body.hidden { opacity: 0; pointer-events: none; height: 0; overflow: hidden; }
         .mf-sent-view, .mf-error-view { display: none; text-align: center; padding: 20px 10px 10px; }
         .mf-sent-view.active, .mf-error-view.active { display: block; }
-        .mf-sent-icon { font-size: 2.5rem; color: rgba(209,173,63,0.5); margin-bottom: 14px; }
+        .mf-sent-icon { font-size: 2.5rem; color: rgba(201, 169, 106,0.5); margin-bottom: 14px; }
         .mf-sent-title { font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 14px; }
         .mf-sent-msg { font-size: 0.88rem; color: rgba(200,185,155,0.75); line-height: 2.2; }
-        .mf-error-msg { font-size: 0.88rem; color: rgba(219,100,100,0.85); background: rgba(219,15,77,0.08); border: 1px solid rgba(219,15,77,0.25); border-radius: 8px; padding: 14px 16px; line-height: 1.9; margin-bottom: 12px; }
+        .mf-error-msg { font-size: 0.88rem; color: rgba(219,100,100,0.85); background: rgba(148, 136, 173,0.08); border: 1px solid rgba(148, 136, 173,0.25); border-radius: 8px; padding: 14px 16px; line-height: 1.9; margin-bottom: 12px; }
 
         /* ── Responsive ── */
         @media (max-width: 600px) {
@@ -669,14 +678,14 @@
             padding: 14px 22px;
             background: linear-gradient(135deg, rgba(15,12,18,.96), rgba(28,20,30,.94));
             color: rgba(230,215,180,0.95);
-            border: 1px solid rgba(209,173,63,0.45);
+            border: 1px solid rgba(201, 169, 106,0.45);
             border-radius: 4px;
-            font-family: 'Kaisei Decol', serif;
+            font-family: 'Shippori Mincho', serif;
             font-size: 0.84rem;
             font-weight: 400;
             letter-spacing: 0.04em;
             line-height: 1.7;
-            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(209,173,63,0.1) inset;
+            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(201, 169, 106,0.1) inset;
             z-index: 10000;
             opacity: 0; visibility: hidden;
             transition: opacity .4s, visibility .4s, transform .45s cubic-bezier(.22,.61,.36,1);
@@ -687,13 +696,13 @@
         }
         .toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
         .toast-error {
-            border-color: rgba(219,15,77,0.6);
+            border-color: rgba(148, 136, 173,0.6);
             color: rgba(255,210,210,0.95);
-            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(219,15,77,0.15) inset, 0 0 24px rgba(219,15,77,0.15);
+            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(148, 136, 173,0.15) inset, 0 0 24px rgba(148, 136, 173,0.15);
         }
         .toast-warn {
-            border-color: rgba(209,173,63,0.7);
-            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(209,173,63,0.18) inset, 0 0 24px rgba(209,173,63,0.12);
+            border-color: rgba(201, 169, 106,0.7);
+            box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(201, 169, 106,0.18) inset, 0 0 24px rgba(201, 169, 106,0.12);
         }
 
         /* ===== Cloudflare Turnstile (dark) ===== */
@@ -743,36 +752,20 @@
                 <span class="intro-card-corner bl">✦</span>
                 <span class="intro-card-corner br">✦</span>
                 <div class="intro-greeting">Commission Guide</div>
+                <div class="intro-payment-title" style="text-align:center;">✦ ごあいさつ</div>
                 <p class="intro-text">
                     シャルノス・グレナデンと申します。<br>
                     ご覧いただきありがとうございます。<br><br>
-                    主にイラストとLive2DとMVのご依頼を承っております。<br>
-                    背景絵師様、デザイナー様とも提携を結んでいますので、<br>
-                    必要でしたらそちらも含めてご相談に乗ることが出来ます。<br><br>
-                    上のタブから該当する項目を選んでいただき、<br>
-                    チェックを入れると大体の料金感がわかると思いますので<br>
-                    ぜひ試してみてくださいませ。
+                    主にイラスト・Live2D・Movieの<span style="white-space:nowrap">ご依頼を承っております。</span><br>
+                    背景絵師様・デザイナー様とも提携を結んでおりますので、<wbr>必要でしたらそちらも含めて<span style="white-space:nowrap">ご相談に乗ることができます。</span><br><br>
+                    上のタブから該当する項目を選び、<wbr>チェックを入れると大体の料金感がわかりますので、<wbr><span style="white-space:nowrap">ぜひお試しくださいませ。</span>
                 </p>
                 <div class="intro-availability">
                     <div class="intro-availability-title">✦ 現在の空き状況</div>
                     <div class="availability-grid">
                         <div class="availability-item">
                             <div class="availability-top">
-                                <span class="availability-month">April<span class="availability-month-ja">4月</span></span>
-                                <span class="availability-percent" data-pct="0">0<span class="percent-sign">%</span></span>
-                            </div>
-                            <div class="availability-bar">
-                                <div class="availability-bar-track"></div>
-                                <div class="availability-bar-fill" style="--pct:0%;"></div>
-                                <div class="availability-sparkle"></div>
-                            </div>
-                            <div class="availability-status status-full">
-                                <span class="status-dot"></span>受付終了
-                            </div>
-                        </div>
-                        <div class="availability-item">
-                            <div class="availability-top">
-                                <span class="availability-month">May<span class="availability-month-ja">5月</span></span>
+                                <span class="availability-month">August<span class="availability-month-ja">8月</span></span>
                                 <span class="availability-percent" data-pct="50">50<span class="percent-sign">%</span></span>
                             </div>
                             <div class="availability-bar">
@@ -789,41 +782,55 @@
                 <div class="intro-payment">
                     <div class="intro-payment-title">✦ お支払い方法</div>
                     <div class="intro-payment-group">
+                        <div class="intro-payment-group-label">Link</div>
+                        <div class="intro-payment-brands">
+                            <span class="pay-brand pay-link" title="Link">
+                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#33DDB3"/><text x="20" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#0A2540">link</text></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="intro-payment-group">
                         <div class="intro-payment-group-label">クレジットカード</div>
                         <div class="intro-payment-brands">
-                            <span class="pay-brand pay-visa" title="VISA">
+                            <span class="pay-brand pay-jcb" title="JCB">
+                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><text x="20" y="17" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="9" font-weight="900"><tspan fill="#0F4C9B">J</tspan><tspan fill="#BE1833">C</tspan><tspan fill="#1A8B3A">B</tspan></text></svg>
+                            </span>
+                            <span class="pay-brand pay-visa" title="Visa">
                                 <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><text x="20" y="17" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="10" font-weight="900" font-style="italic" fill="#1A1F71">VISA</text></svg>
                             </span>
                             <span class="pay-brand pay-mc" title="Mastercard">
                                 <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><circle cx="16" cy="13" r="7" fill="#EB001B"/><circle cx="24" cy="13" r="7" fill="#F79E1B" opacity="0.92"/><path d="M20 7.5a7 7 0 0 0 0 11 7 7 0 0 0 0-11z" fill="#FF5F00"/></svg>
                             </span>
-                            <span class="pay-brand pay-amex" title="AMEX">
+                            <span class="pay-brand pay-amex" title="American Express">
                                 <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#006FCF"/><text x="20" y="16" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="6.5" font-weight="900" fill="#fff" letter-spacing="0.5">AMEX</text></svg>
                             </span>
-                            <span class="pay-brand pay-unionpay" title="UnionPay">
-                                <svg viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="26" rx="3" fill="#fff"/><path d="M10 6h7l-3 14H7z" fill="#E21836"/><path d="M17 6h7l-3 14h-7z" fill="#00447C"/><path d="M24 6h7l-3 14h-7z" fill="#007B3A"/></svg>
-                            </span>
                         </div>
                     </div>
                     <div class="intro-payment-group">
-                        <div class="intro-payment-group-label">モバイル決済</div>
-                        <div class="intro-payment-brands">
-                            <span class="pay-brand pay-apple" title="Apple Pay">
-                                <svg viewBox="0 0 50 26" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="26" rx="3" fill="#000"/><path d="M14.5 11.3c-.02-1.9 1.56-2.83 1.63-2.88-.9-1.3-2.28-1.48-2.77-1.5-1.18-.12-2.3.69-2.9.69-.6 0-1.52-.67-2.5-.66-1.28.02-2.48.75-3.14 1.9-1.34 2.33-.34 5.77.97 7.66.64.92 1.4 1.96 2.38 1.92.96-.04 1.32-.62 2.48-.62s1.48.62 2.5.6c1.03-.02 1.69-.94 2.32-1.87.73-1.07 1.03-2.11 1.05-2.17-.02-.01-2.01-.77-2.03-3.07zm-1.92-5.64c.53-.64.89-1.53.79-2.41-.76.03-1.69.51-2.24 1.15-.49.56-.92 1.46-.81 2.33.86.06 1.73-.43 2.26-1.07z" fill="#fff"/><text x="31" y="17.5" font-family="-apple-system,Helvetica,sans-serif" font-size="9" font-weight="500" fill="#fff">Pay</text></svg>
-                            </span>
-                            <span class="pay-brand pay-google" title="Google Pay">
-                                <svg viewBox="0 0 50 26" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="26" rx="3" fill="#fff"/><text x="25" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="500" fill="#5F6368"><tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC04">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan><tspan> Pay</tspan></text></svg>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="intro-payment-group">
-                        <div class="intro-payment-group-label">その他</div>
+                        <div class="intro-payment-group-label">PayPal</div>
                         <div class="intro-payment-brands">
                             <span class="pay-brand pay-paypal" title="PayPal">
                                 <svg viewBox="0 0 50 26" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="26" rx="3" fill="#fff"/><text x="25" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="700" font-style="italic"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg>
                             </span>
                         </div>
                     </div>
+                    <div class="intro-payment-group">
+                        <div class="intro-payment-group-label">銀行振込</div>
+                        <p style="margin:6px 0 0;line-height:1.9;color:rgba(240,225,185,0.78);font-size:0.86rem;">カードとくらべ、お支払い完了確認に時間を要する場合があります。</p>
+                    </div>
+                    <p style="margin:18px 0 0;padding-top:16px;border-top:1px solid rgba(201,169,106,0.18);line-height:2;color:rgba(240,225,185,0.85);font-size:0.86rem;">クレジットカード・銀行振込でのお支払いは、決済代行サービス <strong style="color:var(--gold);">Stripe</strong> を通じて安全に処理されます。</p>
+                </div>
+                <div class="intro-payment" style="margin-top:18px;">
+                    <div class="intro-payment-title">✦ お支払いタイミング</div>
+                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">基本的に前払いをお願いいたしますが、依頼者様の活動実態などによっては、フレキシブルな対応を検討いたします。<br>ラフ着手後からキャンセル料金が発生いたしますのでご注意ください。</p>
+                </div>
+                <div class="intro-payment" style="margin-top:18px;">
+                    <div class="intro-payment-title">✦ リピート割引</div>
+                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">2回目以降、最終料金から <strong style="color:var(--gold);">-1,000円</strong> いたします。<br>（6,000円以上のご依頼に限ります）</p>
+                </div>
+                <div class="intro-payment" style="margin-top:18px;">
+                    <div class="intro-payment-title">✦ ショート動画2本セット料金</div>
+                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">通常1本 ¥3,000 ですが、2本セットでご依頼いただく場合 <strong style="color:var(--gold);">¥5,000</strong> で承ります。</p>
                 </div>
             </div>
         </div>
@@ -898,7 +905,7 @@
                         </div>
                     </div>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="1000" data-label="見切れなし"><div class="svc-info"><span class="svc-name">見切れなし</span><span class="svc-detail">髪と頭が切れないファイルをご用意します。MV制作やサムネイルなどにお使いいただける場合オススメです。</span></div><span class="svc-price option">+¥1,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-percent="50" data-label="グッズ化などの商用利用（合計金額の＋50%）"><div class="svc-info"><span class="svc-name">グッズ化などの商用利用</span><span class="svc-detail">合計金額の＋50%</span></div><span class="svc-price option">+50%</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-percent="30" data-label="グッズ化などの商用利用（合計金額の＋30%）"><div class="svc-info"><span class="svc-name">グッズ化などの商用利用</span><span class="svc-detail">合計金額の＋30%</span></div><span class="svc-price option">+30%</span></label>
                 </div>
                 <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
@@ -923,7 +930,7 @@
                     希望する場合絵師様に許可をお取りください。
                 </p>
                 <div class="svc-list">
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="30000" data-label="簡易モデリング"><div class="svc-info"><span class="svc-name">簡易モデリング</span><span class="svc-detail">瞳揺れ・瞬き・頭XY斜め・髪ゆれ。パーツ分けPSD前提。</span></div><span class="svc-price">¥30,000〜</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="28000" data-label="簡易モデリング"><div class="svc-info"><span class="svc-name">簡易モデリング</span><span class="svc-detail">瞳揺れ・瞬き・頭XY斜め・髪ゆれ。パーツ分けPSD前提。</span></div><span class="svc-price">¥28,000〜</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="60000" data-label="フルモデリング（全身）"><div class="svc-info"><span class="svc-name">フルモデリング（全身）</span><span class="svc-detail">全身フルリギング・物理設定込み。PSD支給前提。</span></div><span class="svc-price">¥60,000〜</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="20000" data-label="衣装差分追加（1点）"><div class="svc-info"><span class="svc-name">衣装差分追加（1点）</span><span class="svc-detail">既存モデルへの衣装差分追加・リギング。</span></div><span class="svc-price add">+¥20,000〜</span></label>
                 </div>
@@ -959,6 +966,7 @@
                 <p class="panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
                 <div class="svc-list">
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="3000" data-label="ショート動画"><div class="svc-info"><span class="svc-name">ショート動画</span><span class="svc-detail">歌ってみたも可。動画内に字幕をご希望される場合内容をご指定ください。</span></div><span class="svc-price">¥3,000</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="5000" data-label="ショート動画2本セット"><div class="svc-info"><span class="svc-name">ショート動画2本セット</span><span class="svc-detail">通常1本¥3,000のところ、2本セットでお得な¥5,000で承ります。</span></div><span class="svc-price">¥5,000</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="8000" data-label="MV‐シンプルコース"><div class="svc-info"><span class="svc-name">MV‐シンプルコース</span><span class="svc-detail">1枚絵と歌詞のみが表示されれば良い方向けです。</span></div><span class="svc-price">¥8,000</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="15000" data-label="MV‐スタンダード"><div class="svc-info"><span class="svc-name">MV‐スタンダード</span><span class="svc-detail">歌詞アニメーションや演出を含みます。作業量などで金額が変わります。</span></div><span class="svc-price">¥15,000〜</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="1200" data-label="サムネイル制作"><div class="svc-info"><span class="svc-name">サムネイル制作</span></div><span class="svc-price">¥1,200</span></label>
@@ -1029,8 +1037,8 @@
                 </div>
                 <div class="mf-notice-box">
                     <p class="mf-notice-heading">⚠ お支払い・キャンセルについて</p>
-                    <p class="mf-notice-main">お支払いタイミングは<strong>前払いかラフ完成後</strong>になります。</p>
-                    <p class="mf-notice-sub">キャンセル料金はラフ着手後から発生いたしますのでご注意ください。</p>
+                    <p class="mf-notice-main">お支払いは<strong>基本的に前払い</strong>をお願いしております。</p>
+                    <p class="mf-notice-sub">依頼者様の活動実態などによっては、フレキシブルな対応を検討いたします。<br>キャンセル料金はラフ着手後から発生いたしますのでご注意ください。</p>
                 </div>
                 <label class="mf-agree">
                     <input type="checkbox" class="mf-agree-cb" id="mf-agree">
@@ -1083,7 +1091,7 @@
                 ご希望の方はフォームからお気軽にご相談ください。
             </p>
             <div class="partner-sample-area">
-                ✦ サンプル準備中 ✦
+                <a href="https://www.foriio.com/00malmal" target="_blank" rel="noopener" style="color:var(--gold);letter-spacing:2px;text-decoration:none;border-bottom:1px solid rgba(201,169,106,.45);padding-bottom:3px;">まる 様 — ポートフォリオを見る →</a>
             </div>
         </div>
     </div>
@@ -1103,7 +1111,7 @@
                 ご希望の方はフォームからお気軽にご相談ください。
             </p>
             <div class="partner-sample-area">
-                ✦ サンプル準備中 ✦
+                <a href="https://www.pixiv.net/users/41190075" target="_blank" rel="noopener" style="color:var(--gold);letter-spacing:2px;text-decoration:none;border-bottom:1px solid rgba(201,169,106,.45);padding-bottom:3px;">ソミニカ 様 — pixivを見る →</a>
             </div>
         </div>
     </div>

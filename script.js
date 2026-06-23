@@ -203,6 +203,7 @@
                 title: 'MV / Movie',
                 sub: 'ミュージックビデオ・映像制作実績',
                 items: [
+                    { date: '2026.06.22', title: 'Petrich∅r様　ネガティヴ・ヴェンジェンス', desc: '動画担当', url: 'https://www.youtube.com/watch?v=dF2RJVOgbQY&feature=youtu.be' },
                     { date: '2026.03.29', title: 'しあん様 ずっと前から嫌いでした。/feat.アレナ', desc: '動画担当', url: 'https://www.youtube.com/watch?v=-BUa1zSB7wU' },
                     { date: '2026.03.10', title: 'しあん様 個人VTuber地下アイドルプロジェクト「Petrich∅r」', desc: '動画担当', url: 'https://www.youtube.com/watch?v=PBT4m17qg1U' },
                     { date: '2025.09.10', title: 'しあん様 重音テトオリジナル楽曲「L∞P」', desc: '動画担当', url: 'https://www.youtube.com/watch?v=xkUnin_NPB0' },
