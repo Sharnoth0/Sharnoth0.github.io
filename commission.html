@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://grimlily.grenadine0syrup.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://grimlily.grenadine0syrup.workers.dev; frame-src https://challenges.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self';">
     <title>Commission & Works — シャルノス・グレナデン</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -337,6 +337,109 @@
         .status-half .status-dot {
             background: rgba(240,140,160,0.95);
             box-shadow: 0 0 6px rgba(240,140,160,0.8), 0 0 12px rgba(148, 136, 173,0.5);
+        }
+        /* ── Portfolio CTA button (intro) ── */
+        .intro-portfolio-cta { display:flex; justify-content:center; margin: 4px 0 26px; }
+        .portfolio-btn {
+            display:inline-flex; align-items:center; gap:12px;
+            padding:16px 38px; border-radius:999px;
+            background:linear-gradient(135deg, rgba(201,169,106,0.16), rgba(148,136,173,0.12));
+            border:1px solid rgba(201,169,106,0.5); color:#f3e2b4;
+            font-family:'Shippori Mincho', serif; font-size:0.95rem; letter-spacing:2px;
+            cursor:pointer; position:relative; overflow:hidden;
+            box-shadow:0 12px 30px -14px rgba(201,169,106,0.5);
+            transition:all .35s cubic-bezier(.25,1,.5,1);
+        }
+        .portfolio-btn::before {
+            content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; pointer-events:none;
+            background:linear-gradient(100deg, transparent, rgba(255,255,255,0.22), transparent);
+            transform:skewX(-18deg); transition:left .65s cubic-bezier(.25,1,.5,1);
+        }
+        .portfolio-btn:hover { transform:translateY(-3px); border-color:var(--gold);
+            background:linear-gradient(135deg, rgba(201,169,106,0.28), rgba(148,136,173,0.18));
+            box-shadow:0 20px 44px -14px rgba(201,169,106,0.7), 0 0 34px -10px rgba(201,169,106,0.5); }
+        .portfolio-btn:hover::before { left:125%; }
+        .portfolio-btn .pfb-ico { font-size:1.05rem; }
+        .portfolio-btn .pfb-label { font-family:'Cinzel', serif; letter-spacing:3px; }
+        .portfolio-btn .pfb-ja { font-size:0.8rem; color:rgba(240,225,185,0.75); letter-spacing:1.5px; }
+        .portfolio-btn .pfb-arrow { transition:transform .35s cubic-bezier(.25,1,.5,1); }
+        .portfolio-btn:hover .pfb-arrow { transform:translateX(5px); }
+        @media (max-width:520px){ .portfolio-btn{ padding:14px 24px; gap:8px; font-size:0.88rem; } .portfolio-btn .pfb-ja{ display:none; } }
+
+        /* availability: single status only */
+        .availability-single { display:flex; justify-content:center; }
+        .availability-single .availability-item { text-align:center; }
+        .availability-single .availability-status { font-size:0.85rem; padding:8px 22px; letter-spacing:3px; }
+
+        /* portfolio modal shell */
+        .portfolio-modal-content { max-width:min(980px, 94vw); width:100%; max-height:88vh; overflow-y:auto; }
+
+        /* ── Portfolio grid & lightbox ── */
+        .pf-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; margin-top:8px; }
+        .pf-item { position:relative; display:block; width:100%; padding:0; border:1px solid rgba(201,169,106,0.26);
+            border-radius:6px; overflow:hidden; aspect-ratio:4/3; background:rgba(201,169,106,0.05); cursor:pointer;
+            transition:border-color .35s, transform .35s cubic-bezier(.22,.8,.22,1), box-shadow .35s; }
+        .pf-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s cubic-bezier(.22,.8,.22,1); }
+        .pf-item:hover { border-color:#e3c98f; transform:translateY(-3px);
+            box-shadow:0 16px 34px -16px rgba(0,0,0,.7), 0 0 30px -12px rgba(201,169,106,.4); }
+        .pf-item:hover img { transform:scale(1.06); }
+        .pf-cap { position:absolute; left:0; right:0; bottom:0; padding:18px 10px 9px; font-size:11.5px;
+            letter-spacing:.04em; color:#ece7df; text-align:left; line-height:1.5;
+            background:linear-gradient(to top, rgba(8,8,11,.92), transparent); opacity:0; transition:opacity .35s; }
+        .pf-item:hover .pf-cap { opacity:1; }
+        .pf-zoom, .pf-multi { position:absolute; display:grid; place-items:center; border-radius:50%;
+            background:rgba(8,8,11,.6); border:1px solid rgba(201,169,106,.5); color:#e3c98f; }
+        .pf-zoom { top:8px; right:8px; width:26px; height:26px; font-size:13px; opacity:0; transition:opacity .3s; }
+        .pf-item:hover .pf-zoom { opacity:1; }
+        .pf-multi { top:8px; left:8px; min-width:26px; height:22px; padding:0 8px; border-radius:11px;
+            font-family:'Cormorant Garamond',serif; font-size:12px; }
+        .pf-multi::before { content:"⊞ "; }
+        .pf-section { grid-column:1/-1; display:flex; align-items:center; gap:14px; margin:14px 2px 2px;
+            font-family:'Cormorant Garamond',serif; font-style:italic; letter-spacing:.14em; font-size:16px; color:#e3c98f; }
+        .pf-section::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,rgba(201,169,106,.4),transparent); }
+        .pf-grid .pf-section:first-child { margin-top:0; }
+        .pf-video .pf-play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:50px; height:50px;
+            display:grid; place-items:center; border-radius:50%; background:rgba(8,8,11,.55); border:1px solid rgba(243,226,180,.7);
+            color:#f3e2b4; font-size:17px; padding-left:3px; transition:transform .35s cubic-bezier(.22,.8,.22,1), background .35s; }
+        .pf-video:hover .pf-play { transform:translate(-50%,-50%) scale(1.12); background:rgba(201,169,106,.85); color:#0b0a08; }
+        .pf-lightbox { position:fixed; inset:0; z-index:9999; display:grid; place-items:center; padding:40px;
+            background:rgba(4,4,7,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+            opacity:0; visibility:hidden; transition:opacity .4s, visibility .4s; }
+        .pf-lightbox.open { opacity:1; visibility:visible; }
+        .pf-light-fig { margin:0; display:flex; flex-direction:column; align-items:center; gap:14px; max-width:92vw; max-height:90vh; }
+        .pf-light-fig img { max-width:92vw; max-height:78vh; object-fit:contain; border:1px solid rgba(201,169,106,.26);
+            box-shadow:0 40px 100px -30px rgba(0,0,0,.85), 0 0 60px -20px rgba(201,169,106,.3);
+            transform:scale(.96); transition:transform .45s cubic-bezier(.22,.8,.22,1); }
+        .pf-lightbox.open .pf-light-fig img { transform:scale(1); }
+        .pf-light-video { display:none; width:min(88vw,1100px); aspect-ratio:16/9; border:1px solid rgba(201,169,106,.26);
+            box-shadow:0 40px 100px -30px rgba(0,0,0,.85), 0 0 60px -20px rgba(201,169,106,.3); }
+        .pf-light-video iframe { width:100%; height:100%; display:block; border:0; }
+        .pf-light-fig figcaption { color:#ece7df; letter-spacing:.06em; font-size:14px; text-align:center; }
+        .pf-light-thumbs { display:none; flex-wrap:wrap; justify-content:center; gap:8px; max-width:92vw; }
+        .pf-thumb { width:60px; height:60px; padding:0; border:1px solid rgba(255,255,255,.18); border-radius:5px;
+            overflow:hidden; background:none; cursor:pointer; opacity:.55;
+            transition:opacity .3s, border-color .3s, transform .3s cubic-bezier(.22,.8,.22,1); }
+        .pf-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+        .pf-thumb:hover { opacity:.85; border-color:#e3c98f; transform:translateY(-2px); }
+        .pf-thumb.active { opacity:1; border-color:var(--gold); box-shadow:0 0 14px -4px rgba(201,169,106,.7); }
+        .pf-light-close { position:absolute; top:22px; right:26px; width:42px; height:42px; border:1px solid rgba(201,169,106,.3);
+            border-radius:50%; background:rgba(8,8,11,.5); color:#ece7df; font-size:22px; font-family:serif;
+            cursor:pointer; display:grid; place-items:center; transition:.3s; }
+        .pf-light-close:hover { border-color:var(--gold); color:#e3c98f; transform:rotate(90deg); }
+        @media (max-width:560px) { .pf-thumb { width:48px; height:48px; } .pf-grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); } }
+
+        .status-open {
+            color: rgba(240,225,185,0.95);
+            background: rgba(201, 169, 106,0.12);
+            border: 1px solid rgba(201, 169, 106,0.45);
+        }
+        .status-open .status-dot {
+            background: #e3c98f;
+            box-shadow: 0 0 6px rgba(227,201,143,0.9), 0 0 14px rgba(201, 169, 106,0.6);
+        }
+        .availability-mark {
+            font-family: 'Cinzel', serif; font-size: 1.6rem; line-height: 1;
+            color: #e3c98f; text-shadow: 0 0 18px rgba(201, 169, 106,0.5);
         }
         @keyframes statusPulse {
             0%,100% { opacity: 0.8; transform: scale(1); }
@@ -741,7 +844,7 @@
             </button>
             <button class="comm-tab" data-panel="illust">🎨 Illustration</button>
             <button class="comm-tab" data-panel="live2d">✦ Live2D</button>
-            <button class="comm-tab" data-panel="mv">🎬 MV</button>
+            <button class="comm-tab" data-panel="mv">🎬 Movie</button>
         </div>
 
         <!-- ═══ はじめに ═══ -->
@@ -760,21 +863,20 @@
                     背景絵師様・デザイナー様とも提携を結んでおりますので、<wbr>必要でしたらそちらも含めて<span style="white-space:nowrap">ご相談に乗ることができます。</span><br><br>
                     上のタブから該当する項目を選び、<wbr>チェックを入れると大体の料金感がわかりますので、<wbr><span style="white-space:nowrap">ぜひお試しくださいませ。</span>
                 </p>
+                <div class="intro-portfolio-cta">
+                    <button type="button" class="portfolio-btn" id="open-portfolio">
+                        <span class="pfb-ico">🖼</span>
+                        <span class="pfb-label">Portfolio</span>
+                        <span class="pfb-ja">制作実績を見る</span>
+                        <span class="pfb-arrow">→</span>
+                    </button>
+                </div>
                 <div class="intro-availability">
                     <div class="intro-availability-title">✦ 現在の空き状況</div>
-                    <div class="availability-grid">
+                    <div class="availability-grid availability-single">
                         <div class="availability-item">
-                            <div class="availability-top">
-                                <span class="availability-month">August<span class="availability-month-ja">8月</span></span>
-                                <span class="availability-percent" data-pct="50">50<span class="percent-sign">%</span></span>
-                            </div>
-                            <div class="availability-bar">
-                                <div class="availability-bar-track"></div>
-                                <div class="availability-bar-fill" style="--pct:50%;"></div>
-                                <div class="availability-sparkle"></div>
-                            </div>
-                            <div class="availability-status status-half">
-                                <span class="status-dot"></span>残り僅か
+                            <div class="availability-status status-open">
+                                <span class="status-dot"></span>受付中
                             </div>
                         </div>
                     </div>
@@ -911,6 +1013,7 @@
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。内容により変動します。</li>
+                        <li>収益化済み配信サイトでの使用による追加料金はありません。</li>
                         <li>修正は軽微なもの2回まで無料。大幅変更は別途費用。</li>
                         <li>納期はご依頼内容により異なります（短い納期には対応いたしません）。</li>
                         <li>基本的に著作権は放棄いたしません。</li>
@@ -952,6 +1055,7 @@
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。パーツ数・複雑さにより変動します。</li>
+                        <li>収益化済み配信サイトでの使用による追加料金はありません。</li>
                         <li>素材（PSD）はパーツを分けてご支給いただく必要があります。</li>
                         <li>納期目安：新規モデル 8〜12週間、追加改修 2〜4週間。</li>
                         <li>Cubism Pro使用。納品はcmo3ファイル形式。</li>
@@ -968,13 +1072,13 @@
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="3000" data-label="ショート動画"><div class="svc-info"><span class="svc-name">ショート動画</span><span class="svc-detail">歌ってみたも可。動画内に字幕をご希望される場合内容をご指定ください。</span></div><span class="svc-price">¥3,000</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="5000" data-label="ショート動画2本セット"><div class="svc-info"><span class="svc-name">ショート動画2本セット</span><span class="svc-detail">通常1本¥3,000のところ、2本セットでお得な¥5,000で承ります。</span></div><span class="svc-price">¥5,000</span></label>
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="8000" data-label="MV‐シンプルコース"><div class="svc-info"><span class="svc-name">MV‐シンプルコース</span><span class="svc-detail">1枚絵と歌詞のみが表示されれば良い方向けです。</span></div><span class="svc-price">¥8,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="15000" data-label="MV‐スタンダード"><div class="svc-info"><span class="svc-name">MV‐スタンダード</span><span class="svc-detail">歌詞アニメーションや演出を含みます。作業量などで金額が変わります。</span></div><span class="svc-price">¥15,000〜</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="1200" data-label="サムネイル制作"><div class="svc-info"><span class="svc-name">サムネイル制作</span></div><span class="svc-price">¥1,200</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="12000" data-label="MV‐スタンダード"><div class="svc-info"><span class="svc-name">MV‐スタンダード</span><span class="svc-detail">歌詞アニメーションや演出を含みます。作業量などで金額が変わります。</span></div><span class="svc-price">¥12,000〜</span></label>
                 </div>
                 <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。尺・内容により変動します。</li>
+                        <li>収益化済み配信サイトでの使用による追加料金はありません。</li>
                         <li>納品形式：MP4。</li>
                     </ul>
                 </div>
@@ -982,7 +1086,7 @@
         </div>
 
         <!-- ── Total Bar ── -->
-        <div class="total-bar">
+        <div class="total-bar" id="total-bar">
             <div class="total-selected" id="total-selected">
                 <span class="total-empty">← タブからご希望の項目を選択してください</span>
             </div>
@@ -1116,7 +1220,102 @@
         </div>
     </div>
 
+    <!-- ══ ポートフォリオ モーダル ══ -->
+    <div class="modal-overlay" id="portfolio-modal">
+        <div class="modal-content portfolio-modal-content">
+            <button class="modal-close" id="portfolio-modal-close">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="partner-header">
+                <h3 class="partner-title">Portfolio</h3>
+                <p class="partner-sub">制作実績</p>
+            </div>
+            <p class="partner-body" style="margin-bottom:18px;">サムネイルをクリックすると拡大・再生できます。</p>
+            <div class="pf-grid" id="portfolioGrid"></div>
+        </div>
+    </div>
+
+    <!-- ══ ポートフォリオ ライトボックス ══ -->
+    <div class="pf-lightbox" id="pfLightbox">
+        <button class="pf-light-close" id="pfLightClose" aria-label="Close">×</button>
+        <figure class="pf-light-fig">
+            <img id="pfLightImg" src="" alt="">
+            <div class="pf-light-video" id="pfLightVideo"></div>
+            <figcaption id="pfLightCap"></figcaption>
+            <div class="pf-light-thumbs" id="pfLightThumbs"></div>
+        </figure>
+    </div>
+
     <script>
+        /* ── Portfolio (grid + lightbox) ── */
+        (function(){
+            const portfolioItems=[
+                { section:'Illustration ／ イラスト' },
+                { title:'TRPG PC「孤立院深影」（差分あり）', imgs:[
+                    'images/portfolio/kuritsuin/01.png','images/portfolio/kuritsuin/02.png',
+                    'images/portfolio/kuritsuin/03.png','images/portfolio/kuritsuin/04.png',
+                    'images/portfolio/kuritsuin/05.png','images/portfolio/kuritsuin/smile.png',
+                    'images/portfolio/kuritsuin/yami.png','images/portfolio/kuritsuin/hakkyo.png'] },
+                { img:'images/portfolio/grenadine-2nd.png', title:'グレナデンシロップ 2nd Model' },
+                { img:'images/portfolio/grenadine-movie-limited.png', title:'グレナデンシロップ Movie Limited' },
+                { img:'images/portfolio/tsukino-mito-chibi.png', title:'にじさんじ 月ノ美兎 ミニキャラファンアート' },
+                { img:'images/portfolio/mitsume-sukisugite.png', title:'xian様『好きすぎて、狂っているのです。』歌唱担当：みつめ様' },
+                { img:'images/portfolio/xeno-map.png', title:'藍白ゼノ様 マップ隠し用イラスト' },
+                { img:'images/portfolio/mizugi2.png', title:'グレナデンシロップ 水着イラスト' },
+                { section:'Movie ／ 動画担当' },
+                { type:'video', yt:'9jjx1ZQki-Q', title:'少女レイ / みきとP (Cover) — カイロ・ヒエショ' },
+                { type:'video', yt:'dF2RJVOgbQY', title:'ネガティヴ・ヴェンジェンス / Petrich∅r' }
+            ];
+            const pg=document.getElementById('portfolioGrid');
+            if(!pg) return;
+            const lb=document.getElementById('pfLightbox'), lbImg=document.getElementById('pfLightImg'),
+                  lbCap=document.getElementById('pfLightCap'), lbClose=document.getElementById('pfLightClose'),
+                  lbThumbs=document.getElementById('pfLightThumbs'), lbVideo=document.getElementById('pfLightVideo');
+            function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+            pg.innerHTML=portfolioItems.map((it,i)=>{
+                if(it.section) return '<div class="pf-section">'+esc(it.section)+'</div>';
+                if(it.type==='video'){
+                    return '<button type="button" class="pf-item pf-video" data-i="'+i+'"><img src="https://img.youtube.com/vi/'+esc(it.yt)+'/hqdefault.jpg" alt="'+esc(it.title)+'" loading="lazy">'+
+                        '<span class="pf-cap">'+esc(it.title)+'</span><span class="pf-play">▶</span></button>';
+                }
+                const imgs=(it.imgs&&it.imgs.length)?it.imgs:[it.img];
+                const badge=imgs.length>1?'<span class="pf-multi">'+imgs.length+'</span>':'';
+                return '<button type="button" class="pf-item" data-i="'+i+'"><img src="'+esc(imgs[0])+'" alt="'+esc(it.title)+'" loading="lazy">'+
+                    '<span class="pf-cap">'+esc(it.title)+'</span>'+badge+'<span class="pf-zoom">⤢</span></button>';
+            }).join('');
+            function setMain(src){ lbImg.src=src; [].forEach.call(lbThumbs.children,function(c){ c.classList.toggle('active', c.dataset.src===src); }); }
+            function openLb(it){
+                lbCap.textContent=it.title||'';
+                if(it.type==='video'){
+                    lbImg.style.display='none'; lbThumbs.innerHTML=''; lbThumbs.style.display='none';
+                    lbVideo.style.display='block';
+                    lbVideo.innerHTML='<iframe src="https://www.youtube.com/embed/'+esc(it.yt)+'?autoplay=1&rel=0" title="'+esc(it.title||'')+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    lb.classList.add('open'); return;
+                }
+                lbVideo.style.display='none'; lbVideo.innerHTML=''; lbImg.style.display='';
+                const imgs=(it.imgs&&it.imgs.length)?it.imgs:[it.img];
+                lbImg.alt=it.title||'';
+                if(imgs.length>1){
+                    lbThumbs.innerHTML=imgs.map(function(s){return '<button type="button" class="pf-thumb" data-src="'+esc(s)+'"><img src="'+esc(s)+'" alt="" loading="lazy"></button>';}).join('');
+                    lbThumbs.style.display='flex';
+                } else { lbThumbs.innerHTML=''; lbThumbs.style.display='none'; }
+                setMain(imgs[0]); lb.classList.add('open');
+            }
+            function closeLb(){ lb.classList.remove('open'); lbImg.src=''; lbVideo.innerHTML=''; }
+            pg.addEventListener('click', function(e){ const b=e.target.closest('.pf-item'); if(!b) return; const it=portfolioItems[+b.dataset.i]; if(it) openLb(it); });
+            lbThumbs.addEventListener('click', function(e){ const t=e.target.closest('.pf-thumb'); if(t) setMain(t.dataset.src); });
+            lbClose.addEventListener('click', closeLb);
+            lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+            /* ポートフォリオボタン → モーダルを開く */
+            const openBtn=document.getElementById('open-portfolio'), pModal=document.getElementById('portfolio-modal');
+            if(openBtn && pModal) openBtn.addEventListener('click', function(){ pModal.classList.add('active'); });
+            addEventListener('keydown', function(e){
+                if(e.key!=='Escape') return;
+                if(lb.classList.contains('open')) closeLb();
+                else if(pModal && pModal.classList.contains('active')) pModal.classList.remove('active');
+            });
+        })();
+
         /* ── Tabs ── */
         document.querySelectorAll('.comm-tab').forEach(tab => {
             tab.addEventListener('click', () => {
@@ -1257,7 +1456,7 @@
                 if (modal) modal.classList.add('active');
             });
         });
-        document.querySelectorAll('#designer-modal, #bgartist-modal').forEach(modal => {
+        document.querySelectorAll('#designer-modal, #bgartist-modal, #portfolio-modal').forEach(modal => {
             const closeBtn = modal.querySelector('.modal-close');
             if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
             modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });

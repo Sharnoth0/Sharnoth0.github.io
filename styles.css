@@ -132,6 +132,20 @@ a:hover .roll .c>span,.orb:hover .roll .c>span{transform:translateY(-100%)}
 .cff-cta .arw::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--champ);border-right:1px solid var(--champ);transform:rotate(45deg)}
 .cf-float:hover .cff-cta .arw{width:38px}
 
+/* ── Crowdfunding: successful / closed state ── */
+.cf-float.is-done{border-color:rgba(201,169,106,.5);
+  background:linear-gradient(150deg,rgba(201,169,106,.16),rgba(18,16,24,.72) 52%,rgba(148,136,173,.12))}
+.cf-float.is-done::after{border-bottom-color:var(--champ);border-right-color:var(--champ)}
+.cf-float.is-done .cff-head{color:var(--champ-soft)}
+.cf-float.is-done .cff-head .dot{animation:none;background:var(--champ-soft);box-shadow:0 0 10px var(--champ-soft)}
+.cff-badge{display:inline-flex;align-items:center;gap:5px;margin-left:10px;padding:3px 11px;border-radius:999px;
+  background:linear-gradient(96deg,#f7ead0,#e3c98f 45%,var(--champ));color:#0b0a08;
+  font-family:"Shippori Mincho";font-size:10.5px;font-weight:600;letter-spacing:.12em;vertical-align:middle;
+  box-shadow:0 4px 14px -5px rgba(201,169,106,.8),inset 0 1px 0 rgba(255,255,255,.5)}
+.cff-badge::before{content:"✦"}
+.cf-float.is-done:hover{border-color:var(--champ);
+  box-shadow:0 20px 50px -22px rgba(0,0,0,.8),0 0 46px -8px rgba(201,169,106,.55)}
+
 /* loading screen */
 .loader{position:fixed;inset:0;z-index:600;background:#06060a;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s var(--ease),visibility 1s}
 .loader::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 44%,rgba(148,136,173,.15),transparent 55%),radial-gradient(circle at 50% 56%,rgba(201,169,106,.13),transparent 60%);animation:ldbreathe 3.6s ease-in-out infinite}
@@ -497,6 +511,27 @@ footer .ft{margin-top:28px;font-size:12px;letter-spacing:.32em;opacity:.55}
 .tag-modal .tag-desc{color:var(--ivory-dim);line-height:2;letter-spacing:.04em;font-size:14.5px;text-align:center;margin-bottom:8px;line-break:strict;word-break:auto-phrase;overflow-wrap:break-word}
 .tag-modal .tag-cta{display:inline-flex;width:100%;justify-content:center;margin-top:24px}
 
+/* ── Crowdfunding supporters (Special Thanks) ── */
+.supporters{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin:20px 0 14px}
+.sup{position:relative;display:flex;align-items:baseline;justify-content:center;gap:7px;padding:14px 14px;
+  border:1px solid rgba(201,169,106,.26);border-radius:3px;
+  background:linear-gradient(155deg,rgba(201,169,106,.09),rgba(18,16,24,.5) 55%,rgba(148,136,173,.08));
+  transition:border-color .4s var(--ease),background .4s,box-shadow .4s,transform .4s var(--ease)}
+/* fine corner filigree */
+.sup::before,.sup::after{content:"";position:absolute;width:9px;height:9px;opacity:.75;transition:opacity .4s}
+.sup::before{top:-1px;left:-1px;border-top:1px solid var(--champ);border-left:1px solid var(--champ)}
+.sup::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--violet);border-right:1px solid var(--violet)}
+.sup-n{font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.1em;color:var(--ivory);white-space:nowrap}
+.sup-s{font-family:"Shippori Mincho",serif;font-size:10.5px;letter-spacing:.16em;color:var(--champ);opacity:.85}
+.sup:hover{transform:translateY(-3px);border-color:rgba(201,169,106,.6);
+  background:linear-gradient(155deg,rgba(201,169,106,.18),rgba(22,19,28,.6) 55%,rgba(148,136,173,.14));
+  box-shadow:0 14px 30px -16px rgba(0,0,0,.75),0 0 26px -10px rgba(201,169,106,.5)}
+.sup:hover::before,.sup:hover::after{opacity:1}
+.sup:hover .sup-n{color:#f3e2b4}
+.sup-foot{text-align:center;font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.24em;
+  color:var(--ivory-dim);opacity:.6;margin-top:4px}
+@media(max-width:520px){.supporters{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}.sup{padding:12px 10px}.sup-n{font-size:13.5px}}
+
 /* ── Unit panel ── */
 .unit{display:flex;gap:24px;align-items:center;padding:22px 0;border-top:1px solid rgba(255,255,255,.07)}
 .unit:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
@@ -533,6 +568,12 @@ footer .ft{margin-top:28px;font-size:12px;letter-spacing:.32em;opacity:.55}
   .cf-float .cff-title{font-size:14px;letter-spacing:.07em;line-height:1.2}
   .cf-float .cff-date{margin-top:0;white-space:nowrap}
   .cf-float .cff-cta{margin-top:0;margin-left:auto;padding-left:6px;white-space:nowrap}
+  /* successful state: keep the thank-you line visible on its own row */
+  .cf-float.is-done{max-width:min(520px,46vw);padding:14px 22px;gap:5px 16px}
+  .cf-float.is-done .cff-sub{display:block;width:100%;font-size:12.5px;letter-spacing:.08em;color:var(--ivory)}
+  .cf-float.is-done .cff-head{width:100%}
+  .cf-float.is-done .cff-cta{margin-left:0}
+  .cf-float.is-done .cff-date{margin-left:auto}
   /* swap Profile(o1) to the top slot, Works(o2) to the middle slot (size included) */
   .orb.o1{top:10%;right:7%;--sz:132px}   /* Profile — top */
   .orb.o2{top:35%;right:13%;--sz:160px}  /* Works — middle */
