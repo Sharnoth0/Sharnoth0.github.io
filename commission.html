@@ -23,6 +23,7 @@
             background: var(--bg-color);
             font-family: 'Shippori Mincho', serif;
             overflow-x: hidden;
+            overflow-x: clip;
             scroll-behavior: smooth;
         }
         body::after {
@@ -63,23 +64,23 @@
             font-family: 'Cinzel', serif; font-size: 0.82rem;
             letter-spacing: 3px; color: rgba(201, 169, 106,0.6);
             text-decoration: none; transition: color 0.3s;
-            padding: 20px 30px;
+            padding: 14px 30px 4px;
         }
         .back-link:hover { color: var(--gold); }
         .back-link::before { content: '←'; transition: transform 0.3s; }
         .back-link:hover::before { transform: translateX(-4px); }
 
-        /* ── Header ── */
-        .comm-header {
-            text-align: center;
-            padding: 30px 20px 40px;
+        /* ── Header（右カラム内の見出し） ── */
+        .comm-head { padding: 0 0 4px; }
+        .comm-header-deco {
+            font-size: 0.72rem; color: rgba(201,169,106,0.34);
+            letter-spacing: 9px; margin-bottom: 6px; line-height: 1;
         }
-        .comm-header-deco { font-size: 0.8rem; color: rgba(201, 169, 106,0.3); letter-spacing: 8px; margin-bottom: 12px; }
         .comm-title {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic; font-weight: 500;
-            font-size: clamp(2.4rem, 6vw, 4rem);
-            letter-spacing: 2px;
+            font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+            letter-spacing: 2px; line-height: 1.15;
             background: linear-gradient(96deg, #f3e2b4, #e3c98f 28%, var(--gold) 60%, #9488ad);
             background-size: 300% auto;
             -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -87,34 +88,129 @@
             margin: 0;
         }
         .comm-subtitle {
-            font-size: 0.78rem; color: rgba(200,175,110,0.5);
-            letter-spacing: 3px; margin-top: 10px;
+            font-size: 0.75rem; color: rgba(200,175,110,0.52);
+            letter-spacing: 3px; margin: 8px 0 0;
+        }
+        .comm-head-rule {
+            margin-top: 16px; height: 1px; border: 0;
+            background: linear-gradient(90deg,
+                rgba(201,169,106,0.45) 0%,
+                rgba(148,136,173,0.28) 42%,
+                rgba(201,169,106,0.06) 78%,
+                rgba(201,169,106,0) 100%);
+        }
+        /* ✦入りの区切り飾り */
+        .sec-orn {
+            display: flex; align-items: center; gap: 12px;
+            margin: 26px 0 18px; color: rgba(201,169,106,0.32);
+            font-size: 0.62rem; letter-spacing: 3px;
+        }
+        .sec-orn::before, .sec-orn::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, rgba(201,169,106,0), rgba(201,169,106,0.28), rgba(201,169,106,0));
         }
         @keyframes titleFlow { from{background-position:0% center;}to{background-position:300% center;} }
 
         /* ── Main Container ── */
         .comm-wrap {
-            max-width: 860px; width: 92%; margin: 0 auto;
+            max-width: 1140px; width: 92%; margin: 0 auto;
             padding-bottom: 100px;
         }
 
+        /* ── Layout（2カラム） ── */
+        .comm-layout {
+            display: grid;
+            grid-template-columns: 232px minmax(0, 1fr);
+            gap: 44px;
+            align-items: start;
+        }
+        .comm-side { position: sticky; top: 22px; }
+        .comm-main { min-width: 0; }
+        .comm-side-inner {
+            position: relative;
+            border: 1px solid rgba(201,169,106,0.22);
+            border-radius: 14px;
+            padding: 20px 14px 16px;
+            background: linear-gradient(165deg, rgba(10,4,16,0.72) 0%, rgba(14,6,20,0.82) 60%, rgba(10,4,16,0.72) 100%);
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 8px 30px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.35);
+        }
+        .comm-side-corner { position: absolute; font-size: 0.62rem; color: rgba(201,169,106,0.3); line-height: 1; }
+        .comm-side-corner.tl { top: 8px; left: 10px; }
+        .comm-side-corner.tr { top: 8px; right: 10px; }
+        .comm-side-corner.bl { bottom: 8px; left: 10px; }
+        .comm-side-corner.br { bottom: 8px; right: 10px; }
+        .comm-side-label {
+            font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 5px;
+            color: rgba(201,169,106,0.5); text-align: center;
+            padding-bottom: 12px; margin-bottom: 10px;
+            border-bottom: 1px solid rgba(201,169,106,0.16);
+        }
+        .comm-side-foot {
+            text-align: center; margin-top: 12px; padding-top: 10px;
+            border-top: 1px solid rgba(201,169,106,0.14);
+            font-size: 0.6rem; letter-spacing: 4px; color: rgba(201,169,106,0.28);
+        }
+
         /* ── Tabs ── */
-        .comm-tabs {
-            display: flex; gap: 0;
-            border-bottom: 1px solid rgba(201, 169, 106,0.15);
-            padding: 0; overflow-x: auto;
-            margin-bottom: 0;
-        }
+        .comm-tabs { display: flex; flex-direction: column; gap: 3px; }
         .comm-tab {
-            display: flex; align-items: center; gap: 6px;
-            font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 2px;
-            color: rgba(190,175,155,0.4); padding: 14px 22px;
-            border-bottom: 2px solid transparent; white-space: nowrap;
-            transition: all 0.3s; background: none; border-top: none; border-left: none; border-right: none;
-            cursor: pointer;
+            position: relative;
+            display: flex; align-items: center; gap: 10px;
+            width: 100%; text-align: left;
+            font-family: 'Shippori Mincho', serif; font-size: 0.84rem; letter-spacing: 1.5px;
+            color: rgba(190,175,155,0.5);
+            padding: 11px 12px 11px 16px;
+            border: none; border-radius: 9px;
+            background: transparent;
+            transition: color .35s ease, background .35s ease, transform .35s ease;
+            cursor: pointer; white-space: nowrap;
         }
-        .comm-tab:hover { color: rgba(201, 169, 106,0.8); }
-        .comm-tab.active { color: var(--gold); border-bottom-color: var(--crimson); }
+        .comm-tab::before {
+            content: ''; position: absolute; left: 5px; top: 50%;
+            width: 2px; height: 0; transform: translateY(-50%);
+            background: linear-gradient(180deg, var(--gold), var(--crimson));
+            border-radius: 2px; transition: height .35s cubic-bezier(.4,0,.2,1);
+        }
+        .comm-tab .tab-mark {
+            flex: none; display: inline-flex; align-items: center; justify-content: center;
+            width: 16px; height: 16px; font-size: 0.66rem;
+            color: rgba(201,169,106,0.4);
+            transition: color .35s ease, transform .5s cubic-bezier(.4,0,.2,1);
+        }
+        .comm-tab .tab-mark svg { width: 14px; height: 14px; }
+        .comm-tab .tab-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+        .comm-tab .tab-en {
+            font-family: 'Cinzel', serif; font-size: 0.54rem; letter-spacing: 2.4px;
+            color: rgba(201,169,106,0.32); transition: color .35s ease;
+        }
+        .comm-tab:hover {
+            color: rgba(230,214,180,0.9);
+            background: rgba(201,169,106,0.055);
+            transform: translateX(2px);
+        }
+        .comm-tab:hover .tab-mark { color: rgba(201,169,106,0.75); transform: rotate(90deg); }
+        .comm-tab:hover .tab-en { color: rgba(201,169,106,0.5); }
+        .comm-tab.active {
+            color: var(--gold);
+            background: linear-gradient(90deg, rgba(201,169,106,0.13) 0%, rgba(148,136,173,0.07) 55%, rgba(201,169,106,0) 100%);
+            box-shadow: inset 0 0 20px rgba(201,169,106,0.06);
+        }
+        .comm-tab.active::before { height: 62%; }
+        .comm-tab.active .tab-mark { color: var(--gold); transform: rotate(90deg) scale(1.1); }
+        .comm-tab.active .tab-en { color: rgba(201,169,106,0.62); }
+
+        @media (max-width: 880px) {
+            .comm-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+            .comm-side { position: static; margin-bottom: 4px; }
+            .comm-side-inner { border: none; border-radius: 0; padding: 0; background: none; box-shadow: none; border-bottom: 1px solid rgba(201,169,106,0.15); }
+            .comm-side-corner, .comm-side-label, .comm-side-foot { display: none; }
+            .comm-tabs { flex-direction: row; gap: 0; overflow-x: auto; }
+            .comm-tab { width: auto; border-radius: 0; padding: 11px 16px; }
+            .comm-tab::before { left: 50%; top: auto; bottom: 0; transform: translateX(-50%); width: 0; height: 2px; background: var(--crimson); transition: width .35s ease; }
+            .comm-tab.active::before { height: 2px; width: 62%; }
+            .comm-tab.active { background: none; box-shadow: none; }
+            .comm-tab .tab-en { display: none; }
+        }
 
         /* ── Panels ── */
         .comm-panel { display: none; animation: fadeInPanel 0.4s ease; }
@@ -127,8 +223,8 @@
             background: linear-gradient(160deg, rgba(8,2,14,0.85) 0%, rgba(12,3,18,0.9) 50%, rgba(8,2,14,0.85) 100%);
             border: 1px solid rgba(201, 169, 106,0.25);
             border-radius: 16px;
-            padding: 44px 40px;
-            margin-top: 28px;
+            padding: 38px 40px 40px;
+            margin-top: 22px;
             box-shadow: 0 0 0 1px rgba(0,0,0,0.7), 0 10px 40px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.4);
             overflow: hidden;
         }
@@ -141,8 +237,8 @@
         .intro-card-corner.br { bottom: 12px; right: 14px; }
         .intro-greeting {
             font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 5px;
-            text-transform: uppercase; color: rgba(148, 136, 173,0.65);
-            text-align: center; margin-bottom: 24px;
+            text-transform: none; color: rgba(148, 136, 173,0.78);
+            text-align: center; margin-bottom: 26px;
         }
         .intro-text {
             font-size: 1.05rem; line-height: 2.4; color: rgba(240,225,185,0.92);
@@ -211,30 +307,99 @@
             font-family: 'Cinzel', serif; font-size: 0.72rem;
             letter-spacing: 4px; color: var(--gold); margin-bottom: 16px;
         }
-        .availability-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+        .intro-availability { position: relative; overflow: hidden; }
+        .intro-availability::before {
+            content: ''; position: absolute; left: 50%; top: -30%;
+            width: 320px; height: 200px; transform: translateX(-50%);
+            background: radial-gradient(ellipse at 50% 50%,
+                rgba(201,169,106,0.13) 0%, rgba(148,136,173,0.07) 45%, transparent 72%);
+            pointer-events: none; filter: blur(4px);
+        }
+        .intro-availability > * { position: relative; }
+        .avail-corner {
+            position: absolute; font-size: 0.6rem; line-height: 1;
+            color: rgba(201,169,106,0.3); pointer-events: none;
+            animation: availTwinkle 3.6s ease-in-out infinite;
+        }
+        .avail-corner.tl { top: 10px; left: 12px; animation-delay: 0s; }
+        .avail-corner.tr { top: 10px; right: 12px; animation-delay: .9s; }
+        .avail-corner.bl { bottom: 10px; left: 12px; animation-delay: 1.8s; }
+        .avail-corner.br { bottom: 10px; right: 12px; animation-delay: 2.7s; }
+        @keyframes availTwinkle {
+            0%, 100% { opacity: .28; transform: scale(1); }
+            50%      { opacity: .75; transform: scale(1.25); }
+        }
+        .intro-availability-title { text-align: center; }
+
+        .avail-main {
+            display: flex; flex-wrap: nowrap; align-items: center; justify-content: center;
+            gap: 14px;
+        }
+        .avail-orn {
+            font-size: 0.72rem; color: rgba(201,169,106,0.45);
+            animation: availFloat 4.2s ease-in-out infinite;
+        }
+        .avail-orn.right { animation-delay: 2.1s; }
+        @keyframes availFloat {
+            0%, 100% { transform: translateY(0); opacity: .45; }
+            50%      { transform: translateY(-3px); opacity: .85; }
+        }
+        .avail-term {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.12rem; letter-spacing: 3px;
+            color: rgba(246,232,194,0.96);
+            text-shadow: 0 0 18px rgba(201,169,106,0.32);
+            white-space: nowrap;
+        }
+        .avail-term em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 1.42rem; letter-spacing: 1px;
+            color: var(--champ-soft, #e3c98f);
+        }
+        .avail-wave { color: rgba(201,169,106,0.6); margin: 0 2px; }
+
+        .avail-status-wrap { text-align: center; margin-top: 15px; }
+        .avail-status-wrap .availability-status {
+            margin-top: 0; font-size: 0.86rem; letter-spacing: 4px;
+            padding: 9px 26px; border-radius: 999px;
+            box-shadow: 0 0 22px rgba(201,169,106,0.16), inset 0 0 18px rgba(201,169,106,0.05);
+            position: relative;
+        }
+        .avail-status-wrap .availability-status::before,
+        .avail-status-wrap .availability-status::after {
+            content: '✧'; font-size: 0.56rem; color: rgba(201,169,106,0.4);
+            position: absolute; top: 50%; transform: translateY(-50%);
+        }
+        .avail-status-wrap .availability-status::before { left: 10px; }
+        .avail-status-wrap .availability-status::after  { right: 10px; }
+        .avail-status-wrap .availability-status .status-dot {
+            width: 7px; height: 7px;
+        }
+
+        .avail-notes {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+            gap: 8px 10px; margin-top: 16px; padding-top: 14px;
+            border-top: 1px solid rgba(201,169,106,0.14);
+        }
+        .avail-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 14px; border-radius: 999px;
+            border: 1px solid rgba(201,169,106,0.22);
+            background: rgba(201,169,106,0.045);
+            font-size: 0.75rem; letter-spacing: 1.4px;
+            color: rgba(232,216,180,0.8);
+            transition: border-color .35s var(--ease, ease), background .35s ease, color .35s ease;
+        }
+        .avail-chip::before { content: '✦'; font-size: 0.54rem; color: rgba(201,169,106,0.5); }
+        .avail-chip:hover {
+            border-color: rgba(201,169,106,0.45);
+            background: rgba(201,169,106,0.1);
+            color: rgba(244,230,196,0.95);
         }
         @media (max-width: 480px) {
-            .availability-grid { grid-template-columns: 1fr; gap: 18px; }
-        }
-        .availability-item { position: relative; }
-        .availability-top {
-            display: flex; align-items: baseline; justify-content: space-between;
-            margin-bottom: 8px;
-        }
-        .availability-month {
-            font-family: 'Cormorant Garamond', cursive;
-            font-size: 1.4rem; letter-spacing: 2px;
-            color: rgba(240,220,160,0.9);
-            text-shadow: 0 0 12px rgba(201, 169, 106,0.3);
-            display: inline-flex; align-items: baseline; gap: 10px;
-        }
-        .availability-month-ja {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 0.78rem; letter-spacing: 3px;
-            color: rgba(201, 169, 106,0.6);
-            text-shadow: none;
-            font-weight: normal;
+            .avail-term { font-size: 0.98rem; letter-spacing: 2px; }
+            .avail-term em { font-size: 1.24rem; }
+            .avail-main { gap: 9px; }
         }
         .availability-percent {
             font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 700;
@@ -367,9 +532,6 @@
         @media (max-width:520px){ .portfolio-btn{ padding:14px 24px; gap:8px; font-size:0.88rem; } .portfolio-btn .pfb-ja{ display:none; } }
 
         /* availability: single status only */
-        .availability-single { display:flex; justify-content:center; }
-        .availability-single .availability-item { text-align:center; }
-        .availability-single .availability-status { font-size:0.85rem; padding:8px 22px; letter-spacing:3px; }
 
         /* portfolio modal shell */
         .portfolio-modal-content { max-width:min(980px, 94vw); width:100%; max-height:88vh; overflow-y:auto; }
@@ -447,7 +609,7 @@
         }
 
         /* ── Panel Body ── */
-        .panel-body { padding: 28px 0 0; }
+        .panel-body { padding: 22px 0 0; }
         .panel-desc { color: rgba(200,185,155,0.75); font-size: 0.95rem; line-height: 2.2; margin-bottom: 20px; }
 
         .notice-box {
@@ -534,6 +696,19 @@
         .spin-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(201, 169, 106,0.3); background: rgba(201, 169, 106,0.07); color: var(--gold); font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; cursor: pointer; }
         .spin-btn:hover { background: rgba(201, 169, 106,0.18); border-color: var(--gold); }
         .spin-num { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; min-width: 24px; text-align: center; }
+        .len-wrap { gap: 5px; }
+        .len-input {
+            width: 46px; padding: 5px 6px; text-align: center;
+            font-family: 'Cinzel', serif; font-size: 0.92rem; color: #fff;
+            background: rgba(201,169,106,0.07);
+            border: 1px solid rgba(201,169,106,0.3); border-radius: 6px;
+            transition: border-color .3s, background .3s;
+            -moz-appearance: textfield;
+        }
+        .len-input::-webkit-outer-spin-button, .len-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .len-input:focus { outline: none; border-color: var(--gold); background: rgba(201,169,106,0.14); }
+        .len-unit { font-size: 0.76rem; color: rgba(200,185,155,0.6); }
+        @media (max-width: 600px) { .len-input { width: 40px; } .spin-price { min-width: 56px; } }
         .spin-price { font-family: 'Cinzel', serif; font-size: 0.78rem; color: rgba(240,140,160,0.9); white-space: nowrap; min-width: 72px; text-align: right; }
 
         /* ── Terms ── */
@@ -564,6 +739,24 @@
             padding: 2px 10px; border-radius: 12px; letter-spacing: 0.5px;
             white-space: nowrap; max-width: 180px; overflow: hidden; text-overflow: ellipsis;
         }
+        .total-bar .total-cta {
+            flex: none;
+            padding: 9px 16px; border-radius: 8px;
+            font-size: 0.76rem; letter-spacing: 1.2px; gap: 7px;
+            box-shadow: 0 0 14px rgba(201,169,106,0.13);
+        }
+        .total-bar .total-cta svg { width: 14px; height: 14px; }
+        .total-bar .total-cta .cta-label { font-family: 'Shippori Mincho', serif; letter-spacing: 1.2px; }
+        @media (max-width: 720px) {
+            .total-bar { flex-wrap: wrap; row-gap: 12px; }
+            .total-selected { order: 1; width: 100%; }
+            .total-right { order: 2; flex: 1; }
+            .total-bar .total-cta { order: 3; padding: 9px 14px; font-size: 0.74rem; letter-spacing: 1px; }
+        }
+        @media (max-width: 420px) {
+            .total-bar .total-cta { width: 100%; justify-content: center; }
+        }
+
         /* ── Partner Modal ── */
         .partner-modal-content {
             max-width: 520px !important;
@@ -676,6 +869,12 @@
         .mf-submit:hover { background: linear-gradient(135deg, rgba(201, 169, 106,0.42), rgba(148, 136, 173,0.3)); border-color: var(--gold); color: #0b0a08; box-shadow: 0 0 28px rgba(201, 169, 106,0.4); }
         .mf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
+        .mf-hint {
+            margin: 0 0 8px; font-size: 0.74rem; line-height: 1.85;
+            letter-spacing: 0.5px; color: rgba(200,185,155,0.6);
+            padding-left: 10px; border-left: 1px solid rgba(201,169,106,0.25);
+        }
+
         /* Notice box inside mailform */
         .mf-notice-box {
             margin: 22px 0 14px;
@@ -774,6 +973,105 @@
             .total-bar { padding: 14px 18px; }
         }
 
+        /* ラフのご提案 */
+        .rough-line {
+            margin: 0 0 12px; line-height: 2.05;
+            color: rgba(240,225,185,0.9); font-size: 0.92rem;
+        }
+        .rough-line:last-of-type { margin-bottom: 0; }
+        .w-num { color: var(--gold); font-weight: 500; }
+        .w-fix { color: #8fd0c4; font-weight: 500; }   /* 修正 */
+        .w-chg { color: #e8879f; font-weight: 500; }   /* 変更 */
+        .rough-eg {
+            margin: 16px 0; padding: 14px 18px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(232,135,159,0.22);
+            border-radius: 8px;
+        }
+        .rough-eg-title {
+            margin: 0 0 8px; font-size: 0.82rem; letter-spacing: 1.5px;
+            color: rgba(240,225,185,0.8);
+        }
+        .rough-note {
+            margin: 0; line-height: 2.05; font-size: 0.86rem;
+            color: rgba(240,225,185,0.74);
+        }
+
+        /* ═══ 装飾の仕上げ ═══ */
+
+        /* 見出しのうしろに淡い光 */
+        .comm-head { position: relative; }
+        .comm-head::before {
+            content: ''; position: absolute; left: -60px; top: -46px;
+            width: 380px; height: 190px; pointer-events: none; z-index: -1;
+            background: radial-gradient(ellipse at 30% 45%,
+                rgba(201,169,106,0.10) 0%,
+                rgba(148,136,173,0.06) 42%,
+                transparent 72%);
+            filter: blur(6px);
+        }
+
+        /* ごあいさつ：両側に細い罫を伸ばした飾り見出し */
+        .intro-greeting {
+            display: flex; align-items: center; justify-content: center; gap: 16px;
+            font-family: 'Shippori Mincho', serif; font-size: 0.82rem;
+            letter-spacing: 5px; color: rgba(215,196,225,0.8);
+        }
+        .intro-greeting::before, .intro-greeting::after {
+            content: ''; flex: 1; max-width: 92px; height: 1px;
+            background: linear-gradient(90deg, rgba(201,169,106,0), rgba(201,169,106,0.42), rgba(201,169,106,0));
+        }
+
+        /* カード上端のうっすらしたハイライト */
+        .intro-card, .comm-side-inner, .intro-payment, .terms-box, .svc-row {
+            box-shadow: inherit;
+        }
+        .intro-card::before, .comm-side-inner::before {
+            content: ''; position: absolute; left: 14%; right: 14%; top: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,169,106,0.32), transparent);
+            pointer-events: none;
+        }
+
+        /* セクションラベルに ✦ と罫を添える */
+        .svc-section-label {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .svc-section-label::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, rgba(201,169,106,0.24), rgba(201,169,106,0));
+        }
+
+        /* 注意事項・流れの箱の見出しにも小さな飾り */
+        .terms-title { display: flex; align-items: center; gap: 10px; }
+        .terms-title::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, rgba(201,169,106,0.2), rgba(201,169,106,0));
+        }
+
+        /* 行のホバーをやわらかく */
+        .svc-row { transition: border-color .35s ease, background .35s ease, transform .35s ease, box-shadow .35s ease; }
+        .svc-row:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.45), inset 0 0 24px rgba(201,169,106,0.04);
+        }
+
+        /* メニューカードにごく淡い縦のつや */
+        .comm-side-inner::after {
+            content: ''; position: absolute; inset: 0; border-radius: 14px; pointer-events: none;
+            background: linear-gradient(180deg, rgba(201,169,106,0.05) 0%, transparent 26%, transparent 74%, rgba(148,136,173,0.05) 100%);
+        }
+        .comm-side-inner > .comm-side-label,
+        .comm-side-inner > .comm-tabs,
+        .comm-side-inner > .comm-side-foot { position: relative; z-index: 1; }
+        .comm-side-corner { z-index: 2; }
+
+        @media (max-width: 880px) {
+            .comm-head { text-align: center; padding-top: 6px; }
+            .comm-head::before { left: 50%; transform: translateX(-50%); }
+            .comm-head-rule { margin-top: 14px; }
+            .svc-section-label::after, .terms-title::after { display: none; }
+        }
+
         /* ===== Toast (Sharnoth Grenadine 鴇金黒調) ===== */
         .toast {
             position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(20px);
@@ -829,23 +1127,47 @@
 
     <a href="index.html" class="back-link">Back to Top</a>
 
-    <div class="comm-header">
-        <div class="comm-header-deco">✦ ✦ ✦</div>
-        <h1 class="comm-title">Commission & Works</h1>
-        <p class="comm-subtitle">ご依頼内容を選択すると予想金額が表示されます</p>
-    </div>
-
     <div class="comm-wrap">
-        <div class="comm-tabs">
-            <button class="comm-tab active" data-panel="intro">✦ はじめに</button>
-            <button class="comm-tab" data-panel="vtuber">
-                <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-                VTuber案件
-            </button>
-            <button class="comm-tab" data-panel="illust">🎨 Illustration</button>
-            <button class="comm-tab" data-panel="live2d">✦ Live2D</button>
-            <button class="comm-tab" data-panel="mv">🎬 Movie</button>
-        </div>
+        <div class="comm-layout">
+        <aside class="comm-side">
+            <div class="comm-side-inner">
+                <span class="comm-side-corner tl">✦</span>
+                <span class="comm-side-corner tr">✦</span>
+                <span class="comm-side-corner bl">✦</span>
+                <span class="comm-side-corner br">✦</span>
+                <div class="comm-side-label">MENU</div>
+                <div class="comm-tabs">
+                    <button class="comm-tab active" data-panel="intro">
+                        <span class="tab-mark">✦</span>
+                        <span class="tab-text"><span class="tab-ja">はじめに</span><span class="tab-en">Introduction</span></span>
+                    </button>
+                    <button class="comm-tab" data-panel="illust">
+                        <span class="tab-mark">✧</span>
+                        <span class="tab-text"><span class="tab-ja">イラスト</span><span class="tab-en">Illustration</span></span>
+                    </button>
+                    <button class="comm-tab" data-panel="live2d">
+                        <span class="tab-mark">✦</span>
+                        <span class="tab-text"><span class="tab-ja">Live2D</span><span class="tab-en">Modeling</span></span>
+                    </button>
+                    <button class="comm-tab" data-panel="mv">
+                        <span class="tab-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></span>
+                        <span class="tab-text"><span class="tab-ja">MV・動画</span><span class="tab-en">Movie</span></span>
+                    </button>
+                    <button class="comm-tab" data-panel="vtuber">
+                        <span class="tab-mark">✧</span>
+                        <span class="tab-text"><span class="tab-ja">VTuber案件</span><span class="tab-en">Casting</span></span>
+                    </button>
+                </div>
+                <div class="comm-side-foot">✦ ✧ ✦</div>
+            </div>
+        </aside>
+        <div class="comm-main">
+            <header class="comm-head">
+                <div class="comm-header-deco">✦ ✧ ✦</div>
+                <h1 class="comm-title">Commission &amp; Works</h1>
+                <p class="comm-subtitle">ご依頼内容を選択すると予想金額が表示されます</p>
+                <hr class="comm-head-rule">
+            </header>
 
         <!-- ═══ はじめに ═══ -->
         <div class="comm-panel active" id="panel-intro">
@@ -854,14 +1176,12 @@
                 <span class="intro-card-corner tr">✦</span>
                 <span class="intro-card-corner bl">✦</span>
                 <span class="intro-card-corner br">✦</span>
-                <div class="intro-greeting">Commission Guide</div>
-                <div class="intro-payment-title" style="text-align:center;">✦ ごあいさつ</div>
+                <div class="intro-greeting">✦ ごあいさつ ✦</div>
                 <p class="intro-text">
                     シャルノス・グレナデンと申します。<br>
-                    ご覧いただきありがとうございます。<br><br>
-                    主にイラスト・Live2D・Movieの<span style="white-space:nowrap">ご依頼を承っております。</span><br>
-                    背景絵師様・デザイナー様とも提携を結んでおりますので、<wbr>必要でしたらそちらも含めて<span style="white-space:nowrap">ご相談に乗ることができます。</span><br><br>
-                    上のタブから該当する項目を選び、<wbr>チェックを入れると大体の料金感がわかりますので、<wbr><span style="white-space:nowrap">ぜひお試しくださいませ。</span>
+                    イラスト・Live2D・Movieのご依頼を<span style="white-space:nowrap">承っております。</span><br><br>
+                    背景絵師様・デザイナー様とも提携しておりますので、<wbr><span style="white-space:nowrap">あわせてご相談いただけます。</span><br><br>
+                    メニューから項目を選ぶと、<wbr><span style="white-space:nowrap">おおよその金額が表示されます。</span>
                 </p>
                 <div class="intro-portfolio-cta">
                     <button type="button" class="portfolio-btn" id="open-portfolio">
@@ -872,13 +1192,22 @@
                     </button>
                 </div>
                 <div class="intro-availability">
-                    <div class="intro-availability-title">✦ 現在の空き状況</div>
-                    <div class="availability-grid availability-single">
-                        <div class="availability-item">
-                            <div class="availability-status status-open">
-                                <span class="status-dot"></span>受付中
-                            </div>
-                        </div>
+                    <span class="avail-corner tl">✧</span>
+                    <span class="avail-corner tr">✧</span>
+                    <span class="avail-corner bl">✧</span>
+                    <span class="avail-corner br">✧</span>
+                    <div class="intro-availability-title">✦ 現在の空き状況 ✦</div>
+                    <div class="avail-main">
+                        <span class="avail-orn left">✧</span>
+                        <span class="avail-term"><em>2026/9</em> 後半 <span class="avail-wave">〜</span> 秋冬</span>
+                        <span class="avail-orn right">✧</span>
+                    </div>
+                    <div class="avail-status-wrap">
+                        <span class="availability-status status-open"><span class="status-dot"></span>受付中</span>
+                    </div>
+                    <div class="avail-notes">
+                        <span class="avail-chip">お見積もり無料</span>
+                        <span class="avail-chip">ご質問のみでも歓迎</span>
                     </div>
                 </div>
                 <div class="intro-payment">
@@ -924,15 +1253,46 @@
                 </div>
                 <div class="intro-payment" style="margin-top:18px;">
                     <div class="intro-payment-title">✦ お支払いタイミング</div>
-                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">基本的に前払いをお願いいたしますが、依頼者様の活動実態などによっては、フレキシブルな対応を検討いたします。<br>ラフ着手後からキャンセル料金が発生いたしますのでご注意ください。</p>
+                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">前払い、またはラフ提出後のタイミングでお願いいたします。<br><span style="font-size:0.86rem;color:rgba(240,225,185,0.72);">※Live2Dのみ、着手金50%＋残金50%の2回に分けてお支払いいただきます。</span></p>
                 </div>
                 <div class="intro-payment" style="margin-top:18px;">
-                    <div class="intro-payment-title">✦ リピート割引</div>
-                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">2回目以降、最終料金から <strong style="color:var(--gold);">-1,000円</strong> いたします。<br>（6,000円以上のご依頼に限ります）</p>
+                    <div class="intro-payment-title">✦ キャンセルについて</div>
+                    <p style="margin:0 0 10px;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">ラフにて方向性をご確認いただいた後から、キャンセル料が発生いたします。</p>
+                    <ul class="caution-list" style="margin:0;">
+                        <li>ラフ提出前 …… 無料</li>
+                        <li>ラフをご確認いただき、方向性が確定した後 …… 合計金額の <strong style="color:var(--gold);">50%</strong></li>
+                        <li>制作中盤以降 …… <strong style="color:var(--gold);">80%</strong></li>
+                        <li>納品後 …… <strong style="color:var(--gold);">100%</strong></li>
+                    </ul>
                 </div>
                 <div class="intro-payment" style="margin-top:18px;">
-                    <div class="intro-payment-title">✦ ショート動画2本セット料金</div>
-                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">通常1本 ¥3,000 ですが、2本セットでご依頼いただく場合 <strong style="color:var(--gold);">¥5,000</strong> で承ります。</p>
+                    <div class="intro-payment-title">✦ ラフのご提案について</div>
+                    <p class="rough-line">ラフは<b class="w-num">1案</b>をご提案いたします。</p>
+                    <p class="rough-line">ラフを元にした<b class="w-fix">修正</b>は<b class="w-num">無料</b>です。</p>
+                    <p class="rough-line">最初のラフから方向性が大きく変わる<b class="w-chg">ご変更</b>が<b class="w-num">2回目</b>となった時点で、<br>お支払いのタイミングとさせていただきます。</p>
+                    <div class="rough-eg">
+                        <p class="rough-eg-title">方向性が大きく変わる<b class="w-chg">ご変更</b>の例</p>
+                        <ul class="caution-list" style="margin:0;">
+                            <li>参考イメージそのものの変更</li>
+                            <li>全体の色設計のやり直し</li>
+                            <li>構成・カット割りの作り直し</li>
+                        </ul>
+                    </div>
+                    <p class="rough-note">ご希望のイメージにできるだけ近づけたいので、<br>ご相談の段階で<b class="w-num">参考動画・お好みの色味・避けたい表現</b>などを<br>お聞かせいただけますと、最初のラフの精度が上がります。</p>
+                </div>
+                <div class="intro-payment" style="margin-top:18px;">
+                    <div class="intro-payment-title">✦ 修正について</div>
+                    <p style="margin:0 0 10px;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;">こちらの作業ミス、ご要望との相違による修正は、<strong style="color:var(--gold);">回数制限なく無料</strong>で対応いたします。</p>
+                    <ul class="caution-list" style="margin:0;">
+                        <li>ラフ・構成案の段階 …… 回数制限なく無料</li>
+                        <li>本制作中の細かな修正（文字位置・色味の調整など）も承っております</li>
+                        <li>大きな変更（方向性の変更・構成の作り直し・素材の差し替えなど）につきましては、<br>別途料金が発生する場合がございます</li>
+                        <li>納品後の修正は、納品から14日以内にご連絡ください</li>
+                    </ul>
+                </div>
+                <div class="intro-payment" style="margin-top:18px;">
+                    <div class="intro-payment-title">✦ 割引</div>
+                    <p style="margin:0;line-height:2;color:rgba(240,225,185,0.9);font-size:0.92rem;"><strong style="color:var(--gold);">初回限定 20%OFF</strong>（割引上限 ¥5,000／先着9名様）<br><strong style="color:var(--gold);">リピート割引 10%OFF</strong>（2回目以降のご依頼）<br><span style="font-size:0.86rem;color:rgba(240,225,185,0.7);">※割引の併用はできません。</span></p>
                 </div>
             </div>
         </div>
@@ -940,7 +1300,7 @@
         <!-- ═══ VTuber ═══ -->
         <div class="comm-panel" id="panel-vtuber">
             <div class="panel-body">
-                <p class="panel-desc">企業様・個人様問わずご依頼を承っております。<br>配信・PRなどお気軽にご相談ください。</p>
+                <p class="panel-desc">企業様・個人様問わず承っております。<br>配信・PRなどお気軽にご相談ください。</p>
                 <div class="notice-box">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     VTuber案件の金額はすべてご相談ベースです。<br>詳細はご相談フォームからお気軽にお問い合わせください。
@@ -969,8 +1329,8 @@
         <div class="comm-panel" id="panel-illust">
             <div class="panel-body">
                 <p class="panel-desc">
-                    キャラクターイラストをメインでお受けしています。<br>
-                    背景やデザインが必要な場合は、提携している素敵なクリエイターさんをご紹介できるので、ぜひ一緒にご相談くださいね。
+                    キャラクターイラストを中心にお受けしています。<br>
+                    背景やデザインが必要な場合は、提携クリエイターをご紹介できます。
                 </p>
                 <div class="svc-section-label">✦ Base Menu</div>
                 <div class="svc-list">
@@ -988,12 +1348,12 @@
                 <div class="svc-list">
                     <div class="svc-spinner-row" id="illust-diff-row">
                         <div><input type="checkbox" class="svc-cb-spinner" id="illust-diff-cb"></div>
-                        <div class="svc-info"><span class="svc-name">表情差分追加</span><span class="svc-detail">1点につき ¥1,000。個数を選択してください。</span></div>
+                        <div class="svc-info"><span class="svc-name">表情差分追加</span><span class="svc-detail">1点につき ¥500。個数を選択してください。</span></div>
                         <div class="spin-wrap">
                             <button class="spin-btn" data-target="illust-diff-num" data-dir="-1">−</button>
                             <span class="spin-num" id="illust-diff-num">1</span>
                             <button class="spin-btn" data-target="illust-diff-num" data-dir="1">＋</button>
-                            <span class="spin-price" id="illust-diff-price">+¥1,000</span>
+                            <span class="spin-price" id="illust-diff-price">+¥500</span>
                         </div>
                     </div>
                     <div class="svc-spinner-row" id="illust-layer-row">
@@ -1010,13 +1370,27 @@
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-percent="30" data-label="グッズ化などの商用利用（合計金額の＋30%）"><div class="svc-info"><span class="svc-name">グッズ化などの商用利用</span><span class="svc-detail">合計金額の＋30%</span></div><span class="svc-price option">+30%</span></label>
                 </div>
                 <div class="terms-box">
+                    <div class="terms-title">✦ 制作の流れ</div>
+                    <ol class="terms-list">
+                        <li>ヒアリング（キャラクターの資料・ご希望をお伺いします）</li>
+                        <li>ラフをご提出</li>
+                        <li>お支払い</li>
+                        <li>本制作</li>
+                        <li>ご確認・修正</li>
+                        <li>納品</li>
+                    </ol>
+                    <p style="margin:12px 0 0;line-height:1.9;color:rgba(240,225,185,0.78);font-size:0.86rem;">ラフをご覧いただいてからのご判断で構いません。</p>
+                </div>
+                <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。内容により変動します。</li>
                         <li>収益化済み配信サイトでの使用による追加料金はありません。</li>
-                        <li>修正は軽微なもの2回まで無料。大幅変更は別途費用。</li>
+                        <li>修正・キャンセルの扱いは Introduction タブの共通ルールに準じます。</li>
                         <li>納期はご依頼内容により異なります（短い納期には対応いたしません）。</li>
+                        <li>制作物は制作事例として掲載させていただく場合がございます。非公開をご希望の場合はお申し付けください（+¥20,000）。</li>
                         <li>基本的に著作権は放棄いたしません。</li>
+                        <li>AI生成イラストの加筆・トレースはお受けしておりません。</li>
                         <li>詳細はフォームにてご確認ください。</li>
                     </ul>
                 </div>
@@ -1027,10 +1401,9 @@
         <div class="comm-panel" id="panel-live2d">
             <div class="panel-body">
                 <p class="panel-desc">
-                    Live2Dモデルの新規制作・既存モデルへの追加改修を承ります。<br>
-                    パーツ分け素材（PSD）はご依頼者様からご提供いただきます。<br>
-                    こちらでパーツの加筆などが可能です。<br>
-                    希望する場合絵師様に許可をお取りください。
+                    Live2Dモデルの新規制作・追加改修を承ります。<br>
+                    パーツ分け素材（PSD）はご支給ください。<br>
+                    パーツの加筆も可能です（絵師様の許可をお取りください）。
                 </p>
                 <div class="svc-list">
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="28000" data-label="簡易モデリング"><div class="svc-info"><span class="svc-name">簡易モデリング</span><span class="svc-detail">瞳揺れ・瞬き・頭XY斜め・髪ゆれ。パーツ分けPSD前提。</span></div><span class="svc-price">¥28,000〜</span></label>
@@ -1052,12 +1425,29 @@
                     <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="0" data-label="パーツの加筆希望"><div class="svc-info"><span class="svc-name">パーツの加筆希望</span><span class="svc-detail">こちらでパーツの加筆を行います。事前に絵師様の許可をお取りください。</span></div><span class="svc-price consult">要相談</span></label>
                 </div>
                 <div class="terms-box">
+                    <div class="terms-title">✦ 制作の流れ</div>
+                    <ol class="terms-list">
+                        <li>ヒアリング（使用ソフト・トラッキング方式・ご希望の動きをお伺いします）</li>
+                        <li>PSDの構造チェック（動かせる状態か診断し、不足パーツをお伝えします／無料）</li>
+                        <li>着手金として <strong style="color:var(--gold);">50%</strong> をお支払い</li>
+                        <li>顔まわりの動作テスト動画（15秒程度）で方向性をご確認</li>
+                        <li>残金 <strong style="color:var(--gold);">50%</strong> をお支払い</li>
+                        <li>フルリギング・物理設定</li>
+                        <li>中間確認・修正</li>
+                        <li>納品</li>
+                    </ol>
+                    <p style="margin:12px 0 0;line-height:1.9;color:rgba(240,225,185,0.78);font-size:0.86rem;">Live2Dは制作期間が長いため、着手金と残金の2回に分けてお支払いいただいております。<br>PSDの構造チェックまでは無料です。素材が動かせない構成だった場合、そこでお断りすることがあります。</p>
+                </div>
+                <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。パーツ数・複雑さにより変動します。</li>
                         <li>収益化済み配信サイトでの使用による追加料金はありません。</li>
                         <li>素材（PSD）はパーツを分けてご支給いただく必要があります。</li>
                         <li>納期目安：新規モデル 8〜12週間、追加改修 2〜4週間。</li>
+                        <li>同時受注は2件までとさせていただいております。</li>
+                        <li>修正・キャンセルの扱いは Introduction タブの共通ルールに準じます。</li>
+                        <li>制作物は制作事例として掲載させていただく場合がございます。非公開をご希望の場合はお申し付けください（+¥20,000）。</li>
                         <li>Cubism Pro使用。納品はcmo3ファイル形式。</li>
                     </ul>
                 </div>
@@ -1067,18 +1457,52 @@
         <!-- ═══ MV ═══ -->
         <div class="comm-panel" id="panel-mv">
             <div class="panel-body">
-                <p class="panel-desc">ミュージックビデオ・歌ってみた映像編集を承ります。<br>楽曲・素材はご依頼者様からご支給ください。</p>
+                <p class="panel-desc">歌ってみた・オリジナル曲のMVを制作します。<br>楽曲・素材はご支給ください。<br>病みカワ／アイドル／エモ系の世界観づくりが得意です。</p>
+                <div class="svc-section-label">✦ Base Menu</div>
                 <div class="svc-list">
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="3000" data-label="ショート動画"><div class="svc-info"><span class="svc-name">ショート動画</span><span class="svc-detail">歌ってみたも可。動画内に字幕をご希望される場合内容をご指定ください。</span></div><span class="svc-price">¥3,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="5000" data-label="ショート動画2本セット"><div class="svc-info"><span class="svc-name">ショート動画2本セット</span><span class="svc-detail">通常1本¥3,000のところ、2本セットでお得な¥5,000で承ります。</span></div><span class="svc-price">¥5,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="8000" data-label="MV‐シンプルコース"><div class="svc-info"><span class="svc-name">MV‐シンプルコース</span><span class="svc-detail">1枚絵と歌詞のみが表示されれば良い方向けです。</span></div><span class="svc-price">¥8,000</span></label>
-                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="12000" data-label="MV‐スタンダード"><div class="svc-info"><span class="svc-name">MV‐スタンダード</span><span class="svc-detail">歌詞アニメーションや演出を含みます。作業量などで金額が変わります。</span></div><span class="svc-price">¥12,000〜</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="3000" data-label="ショート動画"><div class="svc-info"><span class="svc-name">ショート動画</span><span class="svc-detail">歌ってみたも可。字幕をご希望の場合は内容をご指定ください。</span></div><span class="svc-price">¥3,000</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="5000" data-label="ショート動画 2本セット（キャンペーン）"><div class="svc-info"><span class="svc-name">ショート動画 2本セット</span><span class="svc-detail">キャンペーン中。通常1本 ¥3,000 のところ、2本で ¥5,000 で承ります。</span></div><span class="svc-price">¥5,000</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="5000" data-label="MV‐スポットコース（〜1分）" data-lenbase="1"><div class="svc-info"><span class="svc-name">MV‐スポットコース</span><span class="svc-detail">〜1分。サビのみ／ワンコーラス向け。演出内容はスタンダード相当です。2026年限定価格。</span></div><span class="svc-price">¥5,000〜</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="8000" data-label="MV‐シンプルコース（〜3分30秒）" data-lenbase="1"><div class="svc-info"><span class="svc-name">MV‐シンプルコース</span><span class="svc-detail">〜3分30秒。一枚絵＋歌詞表示、エフェクト、簡単な文字アニメーション。</span></div><span class="svc-price">¥8,000</span></label>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="12000" data-label="MV‐スタンダードコース（〜3分30秒）" data-lenbase="1"><div class="svc-info"><span class="svc-name">MV‐スタンダードコース</span><span class="svc-detail">〜3分30秒。カメラワーク、演出・モーション。本家に寄せた演出にも対応します。素材数・カット数により変動します。</span></div><span class="svc-price">¥12,000〜</span></label>
+                </div>
+                <div class="svc-section-label">✦ Option</div>
+                <div class="svc-list">
+                    <div class="svc-spinner-row" id="mv-len-row">
+                        <div><input type="checkbox" class="svc-cb-spinner" id="mv-len-cb"></div>
+                        <div class="svc-info"><span class="svc-name">尺の延長</span><span class="svc-detail">MVコースが対象です。楽曲の長さを入力してください。3分30秒を超える分は10秒ごとに＋5%で自動計算されます。</span></div>
+                        <div class="spin-wrap len-wrap">
+                            <input type="number" class="len-input" id="mv-len-min" min="0" max="15" step="1" value="3" aria-label="分">
+                            <span class="len-unit">分</span>
+                            <input type="number" class="len-input" id="mv-len-sec" min="0" max="59" step="1" value="30" aria-label="秒">
+                            <span class="len-unit">秒</span>
+                            <span class="spin-price" id="mv-len-price">+0%</span>
+                        </div>
+                    </div>
+                    <label class="svc-row"><input type="checkbox" class="svc-cb" data-price="20000" data-label="実績非公開オプション" data-nopercent="1"><div class="svc-info"><span class="svc-name">実績非公開オプション</span><span class="svc-detail">制作事例としての掲載を行いません。</span></div><span class="svc-price option">+¥20,000</span></label>
+                </div>
+                <div class="terms-box">
+                    <div class="terms-title">✦ 制作の流れ</div>
+                    <ol class="terms-list">
+                        <li>ヒアリング（ご希望の雰囲気・参考動画などをお伺いします）</li>
+                        <li>方向性確認動画（5秒以下のラフ）をご提出</li>
+                        <li>お支払い</li>
+                        <li>本制作</li>
+                        <li>ご確認・修正</li>
+                        <li>納品</li>
+                    </ol>
+                    <p style="margin:12px 0 0;line-height:1.9;color:rgba(240,225,185,0.78);font-size:0.86rem;">完成後の作り直しを防ぐため、本制作の前に必ず方向性のご確認をいただいております。<br>ラフをご覧いただいてからのご判断で構いません。</p>
                 </div>
                 <div class="terms-box">
                     <div class="terms-title">✦ 注意事項</div>
                     <ul class="caution-list">
                         <li>料金はすべて目安です。尺・内容により変動します。</li>
+                        <li>納期目安：スポット 1週間／シンプル 1〜2週間／スタンダード 3週間。</li>
+                        <li>同時受注は2件までとさせていただいております。公開予定日は必ず事前にお知らせください。</li>
+                        <li>修正・キャンセルの扱いは Introduction タブの共通ルールに準じます。</li>
                         <li>収益化済み配信サイトでの使用による追加料金はありません。</li>
+                        <li>楽曲・イラストの権利確認はご依頼者様のご責任にてお願いいたします。</li>
+                        <li>AI生成イラストがメインの作品はお受けしておりません。</li>
                         <li>納品形式：MP4。</li>
                     </ul>
                 </div>
@@ -1088,23 +1512,25 @@
         <!-- ── Total Bar ── -->
         <div class="total-bar" id="total-bar">
             <div class="total-selected" id="total-selected">
-                <span class="total-empty">← タブからご希望の項目を選択してください</span>
+                <span class="total-empty">← メニューからご希望の項目を選択してください</span>
             </div>
             <div class="total-right">
                 <div class="total-label">予想合計金額</div>
                 <div class="total-amount" id="total-amount">¥0</div>
                 <div class="total-note">（目安 / 税込・要相談）</div>
             </div>
+            <button class="comm-contact-btn total-cta" id="open-mailform">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span class="cta-label">ご相談フォーム</span>
+            </button>
         </div>
 
         <!-- ── Footer ── -->
         <div class="comm-footer">
             <p class="comm-footer-note">上記は目安の金額です。作画コストなどによって変動する場合がございます。<br>フォームから選択内容と金額を添えてご相談いただけます。</p>
-            <button class="comm-contact-btn" id="open-mailform">
-                <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                ご相談フォームを開く
-            </button>
         </div>
+        </div><!-- /comm-main -->
+        </div><!-- /comm-layout -->
     </div>
 
     <!-- ══ メールフォームモーダル ══ -->
@@ -1116,6 +1542,7 @@
             <div style="text-align:center;margin-bottom:24px;">
                 <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.68rem;letter-spacing:5px;margin-bottom:6px;">COMMISSION REQUEST</div>
                 <h3 style="font-family:'Cinzel',serif;color:#fff;font-size:1.4rem;letter-spacing:4px;margin:0;">お仕事のご相談</h3>
+                <p style="margin:10px 0 0;font-size:0.76rem;letter-spacing:1.5px;color:rgba(228,212,178,0.7);">お見積もり無料　✦　ご質問のみでも歓迎</p>
             </div>
             <div class="mf-summary" id="mf-summary">
                 <div class="mf-summary-title">選択中の項目</div>
@@ -1137,12 +1564,13 @@
                 </div>
                 <div class="mf-field">
                     <label class="mf-label">ご相談内容 <span class="mf-required">*</span></label>
-                    <textarea class="mf-textarea" id="mf-message" rows="5" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。"></textarea>
+                    <p class="mf-hint">下記をお書き添えいただけますと、最初のラフの精度が上がります。<br>ご希望のコース／楽曲の長さ・公開予定日／参考動画・イメージ（URL可）／お好みの色味／避けたい表現</p>
+                    <textarea class="mf-textarea" id="mf-message" rows="6" placeholder="ご依頼の詳細・ご質問など、お気軽にご記入ください。&#10;ご質問のみのご連絡も歓迎しております。"></textarea>
                 </div>
                 <div class="mf-notice-box">
-                    <p class="mf-notice-heading">⚠ お支払い・キャンセルについて</p>
-                    <p class="mf-notice-main">お支払いは<strong>基本的に前払い</strong>をお願いしております。</p>
-                    <p class="mf-notice-sub">依頼者様の活動実態などによっては、フレキシブルな対応を検討いたします。<br>キャンセル料金はラフ着手後から発生いたしますのでご注意ください。</p>
+                    <p class="mf-notice-heading">⚠ お支払い・キャンセル・ラフについて</p>
+                    <p class="mf-notice-main">お支払いは<strong>前払い、またはラフ提出後</strong>のタイミングでお願いしております。</p>
+                    <p class="mf-notice-sub">キャンセル料は、ラフにて方向性をご確認いただいた後から発生いたします（進行度に応じて 50% ／ 80% ／ 100%）。<br>ラフを元にした<strong>修正は無料</strong>です。最初のラフから方向性が大きく変わる<strong>ご変更が2回目</strong>となった時点で、お支払いのタイミングとさせていただきます。</p>
                 </div>
                 <label class="mf-agree">
                     <input type="checkbox" class="mf-agree-cb" id="mf-agree">
@@ -1170,7 +1598,7 @@
             <div class="mf-sent-view" id="mf-sent-view">
                 <div class="mf-sent-icon">𓂀</div>
                 <div class="mf-sent-title">ご相談を受け付けました</div>
-                <p class="mf-sent-msg">お問い合わせありがとうございます。<br>内容を確認のうえ、折り返しご連絡いたします。<br>今しばらくお待ちください。</p>
+                <p class="mf-sent-msg">お問い合わせありがとうございます。<br>内容を確認のうえ、<strong>原則24時間以内</strong>にご返信いたします。<br>今しばらくお待ちくださいませ。</p>
                 <button class="mf-cancel" id="mf-sent-close" style="margin-top:8px;width:100%;">閉じる</button>
             </div>
             <div class="mf-error-view" id="mf-error-view">
@@ -1336,7 +1764,7 @@
 
         function updateIllustDiff() {
             if (illustDiffNum) illustDiffNum.textContent = illustDiffCount;
-            if (illustDiffPrice) illustDiffPrice.textContent = '+¥' + (illustDiffCount * 1000).toLocaleString('ja-JP');
+            if (illustDiffPrice) illustDiffPrice.textContent = '+¥' + (illustDiffCount * 500).toLocaleString('ja-JP');
             if (illustDiffRow && illustDiffCb) illustDiffRow.classList.toggle('active', illustDiffCb.checked);
             updateTotal();
         }
@@ -1357,6 +1785,35 @@
         if (live2dKeyCb) live2dKeyCb.addEventListener('change', updateLive2dKey);
 
         let illustLayerCount = 1;
+        /* ── 尺の延長（自動計算） ── */
+        const mvLenCb = document.getElementById('mv-len-cb');
+        const mvLenMin = document.getElementById('mv-len-min');
+        const mvLenSec = document.getElementById('mv-len-sec');
+        const mvLenPriceEl = document.getElementById('mv-len-price');
+        const MV_BASE_SEC = 210; // 3分30秒
+
+        function mvLenInfo() {
+            if (!mvLenMin || !mvLenSec) return { pct: 0, label: '' };
+            let m = parseInt(mvLenMin.value); if (isNaN(m) || m < 0) m = 0; if (m > 15) m = 15;
+            let sec = parseInt(mvLenSec.value); if (isNaN(sec) || sec < 0) sec = 0; if (sec > 59) sec = 59;
+            const total = m * 60 + sec;
+            const over = Math.max(0, total - MV_BASE_SEC);
+            const pct = Math.ceil(over / 10) * 5;
+            return { pct, label: m + '分' + String(sec).padStart(2, '0') + '秒' };
+        }
+        function updateMvLen() {
+            const { pct } = mvLenInfo();
+            if (mvLenPriceEl) mvLenPriceEl.textContent = '+' + pct + '%';
+        }
+        [mvLenMin, mvLenSec].forEach(el => {
+            if (!el) return;
+            el.addEventListener('input', () => { updateMvLen(); if (mvLenCb && mvLenCb.checked) updateTotal(); });
+            el.addEventListener('change', () => { updateMvLen(); if (mvLenCb && mvLenCb.checked) updateTotal(); });
+            el.addEventListener('click', e => e.stopPropagation());
+        });
+        if (mvLenCb) mvLenCb.addEventListener('change', updateTotal);
+        updateMvLen();
+
         const illustLayerCb = document.getElementById('illust-layer-cb');
         const illustLayerNum = document.getElementById('illust-layer-num');
         const illustLayerPrice = document.getElementById('illust-layer-price');
@@ -1391,36 +1848,62 @@
         const selectedEl = document.getElementById('total-selected');
 
         function getSelections() {
-            const items = []; let total = 0; let percentTotal = 0;
+            const items = [];
+            // ％オプションは「そのタブの中の料金」にだけかかる。
+            // 尺の延長だけは対象がさらに狭く、data-lenbase を持つMVコースのみに効かせる。
+            const groups = {};
+            const G = id => (groups[id] = groups[id] || { flat: 0, base: 0, pct: 0 });
+            const panelOf = el => { const pl = el.closest('.comm-panel'); return pl ? pl.id : 'other'; };
+            let lenBase = 0;
+
             document.querySelectorAll('.svc-cb:checked').forEach(cb => {
+                const g = G(panelOf(cb));
                 const price = parseInt(cb.dataset.price) || 0;
                 const pct = parseInt(cb.dataset.percent) || 0;
                 if (pct > 0) {
-                    percentTotal += pct;
+                    g.pct += pct;
                     items.push({ label: cb.dataset.label, price: 0, percent: pct });
                 } else {
-                    total += price;
+                    g.flat += price;
+                    // 定額オプション（実績非公開など）は％加算の対象外
+                    if (cb.dataset.nopercent !== '1') g.base += price;
+                    if (cb.dataset.lenbase === '1') lenBase += price;
                     items.push({ label: cb.dataset.label, price });
                 }
             });
             if (illustDiffCb && illustDiffCb.checked) {
-                const p = illustDiffCount * 1000;
-                total += p;
+                const p = illustDiffCount * 500;
+                const g = G('panel-illust'); g.flat += p; g.base += p;
                 items.push({ label: `表情差分追加（${illustDiffCount}点）`, price: p });
             }
             if (illustLayerCb && illustLayerCb.checked) {
                 const p = illustLayerCount * 1500;
-                total += p;
+                const g = G('panel-illust'); g.flat += p; g.base += p;
                 items.push({ label: `簡単レイヤー分け（${illustLayerCount}箇所）`, price: p });
+            }
+            let lenPct = 0;
+            if (mvLenCb && mvLenCb.checked) {
+                const info = mvLenInfo();
+                if (info.pct > 0 && lenBase > 0) {
+                    lenPct = info.pct;
+                    items.push({ label: '尺の延長（' + info.label + '／+' + info.pct + '%）', price: 0, percent: info.pct });
+                }
             }
             if (live2dKeyCb && live2dKeyCb.checked) {
                 const p = live2dKeyCount * 3000;
-                total += p;
+                const g = G('panel-live2d'); g.flat += p; g.base += p;
                 items.push({ label: `キーバインド表情追加（${live2dKeyCount}個）`, price: p });
             }
-            if (percentTotal > 0 && total > 0) {
-                const pctAmount = Math.ceil(total * percentTotal / 100);
-                total += pctAmount;
+            let total = 0, percentTotal = 0;
+            Object.keys(groups).forEach(k => {
+                const g = groups[k];
+                total += g.flat;
+                percentTotal += g.pct;
+                if (g.pct > 0 && g.base > 0) total += Math.ceil(g.base * g.pct / 100);
+            });
+            if (lenPct > 0) {
+                percentTotal += lenPct;
+                total += Math.ceil(lenBase * lenPct / 100);
             }
             return { items, total, percentTotal };
         }
@@ -1438,7 +1921,7 @@
             }
             if (selectedEl) {
                 if (items.length === 0) {
-                    selectedEl.innerHTML = '<span class="total-empty">← タブからご希望の項目を選択してください</span>';
+                    selectedEl.innerHTML = '<span class="total-empty">← メニューからご希望の項目を選択してください</span>';
                 } else {
                     selectedEl.innerHTML = items.map(i => `<span class="total-chip">${i.label}</span>`).join('');
                 }
