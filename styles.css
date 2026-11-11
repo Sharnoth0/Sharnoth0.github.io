@@ -77,8 +77,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 .roll{display:inline-flex;overflow:hidden;vertical-align:bottom}
 .roll .c{display:inline-block;position:relative;overflow:hidden;height:1.05em;line-height:1.05}
 .roll .c>span{display:block;transition:transform .42s var(--ease);transition-delay:calc(var(--i)*.024s)}
-.roll .c>span:nth-child(2){position:absolute;top:100%;left:0;color:var(--champ-soft)}
-a:hover .roll .c>span,.orb:hover .roll .c>span{transform:translateY(-100%)}
+/* 2つ目の文字は 0.4em 余分に下げて待機させる（明朝体の和文は字面が行の高さより上にはみ出すため、
+   ぴったり 100% だと上端がボタンの下に少し覗いてしまう） */
+.roll .c>span:nth-child(2){position:absolute;top:calc(100% + .4em);left:0;color:var(--champ-soft)}
+a:hover .roll .c>span,.orb:hover .roll .c>span,.sicon:hover .roll .c>span{transform:translateY(calc(-100% - .4em))}
 
 .hero{position:relative;min-height:100svh;overflow:hidden}
 .lede{position:absolute;left:clamp(28px,6vw,90px);top:50%;transform:translateY(-50%);z-index:4;max-width:44vw;opacity:0;animation:fadeUp 1.1s var(--ease) .6s forwards}
@@ -92,7 +94,8 @@ a:hover .roll .c>span,.orb:hover .roll .c>span{transform:translateY(-100%)}
 .tagline .heal{color:var(--champ-soft)}.tagline .chaos{color:var(--violet)}
 
 .orbs{position:absolute;inset:0;z-index:5;pointer-events:none}
-.orb{position:absolute;pointer-events:auto;display:block;width:var(--sz,118px);height:var(--sz,118px);opacity:0;animation:fadeUp 1s var(--ease) forwards;background:none;border:none;padding:0;font:inherit;color:inherit}
+/* クリックできるのは丸い本体（.disc）だけ。四角い外枠や、外にはみ出して回る点線の輪では反応させない */
+.orb{position:absolute;pointer-events:none;display:block;width:var(--sz,118px);height:var(--sz,118px);opacity:0;animation:fadeUp 1s var(--ease) forwards;background:none;border:none;padding:0;font:inherit;color:inherit}
 .orb.o1{right:13%;top:38%;--sz:160px;animation-delay:1.1s}
 .orb.o2{right:7%;top:12%;--sz:132px;animation-delay:.9s}
 .orb.o3{right:6%;top:63%;--sz:132px;animation-delay:1.3s}
@@ -100,9 +103,10 @@ a:hover .roll .c>span,.orb:hover .roll .c>span{transform:translateY(-100%)}
 .orb.o1 .orb-float{animation-duration:9.5s;animation-delay:-4s}
 .orb.o3 .orb-float{animation-duration:8.5s;animation-delay:-2s}
 @keyframes obob{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
-.ring-rot{position:absolute;inset:-13px;animation:spin 34s linear infinite;opacity:.85;transition:opacity .4s}
+/* spin は translate(-50%,-50%) 付きなので使わない（輪が左上へ流れて隣のボタンに重なっていた）。その場で回す spinrot を使う */
+.ring-rot{position:absolute;inset:-13px;pointer-events:none;animation:spinrot 34s linear infinite;opacity:.85;transition:opacity .4s}
 .orb.o2 .ring-rot{animation-direction:reverse}
-.disc{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:radial-gradient(circle at 50% 34%, rgba(44,40,33,.85), rgba(12,11,15,.92));border:1px solid rgba(201,169,106,.5);backdrop-filter:blur(6px);box-shadow:inset 0 0 34px rgba(201,169,106,.08), 0 34px 54px -22px rgba(0,0,0,.75), 0 0 40px -12px rgba(201,169,106,.25);transition:transform .45s var(--ease), box-shadow .45s, border-color .45s, background .45s}
+.disc{position:absolute;inset:0;border-radius:50%;pointer-events:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:radial-gradient(circle at 50% 34%, rgba(44,40,33,.85), rgba(12,11,15,.92));border:1px solid rgba(201,169,106,.5);backdrop-filter:blur(6px);box-shadow:inset 0 0 34px rgba(201,169,106,.08), 0 34px 54px -22px rgba(0,0,0,.75), 0 0 40px -12px rgba(201,169,106,.25);transition:transform .45s var(--ease), box-shadow .45s, border-color .45s, background .45s}
 .disc .ic{width:16px;opacity:.95;transition:transform .45s var(--ease)}
 .orb.o3 .disc .ic{width:20px}
 .disc .lbl{font-family:"Cormorant Garamond",serif;font-size:clamp(13px,1.1vw,16px);letter-spacing:.22em;text-transform:uppercase;color:var(--ivory)}
@@ -296,7 +300,8 @@ footer .ft{margin-top:18px;color:var(--ivory-dim);font-size:11px;letter-spacing:
   .char-img{width:min(62vw,300px)}
   .lede{position:static;transform:none;max-width:100%;order:2;margin-top:12px;animation:fadeUp 1s var(--ease) .4s forwards}
   .eyebrow{justify-content:center}.flourish{justify-content:center}
-  .orbs{position:static;order:3;margin-top:34px;display:flex;justify-content:center;gap:clamp(12px,3.5vw,24px);flex-wrap:wrap}
+  .orbs{position:static;order:3;margin-top:40px;display:flex;justify-content:center;gap:clamp(22px,4vw,34px);flex-wrap:wrap}
+  .ring-rot{inset:-9px}
   .orb{position:static;--sz:104px!important;animation:fadeUp 1s var(--ease) .6s forwards}
   .subicons{position:static;order:4;margin-top:26px;display:flex;justify-content:center;gap:34px}
   .sicon{position:static;animation:none}
@@ -309,7 +314,10 @@ footer .ft{margin-top:18px;color:var(--ivory-dim);font-size:11px;letter-spacing:
   .socials{gap:13px}.socials a{font-size:10px;letter-spacing:.14em}
   .name{font-size:clamp(17px,5.2vw,24px)}
   .name .g{font-size:clamp(44px,13.5vw,62px);margin-top:8px}
-  .orb{--sz:96px!important}.disc .lbl{font-size:12px}.disc .jp{font-size:9px}
+  /* 3つ並べても回る輪どうしが重ならないサイズと間隔（輪は本体から 7px 外側） */
+  .orbs{gap:clamp(16px,5vw,22px)}
+  .ring-rot{inset:-7px}
+  .orb{--sz:clamp(80px,24vw,92px)!important}.disc .lbl{font-size:11px;letter-spacing:.16em}.disc .jp{font-size:9px}
   .sicon .si{width:54px;height:54px}.sicon .si svg{width:22px;height:22px}
   .drow{grid-template-columns:1fr;gap:4px}
   .ptab{padding:9px 12px;font-size:12px}
